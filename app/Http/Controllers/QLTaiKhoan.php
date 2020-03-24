@@ -4,13 +4,46 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\taikhoan;
+use App\loaitaikhoan;
 use DB;
 use Session;
+use Hash;
 class QLTaiKhoan extends Controller
 {
-    public function DanhsachTK(){
+    public function DanhSachTK(){
         $dstaikhoan = taikhoan::all();
-        $dstaikhoan1 = DB::table('taikhoan')->get();       
-        return view('pages.admin.qltaikhoan',['dstaikhoan'=>$dstaikhoan, 'dstaikhoan1'=>$dstaikhoan1]);
+        $dsloaitk = loaitaikhoan::all();       
+        return view('pages.admin.qltaikhoan',['dstaikhoan'=>$dstaikhoan, 'dsloaitk'=>$dsloaitk]);
     }
+
+    public function ThemTK(Request $req){
+        $matkhau = $req->matkhau;
+        $xacnhanmatkhau = $req->xacnhanmatkhau;
+        if($matkhau == $xacnhanmatkhau)
+        {
+            $matkhaumoi = Hash::make($matkhau);
+            $taikhoan = new taikhoan();
+            $taikhoan->tentaikhoan = $req->email;
+            $taikhoan->matkhau = $matkhaumoi;
+            $taikhoan->loaitaikhoan = $req->loaitaikhoan;
+            $taikhoan->save();
+            return redirect()->back();
+        }
+        else
+        {
+            Session::flash('error', 'Thêm thất bại! Mật khẩu xác nhận không trùng khớp!');
+            return redirect('danhsachTK');
+        }
+    }
+
+    public function XoaTK($id){
+        $xoataikhoan = taikhoan::destroy($id);
+        if ($xoataikhoan) {
+		    Session::flash('success', 'Xóa tài khoản thành công!');
+        }else {
+            Session::flash('error', 'Xóa thất bại!');
+        }
+        return redirect()->back();
+    }
+
 }

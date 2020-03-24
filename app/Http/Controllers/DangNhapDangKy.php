@@ -17,15 +17,15 @@ class DangNhapDangKy extends Controller
         {
             foreach($dn as $lg)
             {              
-                // if(Hash::check($matkhaumoi, $lg->matkhau))
-                if($lg->matkhau == $matkhau)
+                if(Hash::check($matkhau, $lg->matkhau))
+                // if($lg->matkhau == $matkhau)
                 {
-                    if($lg->loaitaikhoan==0)
+                    if($lg->loaitaikhoan==1)
                     {
                         session()->put('tendn',$lg->tentaikhoan);                     
                         return redirect('trangquantri');
                     }
-                    else if($lg->loaitaikhoan==1)
+                    else if($lg->loaitaikhoan==0)
                     {
                         session()->put('tenadmin',$lg->tentaikhoan);
                         return redirect('/');

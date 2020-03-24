@@ -1,5 +1,6 @@
 @extends('layouts.master-admin')
 @section('content')
+<link rel="stylesheet" href="{{asset('/admin/css/qltk.css')}}">
 <div class="dashboard-ecommerce">
                 <div class="container-fluid dashboard-content ">
                     <!-- Noi dung -->
@@ -39,9 +40,34 @@
                                                             <label class="col-form-label font-weight-bold">Tên tài khoản<span class="text-danger"> (*)</span></label>
                                                             <input type="text" class="form-control" name="email">
                                                         </div>
+
+                                                        <div class="form-group col-6">
+                                                            <label class="col-form-label font-weight-bold">Loại tài khoản<span class="text-danger"> (*)</span></label>
+                                                            <select name="loaitaikhoan" class="form-control">
+                                                            <option value="0" selected hidden>Admin</option>
+                                                            @foreach($dsloaitk as $dsltk)
+                                                                <option value="{{$dsltk->id}}">{{$dsltk->loaitaikhoan}}</option>
+                                                            @endforeach
+                                                            </select>
+                                                        </div>
+
                                                         <div class="form-group col-6">
                                                             <label class="col-form-label font-weight-bold">Mật khẩu<span class="text-danger"> (*)</span></label>
                                                             <input type="password" class="form-control" name="matkhau">
+                                                        </div>
+                                                        <?php //Hiển thị thông báo lỗi?>
+                                                        @if ( Session::has('error') )
+                                                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                                            <strong>{{ Session::get('error') }}</strong>
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                                <span class="sr-only">Close</span>
+                                                            </button>
+                                                        </div>
+                                                        @endif
+                                                        <div class="form-group col-6">
+                                                            <label class="col-form-label font-weight-bold">Xác nhận Mật khẩu<span class="text-danger"> (*)</span></label>
+                                                            <input type="password" class="form-control" name="xacnhanmatkhau">
                                                         </div>
 
                                                     </div>
@@ -96,19 +122,64 @@
                                         <tr>
                                             <th>{{$i++}}</th>
                                             <td>{{$tk->tentaikhoan}}</td>
-                                            <td>{{$tk->quyen===0 ? 'Người dùng' : 'Admin'}}</td>
+                                            <td>{{$tk->loaitaikhoan===0 ? 'Admin' : 'Người dùng'}}</td>
                                             <td>
 
-                                                <span data-toggle="modal" data-target="#{{$sua}}">
+                                                <!-- <span data-toggle="modal" data-target="#{{$sua}}">
                                                     <a href="#" class="text-success ml-3" data-toggle="tooltip"
                                                         data-placement="bottom" data-html="true" title="Sửa"><i
                                                             class="fa fa-edit fa-lg"></i></a>
-                                                </span>
+                                                </span> -->
                                                 <span data-toggle="modal" data-target="#{{$xoa}}">
                                                     <a href="#" class="text-danger ml-3" data-toggle="tooltip"
                                                         data-placement="right" data-html="true" title="Xóa"><i
                                                             class="fa fa-trash-alt fa-lg"></i></a>
                                                 </span>
+
+                                                <!-- Modal xóa -->
+                                               
+                                                <div class="modal fade" id="{{$xoa}}" tabindex="-1" role="dialog"
+                                                aria-labelledby="addModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h2 class="modal-title" id="addModalLabel">Xóa Tài Khoản</h3>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <div class="row">
+                                                                <h3>Bạn có chắc muốn xóa tài khoản <b>{{$tk->tentaikhoan}}</b></h3>
+                                                                
+                                                                <?php //Hiển thị thông báo lỗi?>
+                                                                @if ( Session::has('error') )
+                                                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                                                    <strong>{{ Session::get('error') }}</strong>
+                                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                        <span class="sr-only">Close</span>
+                                                                    </button>
+                                                                </div>
+                                                                @endif
+                                                                
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-success">Thêm</button>
+                                                            <button type="button" class="btn btn-default"
+                                                                data-dismiss="modal">Đóng</button>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                </form>
+                                                <!-- End modal xóa -->
+
                                             </td>
                                         </tr>
                                     @endforeach
