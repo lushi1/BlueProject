@@ -117,66 +117,47 @@
                                     <?php $i=1 ?>
                                     @foreach($dstaikhoan as $tk)
                                     <?php
-                                        $sua = $tk->id."sua";
-                                        $xoa = $tk->id."xoa"; ?>
+                                        $sua = $tk->tentaikhoan."sua";
+                                        $xoa = $tk->tentaikhoan."xoa"; ?>
                                         <tr>
                                             <th>{{$i++}}</th>
                                             <td>{{$tk->tentaikhoan}}</td>
-                                            <td>{{$tk->loaitaikhoan===0 ? 'Admin' : 'Người dùng'}}</td>
+                                            <td>{{$tk->loaitaikhoan===0 ? 'Admin' : 'Khách hàng'}}</td>
                                             <td>
-
-                                                <!-- <span data-toggle="modal" data-target="#{{$sua}}">
-                                                    <a href="#" class="text-success ml-3" data-toggle="tooltip"
-                                                        data-placement="bottom" data-html="true" title="Sửa"><i
-                                                            class="fa fa-edit fa-lg"></i></a>
-                                                </span> -->
+                                               
                                                 <span data-toggle="modal" data-target="#{{$xoa}}">
                                                     <a href="#" class="text-danger ml-3" data-toggle="tooltip"
                                                         data-placement="right" data-html="true" title="Xóa"><i
                                                             class="fa fa-trash-alt fa-lg"></i></a>
                                                 </span>
-
-                                                <!-- Modal xóa -->
                                                
+                                                <!-- Modal xóa -->
+                                                <form action="{{route('xoaTK',['id' => $tk->id])}}"
+                                                            method="post">
+                                                @csrf
                                                 <div class="modal fade" id="{{$xoa}}" tabindex="-1" role="dialog"
-                                                aria-labelledby="addModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h2 class="modal-title" id="addModalLabel">Xóa Tài Khoản</h3>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                        </div>
-                                                        <div class="modal-body">
-
-                                                            <div class="row">
-                                                                <h3>Bạn có chắc muốn xóa tài khoản <b>{{$tk->tentaikhoan}}</b></h3>
-                                                                
-                                                                <?php //Hiển thị thông báo lỗi?>
-                                                                @if ( Session::has('error') )
-                                                                <div class="alert alert-danger alert-dismissible" role="alert">
-                                                                    <strong>{{ Session::get('error') }}</strong>
-                                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h2 class="modal-title" id="deleteModalLabel">Xóa Tài Khoản</h3>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
-                                                                        <span class="sr-only">Close</span>
                                                                     </button>
-                                                                </div>
-                                                                @endif
-                                                                
+                                                            </div>
+                                                            <div class="modal-body">
+                                                            <h5>Bạn có chắc muốn xóa tài khoản <span>"{{$tk->tentaikhoan}}"</span></h5>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-danger">Xóa</button>
+                                                                <button type="button" class="btn btn-default float-left"
+                                                                    data-dismiss="modal">Hủy</button>
 
                                                             </div>
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <button type="submit" class="btn btn-success">Thêm</button>
-                                                            <button type="button" class="btn btn-default"
-                                                                data-dismiss="modal">Đóng</button>
-
-                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                                 </form>
                                                 <!-- End modal xóa -->
 

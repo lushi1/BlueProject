@@ -8,7 +8,7 @@ class taikhoan extends Model
 {
     //
     protected $table='taikhoan';
-    protected $primaryKey = 'gid';
+    protected $primaryKey = 'id';
     public $timestamps = false;
     public $incrementing = false;
 }
