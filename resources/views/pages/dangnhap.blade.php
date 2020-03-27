@@ -66,7 +66,11 @@
 					<div class="container-login100-form-btn">
 						<input class="login100-form-btn" type="submit" value="Login">
 					</div>
-
+					
+					<a href="{{ url('auth/google') }}" style="margin-top: 20px;" class="btn btn-lg btn-success btn-block">
+                                  <strong>Login With Google</strong>
+                                </a> 
+								
 					<div class="text-center p-t-12">
 						<span class="txt1">
 							Forgot

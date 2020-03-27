@@ -11,4 +11,12 @@ class taikhoan extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
     public $incrementing = false;
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'tentaikhoan', 'email', 'matkhau','loaitaikhoan','google_id',
+    ];
 }

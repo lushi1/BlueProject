@@ -23,3 +23,6 @@ Route::get('/trangdangky', function () {
 Route::get('/dangnhap','DangNhapDangKy@DangNhap')->name('dangnhap');
 
 Route::get('danhsachSV', 'QLTaiKhoan@DanhsachSV')->name('danhsachSV');
+
+Route::get('auth/google', 'LoginGoogleAccount@redirectToGoogle');
+Route::get('auth/google/callback', 'LoginGoogleAccount@handleGoogleCallback');
