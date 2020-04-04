@@ -43,14 +43,7 @@ class LoginGoogleAccount extends Controller
                     'google_id'=> $user->id,
                     'matkhau' => encrypt('123456dummy'),
                     
-                ]);
-
-                // $taikhoan = new taikhoan();
-                // $taikhoan->tentaikhoan = $user->email;
-                // $taikhoan->matkhau = $user->id;
-                // $taikhoan->loaitaikhoan = '0';
-                // $taikhoan->google_id = $user->id;
-                // $taikhoan->save();
+                ]);               
                 return view('pages.dashboard');
             }
     
