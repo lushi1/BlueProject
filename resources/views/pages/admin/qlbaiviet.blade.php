@@ -24,7 +24,7 @@
                                     @csrf
                                     <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
                                         aria-labelledby="addModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h2 class="modal-title" id="addModalLabel">Thêm Bài Viết</h3>
@@ -43,7 +43,20 @@
                                                         <div class="form-group col-12">
                                                             <label class="col-form-label font-weight-bold">Nội dung<span class="text-danger"> (*)</span></label>
                                                             <div class="form-group col-12">
-                                                                <textarea style="width: 100%;" name=text id="text"></textarea>
+                                                                <textarea name=text id="text" cols="30" rows="10"></textarea>
+                                                                <script src={{ url('editor/ckeditor/ckeditor.js') }}></script>
+                                                                <script>
+                                                                CKEDITOR.replace( 'text');
+                                                                // CKEDITOR.replace( 'text', {
+                                                                    // filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
+                                                                    // filebrowserBrowseUrl: '{{ asset('editor/ckfinder/ckfinder.html') }}',
+                                                                    // filebrowserImageBrowseUrl: '{{ asset('editor/ckfinder/ckfinder.html?type=Images') }}',
+                                                                    // filebrowserFlashBrowseUrl: '{{ asset('editor/ckfinder/ckfinder.html?type=Flash') }}',
+                                                                    // filebrowserUploadUrl: '{{ asset('editor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+                                                                    // filebrowserImageUploadUrl: '{{ asset('editor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+                                                                    // filebrowserFlashUploadUrl: '{{ asset('editor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
+                                                                // } );
+                                                                </script>
                                                             </div>
                                                         </div>
 

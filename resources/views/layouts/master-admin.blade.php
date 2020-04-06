@@ -1,3 +1,6 @@
+@if (!session()->has('tenadmin'))
+    echo "<script>window.location='trangdangnhap'</script>";
+@endif
 <!DOCTYPE html>
 <html>
 <head>

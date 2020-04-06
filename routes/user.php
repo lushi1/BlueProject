@@ -10,9 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('pages.dashboard');
-});
+// Route::get('/', function () {
+//     return view('pages.admin.qltaikhoan');
+// });
+Route::get('/', 'QLTaiKhoan@DanhSachTK')->name('danhsachTK');
+
 Route::get('/trangdangnhap', function () {
     return view('pages.dangnhap');
 });

@@ -22,12 +22,14 @@ class DangNhapDangKy extends Controller
                 {
                     if($lg->loaitaikhoan==1)
                     {
-                        session()->put('tendn',$lg->tentaikhoan);                     
-                        return redirect('trangquantri');
+                        session()->put('tenkh',$lg->tentaikhoan);
+                        session()->put('id',$lg->id);                     
+                        return redirect('trangchu');
                     }
                     else if($lg->loaitaikhoan==0)
                     {
                         session()->put('tenadmin',$lg->tentaikhoan);
+                        session()->put('id',$lg->id);
                         return redirect('/');
                     }
                 }
