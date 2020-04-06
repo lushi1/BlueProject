@@ -43,7 +43,7 @@
                                                         <div class="form-group col-12">
                                                             <label class="col-form-label font-weight-bold">Nội dung<span class="text-danger"> (*)</span></label>
                                                             <div class="form-group col-12">
-                                                                <textarea name=noidung id="noidung" cols="30" rows="10"></textarea>
+                                                                <textarea name="noidung" id="noidung" cols="30" rows="10"></textarea>
                                                                 <script src={{ url('editor/ckeditor/ckeditor.js') }}></script>
                                                                 <script>
                                                                 CKEDITOR.replace( 'noidung');
@@ -89,7 +89,7 @@
                         </div>
 
 
-
+                        
                       
                         <!-- <div class="table table-reponsive"> -->
                         <div class="card-body">
@@ -98,9 +98,9 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Tiêu đề</th>
-                                            <th scope="col">Người tạo</th>
+                                            <th scope="col">Tiêu đề</th>                 
                                             <th scope="col">Nội dung</th>
+                                            <th scope="col">Tác giả</th>
                                             <th scope="col">Ngày tạo</th>
                                             <th scope="col">Thao tác</th>
                                         </tr>
@@ -114,17 +114,22 @@
                                         <tr>
                                             <th>{{$i++}}</th>
                                             <td>{{$bv->tieude}}</td>
-                                            <td>{{$bv->chubaiviet}}</td>
                                             <td>{!!$bv->noidung!!}</td>
+                                            <td>{{$bv->chubaiviet}}</td>                                       
                                             <td>{{$bv->ngaytao}}</td>                             
                                             <td>
-                                               
+                                                <span data-toggle="modal" data-target="#{{$sua}}">
+                                                    <a href="#" class="text-success ml-3" data-toggle="tooltip"
+                                                        data-placement="bottom" data-html="true" title="Sửa"><i
+                                                            class="fa fa-edit fa-lg"></i></a>
+                                                </span>
+
                                                 <span data-toggle="modal" data-target="#{{$xoa}}">
                                                     <a href="#" class="text-danger ml-3" data-toggle="tooltip"
                                                         data-placement="right" data-html="true" title="Xóa"><i
                                                             class="fa fa-trash-alt fa-lg"></i></a>
                                                 </span>
-                                               
+                                                
                                                 <!-- Modal xóa -->
                                                 <form action="{{route('xoaBV',['id' => $bv->id])}}"
                                                             method="post">
@@ -154,6 +159,60 @@
                                                 </div>
                                                 </form>
                                                 <!-- End modal xóa -->
+
+                                                <!-- Modal sửa -->
+                                                <form action="{{route('suaBV',['id' => $bv->id])}}"
+                                                            method="post">
+                                                @csrf
+                                                <div class="modal fade" id="{{$sua}}" tabindex="-1" role="dialog"
+                                                    aria-labelledby="editModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h2 class="modal-title" id="editModalLabel">Sửa Bài Viết</h3>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                            <div class="row">
+                                                        <div class="form-group col-6">
+                                                            <label class="col-form-label font-weight-bold">Tiêu đề<span class="text-danger"> (*)</span></label>
+                                                            <input type="text" class="form-control" name="tieude" value="{{$bv->tieude}}">
+                                                        </div>
+                                                        <div class="form-group col-12">
+                                                            <label class="col-form-label font-weight-bold">Nội dung<span class="text-danger"> (*)</span></label>
+                                                            <div class="form-group col-12">
+                                                                <textarea name="{{$sua}}{{$sua}}" id="{{$sua}}{{$sua}}" cols="30" rows="10" >{!!$bv->noidung!!}</textarea>
+                                                                
+                                                                <script>
+                                                                CKEDITOR.replace( '{{$sua}}{{$sua}}');
+                                                                // CKEDITOR.replace( 'text', {
+                                                                    // filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
+                                                                    // filebrowserBrowseUrl: '{{ asset('editor/ckfinder/ckfinder.html') }}',
+                                                                    // filebrowserImageBrowseUrl: '{{ asset('editor/ckfinder/ckfinder.html?type=Images') }}',
+                                                                    // filebrowserFlashBrowseUrl: '{{ asset('editor/ckfinder/ckfinder.html?type=Flash') }}',
+                                                                    // filebrowserUploadUrl: '{{ asset('editor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+                                                                    // filebrowserImageUploadUrl: '{{ asset('editor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+                                                                    // filebrowserFlashUploadUrl: '{{ asset('editor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}'
+                                                                // } );
+                                                                </script>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-danger">Sửa</button>
+                                                                <button type="button" class="btn btn-default float-left"
+                                                                    data-dismiss="modal">Hủy</button>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </form>
+                                                <!-- End modal sửa -->
 
                                             </td>
                                         </tr>

@@ -19,3 +19,4 @@ Route::post('xoaTK/{id}','QLTaiKhoan@XoaTK')->name('xoaTK');
 Route::get('danhsachBV', 'QLBaiViet@DanhSachBV')->name('danhsachBV');
 Route::post('themBV','QLBaiViet@ThemBV')->name('themBV');
 Route::post('xoaBV/{id}','QLBaiViet@XoaBV')->name('xoaBV');
+Route::post('suaBV/{id}','QLBaiViet@SuaBV')->name('suaBV');
