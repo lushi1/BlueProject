@@ -23,8 +23,8 @@ class QLBaiViet extends Controller
         $baiviet->tieude=$req->tieude;
         $baiviet->noidung=$req->noidung;
         $baiviet->chubaiviet= Session::get('id');
-        $baiviet->ngaytao= Carbon\Carbon::now();
+        $baiviet->ngaytao= Carbon::now();
         $baiviet->save();
-        return view('pages.admin.qlbaiviet',['dsbaiviet'=>$dsbaiviet]);
+        return redirect('danhsachBV');
     }
 }

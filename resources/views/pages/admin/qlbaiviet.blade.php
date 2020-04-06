@@ -43,10 +43,10 @@
                                                         <div class="form-group col-12">
                                                             <label class="col-form-label font-weight-bold">Nội dung<span class="text-danger"> (*)</span></label>
                                                             <div class="form-group col-12">
-                                                                <textarea name=text id="text" cols="30" rows="10"></textarea>
+                                                                <textarea name=noidung id="noidung" cols="30" rows="10"></textarea>
                                                                 <script src={{ url('editor/ckeditor/ckeditor.js') }}></script>
                                                                 <script>
-                                                                CKEDITOR.replace( 'text');
+                                                                CKEDITOR.replace( 'noidung');
                                                                 // CKEDITOR.replace( 'text', {
                                                                     // filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
                                                                     // filebrowserBrowseUrl: '{{ asset('editor/ckfinder/ckfinder.html') }}',
@@ -100,6 +100,7 @@
                                             <th scope="col">#</th>
                                             <th scope="col">Tiêu đề</th>
                                             <th scope="col">Người tạo</th>
+                                            <th scope="col">Nội dung</th>
                                             <th scope="col">Ngày tạo</th>
                                             <th scope="col">Thao tác</th>
                                         </tr>
@@ -114,6 +115,7 @@
                                             <th>{{$i++}}</th>
                                             <td>{{$bv->tieude}}</td>
                                             <td>{{$bv->chubaiviet}}</td>
+                                            <td>{!!$bv->noidung!!}</td>
                                             <td>{{$bv->ngaytao}}</td>                             
                                             <td>
                                                
