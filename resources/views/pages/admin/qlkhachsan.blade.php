@@ -21,6 +21,7 @@
                     
                         
                         <div class="card-body">
+                        
                         <div id="mapid" style="width: 800; height: 600px;"></div>
                         <script>
 
@@ -35,11 +36,63 @@
                                 tileSize: 512,
                                 zoomOffset: -1
                             }).addTo(mymap);
-                        </script>
+                        </script>                   
                         <script src="{{asset('/js/geojsondata.js')}}"></script>
+                        <script>                     
+                        var json_KhachSanpoint1={
+                            
+                            "type": "FeatureCollection",
+                            "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                                            
+                            "features": [
+                                @foreach($data as $dt)
+                                    { 
+                                        "type": "Feature", 
+                                        "properties": { 
+                                            "tenkhachsan": "{{$dt->tenkhachsan}}" }, 
+                                            "geometry": { "type": "Point", 
+                                            "coordinates": [ {{$dt->st_x}}, {{$dt->st_y}} ] } },
+                                @endforeach
+                            ]
+                        }
+                        // var myIcon = L.icon({
+                        //     iconUrl: 'hotel.png',
+                        //     iconSize: [25, 40],                    
+                        //     shadowSize: [68, 95],
+                        // });
+
+                        var khachsan = L.geoJson(json_KhachSanpoint1, {  
+                            pointToLayer: function(feature, latlng) {
+                                var smallIcon = new L.Icon({                               
+                                        iconUrl: 'hotel.png',
+                                        iconAnchor: [13, 27],
+                                        iconSize: [27, 27],                    
+                                                              
+                                });
+                                return L.marker(latlng, {icon: smallIcon});
+                            },                       
+                            onEachFeature: function (feature, layer)
+                            {
+                                
+                                layer.bindPopup('<p>Tên khách sạn: ' + feature.properties.tenkhachsan+'</p>');
+                            },
+                                                      
+                        }).addTo(mymap);
+                        var popup = L.popup();
+
+                            function onMapClick(e) {
+                                popup
+                                    .setLatLng(e.latlng)
+                                    .setContent("You clicked the map at " + e.latlng.lat.toString())
+                                    .openOn(mymap);
+                            }
+
+                            mymap.on('click', onMapClick);
+                        </script>
                         <script src="{{asset('/js/geojson.js')}}"></script>
                         </div>
                         <!-- Ket thuc noi dung -->
+                        
                     </div>
                 </div>
             </div>

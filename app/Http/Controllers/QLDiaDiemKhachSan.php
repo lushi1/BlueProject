@@ -11,10 +11,8 @@ class QLDiaDiemKhachSan extends Controller
     //
     public function DanhSachKS(){
         $dskhachsan = khachsan::all();
-        $dshuyenxa = huyenxa::all();
-        $data = DB::select('select st_asgeojson(st_transform(geom,4326)) from public.huyenphuongxa_region;');
-           
-        return view('pages.admin.qlkhachsan',['dskhachsan'=>$dskhachsan, 'dshuyenxa'=>$dshuyenxa]);
+        $data = DB::select('select ST_X(geom), ST_Y(geom),tenkhachsan from public.khachsan_point;');    
+        return view('pages.admin.qlkhachsan',['dskhachsan'=>$dskhachsan,'data'=>$data]);
     }
 
 }
