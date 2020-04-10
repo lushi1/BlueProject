@@ -15,4 +15,11 @@ class QLDiaDiemKhachSan extends Controller
         return view('pages.admin.qlkhachsan',['dskhachsan'=>$dskhachsan,'data'=>$data]);
     }
 
+    public function ThemKS(Request $req){
+        $data = DB::table('khachsan_point')->insert(['tenkhachsan'=>$req->tenkhachsan,
+        'geom'=>DB::raw("ST_GeomFromText('POINT(".$req->toadox." ".$req->toadoy.")', 4326)")]);
+        
+        return redirect('danhsachKS');
+    }
+
 }

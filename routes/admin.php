@@ -23,3 +23,6 @@ Route::post('suaBV/{id}','QLBaiViet@SuaBV')->name('suaBV');
 
 //Quản lý địa điểm khách sạn
 Route::get('danhsachKS', 'QLDiaDiemKhachSan@DanhSachKS')->name('danhsachKS');
+Route::post('themKS','QLDiaDiemKhachSan@ThemKS')->name('themKS');
+Route::post('xoaKS/{id}','QLDiaDiemKhachSan@XoaKS')->name('xoaKS');
+Route::post('suaKS/{id}','QLDiaDiemKhachSan@SuaKS')->name('suaKS');
