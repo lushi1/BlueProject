@@ -16,6 +16,7 @@
                                         <li class="breadcrumb-item"><a class="text-primary" href="#">Quản lý khách sạn</a></li>
                                     </ol>
                                 </nav>
+                               
                             </div>
                         </div>
 
@@ -52,8 +53,11 @@
                                             "properties":
                                             {
                                                 "id": {{$dt->gid}},
+                                                "diachi": "{{$dt->diachi}}",
                                                 "tenkhachsan": "{{$dt->tenkhachsan}}",
-                                                "xoa": "{{$dt->tenkhachsan}}{{$dt->gid}}",
+                                                "xoa": "xoa{{$dt->gid}}",
+                                                "sua": "sua{{$dt->gid}}",
+                                                
                                             },
                                             "geometry":
                                             {
@@ -81,7 +85,7 @@
                                 onEachFeature: function (feature, layer)
                                 {
 
-                                    layer.bindPopup('<div class="container-fluid"><div class="form-group"><p>Tên khách sạn: "'+feature.properties.tenkhachsan+'"</p></div><div class="row"><div class="col-6"><span data-toggle="modal" data-target="#'+feature.properties.tenkhachsan+'"><button type="button" class="btn btn-info">Sửa</button></span></div><div class="col-6">  <span data-toggle="modal" data-target="#'+feature.properties.xoa+'"><button type="button" class="btn btn-danger">Xóa</button></span></div></div></div>');
+                                    layer.bindPopup('<div class="container-fluid"><div class="form-group"><p>Tên khách sạn: '+feature.properties.tenkhachsan+'</p></div><div class="row"><div class="form-group"><label class="col-form-label font-weight-bold">Địa chỉ: '+feature.properties.diachi+'</label></div></div><div class="row"><div class="col-6"><span data-toggle="modal" data-target="#'+feature.properties.sua+'"><button type="button" class="btn btn-info">Sửa</button></span></div><div class="col-6">  <span data-toggle="modal" data-target="#'+feature.properties.xoa+'"><button type="button" class="btn btn-danger float-right">Xóa</button></span></div></div></div>');
                                 },
 
                             }).addTo(mymap);
@@ -105,13 +109,14 @@
                     </div>
                 </div>
             </div>
+<div class="row"><div class="form-group col-6"><label class="col-form-label font-weight-bold">Địa chỉ: <span class="text-danger"> (*)</span></label></div><textarea class="form-control col-12" name="diachi" cols="60" rows="4">{{$dt->diachi}}</textarea></div>
             @foreach($data as $dt)
 
                 <!-- Edit Form -->
 
                 <form action="{{route('suaKS',['id' => $dt->gid])}}" method="post">
                     @csrf
-                    <div class="modal fade" id="{{$dt->tenkhachsan}}" tabindex="-1" role="dialog"aria-labelledby="editModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="sua{{$dt->gid}}" tabindex="-1" role="dialog"aria-labelledby="editModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -124,23 +129,30 @@
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <label class="col-form-label font-weight-bold">Tên khách sạn: <span class="text-danger"> (*)</span></label>
-                                            <input type="text" class="form-control" name="tieude" value="{{$dt->tenkhachsan}}">
+                                            <input type="text" class="form-control" name="tenkhachsan" value="{{$dt->tenkhachsan}}">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-6">
+                                            <label class="col-form-label font-weight-bold">Địa chỉ: <span class="text-danger"> (*)</span></label>
+                                            
+                                        </div>
+                                        <textarea class="form-control col-12" name="diachi" cols="60" rows="4">{{$dt->diachi}}</textarea>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-6">
                                             <label class="col-form-label font-weight-bold">Tọa độ x: <span class="text-danger"> (*)</span></label>
-                                            <input type="text" class="form-control" name="tieude" value="{{$dt->st_x}}">
+                                            <input type="text" class="form-control" name="toadox" value="{{$dt->st_x}}" required>
                                         </div>
                                         <div class="form-group col-6">
                                             <label class="col-form-label font-weight-bold">Tọa độ y: <span class="text-danger"> (*)</span></label>
-                                            <input type="text" class="form-control" name="tieude" value="{{$dt->st_y}}">
+                                            <input type="text" class="form-control" name="toadoy" value="{{$dt->st_y}}" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-danger">Sửa</button>
-                                    <button type="button" class="btn btn-default float-left"data-dismiss="modal">Hủy</button>
+                                    <button type="button" class="btn btn-default float-left" data-dismiss="modal">Hủy</button>
                                 </div>
                             </div>
                         </div>
@@ -151,9 +163,9 @@
 
                 <!-- Delete Form -->
 
-                <form action="xoaKS" method="post">
+                <form action="{{route('xoaKS',['id' => $dt->gid])}}" method="post">
                     @csrf
-                    <div class="modal fade" id="{{$dt->tenkhachsan}}{{$dt->gid}}" tabindex="-1" role="dialog"aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="xoa{{$dt->gid}}" tabindex="-1" role="dialog"aria-labelledby="deleteModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -169,7 +181,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-danger">Xóa</button>
-                                    <button type="button" class="btn btn-default float-left"data-dismiss="modal">Hủy</button>
+                                    <button type="button" class="btn btn-default float-left" data-dismiss="modal">Hủy</button>
                                 </div>
                             </div>
                         </div>
