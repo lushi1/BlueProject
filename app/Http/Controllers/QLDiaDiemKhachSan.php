@@ -18,7 +18,7 @@ class QLDiaDiemKhachSan extends Controller
     }
 
     public function ThemKS(Request $req){
-        $data = DB::table('khachsan_point')->insert(['tenkhachsan'=>$req->tenkhachsan,
+        $data = DB::table('khachsan_point')->insert(['tenkhachsan'=>$req->tenkhachsan,'diachi'=>$req->diachi,
         'geom'=>DB::raw("ST_GeomFromText('POINT(".$req->toadox." ".$req->toadoy.")', 4326)")]);
         
         return redirect('danhsachKS');

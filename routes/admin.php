@@ -26,3 +26,9 @@ Route::get('danhsachKS', 'QLDiaDiemKhachSan@DanhSachKS')->name('danhsachKS');
 Route::post('themKS','QLDiaDiemKhachSan@ThemKS')->name('themKS');
 Route::post('xoaKS/{id}','QLDiaDiemKhachSan@XoaKS')->name('xoaKS');
 Route::post('suaKS/{id}','QLDiaDiemKhachSan@SuaKS')->name('suaKS');
+
+//Quản lý địa điểm du lịch
+Route::get('danhsachDL', 'QLDiaDiemDuLich@DanhSachDL')->name('danhsachDL');
+Route::post('themDL','QLDiaDiemDuLich@ThemDL')->name('themDL');
+Route::post('xoaDL/{id}','QLDiaDiemDuLich@XoaDL')->name('xoaDL');
+Route::post('suaDL/{id}','QLDiaDiemDuLich@SuaDL')->name('suaDL');

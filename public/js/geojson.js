@@ -1,16 +1,5 @@
 
-// function onMapClick(e) {
-//     alert("You clicked the map at " + e.latlng);
-// }
-
-// mymap.on('click', onMapClick);
-
-
 var huyenDauTieng = L.geoJson(dautieng, {
-    // onEachFeature: function (feature, layer)
-    // {
-    //     layer.bindPopup('<div style="font-weight: bold;"></div>');
-    // },
     color: '#555555',
     fillColor: '#8080ff',
     fillOpacity: 0.3,

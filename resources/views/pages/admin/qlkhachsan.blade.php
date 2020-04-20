@@ -37,11 +37,12 @@
                                     tileSize: 512,
                                     zoomOffset: -1
                                 }).addTo(mymap);
+                                
                             </script>
                             <script src="{{asset('/js/geojsondata.js')}}"></script>
 
                             <script>
-                            var json_KhachSanpoint1={
+                            var json_DiaDiemDuLich={
 
                                 "type": "FeatureCollection",
                                 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
@@ -72,7 +73,7 @@
 
                             
 
-                            var khachsan = L.geoJson(json_KhachSanpoint1, {
+                            var khachsan = L.geoJson(json_DiaDiemDuLich, {
                                 pointToLayer: function(feature, latlng) {
                                     var smallIcon = new L.Icon({
                                             iconUrl: 'hotel.png',
@@ -94,11 +95,14 @@
                                 function onMapClick(e) {
                                     popup
                                         .setLatLng(e.latlng)
-                                        .setContent('<h1><span class="badge badge-dark text-center">Thêm Khách Sạn</span></h1><form action="themKS" method="POST">@csrf<div class="form-group"><label>Tên khách sạn: </label><input type="text" class="form-control" aria-describedby="emailHelp" name="tenkhachsan" placeholder="Vd: Phương Nam" required></div><div class="form-group"><div class="row"><div class="col-6"><label>Tọa độ X: </label><input type="text" class="form-control" value="'+e.latlng.lng+'" name="toadox" readonly></div><div class="col-6"><label>Tọa độ Y: </label><input type="text" class="form-control" name="toadoy" value="'+e.latlng.lat+'" readonly></div></div></div><button type="submit" class="btn btn-primary">Thêm</button>')
+                                        .setContent('<h1><span class="badge badge-dark text-center">Thêm Khách Sạn</span></h1><form action="themKS" method="POST">@csrf<div class="form-group"><label>Tên khách sạn: </label><input type="text" class="form-control" aria-describedby="emailHelp" name="tenkhachsan" placeholder="Vd: Phương Nam" required></div><div class="row"><div class="form-group col-6"><label class="col-form-label font-weight-bold">Địa chỉ: <span class="text-danger"> (*)</span></label></div><textarea class="form-control col-12" name="diachi" cols="60" rows="4"></textarea></div><div class="form-group"><div class="row"><div class="col-6"><label>Tọa độ X: </label><input type="text" class="form-control" value="'+e.latlng.lng+'" name="toadox" readonly></div><div class="col-6"><label>Tọa độ Y: </label><input type="text" class="form-control" name="toadoy" value="'+e.latlng.lat+'" readonly></div></div></div><button type="submit" class="btn btn-primary">Thêm</button>')
                                         .openOn(mymap);
                                 }
 
                                 mymap.on('click', onMapClick);
+
+                                
+                            
                             </script>
                             <script src="{{asset('/js/geojson.js')}}"></script>
 
@@ -109,7 +113,6 @@
                     </div>
                 </div>
             </div>
-<div class="row"><div class="form-group col-6"><label class="col-form-label font-weight-bold">Địa chỉ: <span class="text-danger"> (*)</span></label></div><textarea class="form-control col-12" name="diachi" cols="60" rows="4">{{$dt->diachi}}</textarea></div>
             @foreach($data as $dt)
 
                 <!-- Edit Form -->
