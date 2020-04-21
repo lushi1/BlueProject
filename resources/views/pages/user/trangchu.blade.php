@@ -1,5 +1,6 @@
 @extends('layouts.master-user')
 @section('content')
+<link rel="stylesheet" href="{{asset('/user/css/autocomplete.css')}}">
 <link rel="stylesheet" href="{{asset('/admin/css/qltk.css')}}">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
@@ -8,13 +9,21 @@
     <!-- Panel map -->
     <div class="pane-container col-3 border border-primary">
         <!-- Search Form -->
-        <form class="form-group mt-3">
-            <div class="input-group input-group-sm mx-auto">
-                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-navbar" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
+        <form autocomplete="off" class="form-group mt-3">
+            
+            <div class="autocomplete input-group mx-auto">
+                <div class="row">
+                    <input 
+                            id="myInput" 
+                            type="text" 
+                            name="myCountry"
+                            placeholder="Search" 
+                            aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-navbar" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </form>
@@ -86,6 +95,7 @@
                 </label>
             </div>
         </form>
+        <!-- <a href="#" onclick="focusOn('paris')">Paris</a> -->
         <!-- End show and hide form -->
     </div>
     <!-- End panel map -->
@@ -149,6 +159,10 @@
 
                     layer.bindPopup('<div class="container-fluid"><div class="form-group"><p>Tên địa điểm: '+feature.properties.tendiadiem+'</p></div><div class="row"><div class="form-group"><label class="col-form-label font-weight-bold">Địa chỉ: '+feature.properties.diachi+'</label></div></div></div>');
                 },
+                // filter: function(feature,layer)
+                // {
+                //     return true;
+                // },
 
             }).addTo(mymap);
 
@@ -242,6 +256,32 @@
                 mymap.addLayer(huyenBacTanUyen)
             });
 
+
+            
+
+            // javascript
+            // var markers = {};
+            // markers["paris"] = L.marker([11.20465, 106.69412]).addTo(mymap)
+            // .bindPopup("<b>Hello world!</b><br />I am Paris.");
+
+            // function focusOn(city) {
+            //     markers[city].openPopup();
+            // }
+            </script>        
+            <script>
+                var countries = [
+                                    @foreach($datadl as $dl)
+                                    "{{$dl->tendiadiem}}",                               
+                                    @endforeach
+                                    @foreach($dataks as $ks)
+                                    "{{$ks->tenkhachsan}}",                               
+                                    @endforeach
+                                ];
+                    console.log(countries);
+            </script>
+            <script src="{{asset('/user/js/trangchu_autocomplete.js')}}"></script>
+            <script>
+                autocomplete(document.getElementById("myInput"), countries);
             </script>
         
     </div>
