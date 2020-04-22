@@ -9,18 +9,19 @@
     <!-- Panel map -->
     <div class="pane-container col-3 border border-primary">
         <!-- Search Form -->
-        <form autocomplete="off" class="form-group mt-3">
+        <form autocomplete="off" class="form-group mt-3" action="#">
             
             <div class="autocomplete input-group mx-auto">
                 <div class="row">
-                    <input 
-                            id="myInput" 
+
+                    <input id="myInput" 
                             type="text" 
                             name="myCountry"
                             placeholder="Search" 
                             aria-label="Search">
+
                     <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
+                        <button type="button" id="myBtn" class="btn btn-navbar">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
@@ -101,7 +102,7 @@
     <!-- End panel map -->
     <!-- Map -->
     <div class="canvas-container col-9">       
-        <div id="mapid" style="height: 600px;"></div>
+        <div id="mapid" style="height: 550px;"></div>
         <script>
 
             var mymap = L.map('mapid')
@@ -259,16 +260,7 @@
 
             
 
-            // javascript
-            // var markers = {};
-            // markers["paris"] = L.marker([11.20465, 106.69412]).addTo(mymap)
-            // .bindPopup("<b>Hello world!</b><br />I am Paris.");
-
-            // function focusOn(city) {
-            //     markers[city].openPopup();
-            // }
-            </script>        
-            <script>
+                // data for autocomplete
                 var countries = [
                                     @foreach($datadl as $dl)
                                     "{{$dl->tendiadiem}}",                               
@@ -278,6 +270,29 @@
                                     @endforeach
                                 ];
                     console.log(countries);
+                
+                // js show popup when click search button
+
+                $(document).ready(function(){
+                    // Get value on button click and show alert
+                    $("#myBtn").click(function(){
+                        var str = $("#myInput").val();
+                        
+                        diadiemdulich.eachLayer(function(feature){
+                            if(feature.feature.properties.tendiadiem==str){
+                                feature.openPopup();
+                            }
+                        
+                        });
+
+                        khachsan.eachLayer(function(feature){
+                            if(feature.feature.properties.tenkhachsan==str){
+                                feature.openPopup();
+                            }
+                        
+                        });
+                    });
+                });
             </script>
             <script src="{{asset('/user/js/trangchu_autocomplete.js')}}"></script>
             <script>
