@@ -33,7 +33,7 @@ class LoginGoogleAccount extends Controller
      
             if($finduser){    
                 
-                return view('pages.dashboard');
+                return redirect('trang-chu');
      
             }
             else{
@@ -44,7 +44,7 @@ class LoginGoogleAccount extends Controller
                     'matkhau' => encrypt('123456dummy'),
                     
                 ]);               
-                return view('pages.dashboard');
+                return redirect('trang-chu');
             }
     
         } catch (Exception $e) {

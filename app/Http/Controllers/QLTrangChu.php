@@ -13,6 +13,6 @@ class QLTrangChu extends Controller
     function TrangChu (){
         $datadl = DB::select('select ST_X(geom), ST_Y(geom),tendiadiem,gid,diachi from public.diadiemdulich_khachsan_point;');
         $dataks = DB::select('select ST_X(geom), ST_Y(geom),tenkhachsan,gid, diachi from public.khachsan_point;');    
-        return view('pages.user.trangchu',['datadl'=>$datadl,'dataks'=>$dataks]);
+        return view('pages.trangchu',['datadl'=>$datadl,'dataks'=>$dataks]);
     }
 }

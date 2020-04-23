@@ -46,4 +46,5 @@ class QLTaiKhoan extends Controller
         return redirect()->back();
     }
 
+    
 }

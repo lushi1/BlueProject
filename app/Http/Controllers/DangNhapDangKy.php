@@ -9,6 +9,14 @@ use Session;
 use Hash;
 class DangNhapDangKy extends Controller
 {
+
+    public function TrangDangNhap()
+    {
+        if(session()->has('tenadmin') || session()->has('tenadmin'))
+            return redirect('trang-chu');
+        else
+            return view('pages.dangnhap');
+    }
     public function DangNhap(Request $req){
         $tentaikhoan = $req->email;
         $matkhau = $req->matkhau;
@@ -24,7 +32,7 @@ class DangNhapDangKy extends Controller
                     {
                         session()->put('tenkh',$lg->tentaikhoan);
                         session()->put('id',$lg->id);                     
-                        return redirect('trangchu');
+                        return redirect('trang-chu');
                     }
                     else if($lg->loaitaikhoan==0)
                     {
@@ -34,10 +42,15 @@ class DangNhapDangKy extends Controller
                     }
                 }
             }
-            Session::flash('error', 'Đăng nhập thất bại!');
+            Session::flash('error', 'Mật khẩu không chính xác!');
             return redirect('trangdangnhap');
         }
-        Session::flash('error', 'Đăng nhập thất bại!');
+        Session::flash('error', 'Tên tài khoản không tồn tại!');
+        return redirect('trangdangnhap');
+    }
+
+    public function Thoat(){
+        Session::flush();
         return redirect('trangdangnhap');
     }
 }

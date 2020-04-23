@@ -158,7 +158,7 @@
                 onEachFeature: function (feature, layer)
                 {
 
-                    layer.bindPopup('<div class="container-fluid"><div class="form-group"><p>Tên địa điểm: '+feature.properties.tendiadiem+'</p></div><div class="row"><div class="form-group"><label class="col-form-label font-weight-bold">Địa chỉ: '+feature.properties.diachi+'</label></div></div></div>');
+                    layer.bindPopup('<div class="container-fluid"><div class="form-group text-center"><h4>Tên địa điểm: '+feature.properties.tendiadiem+'</h4></div><div class="form-group"><label class="col-form-label font-weight-bold">Địa chỉ: '+feature.properties.diachi+'</label></div></div>');
                 },
                 // filter: function(feature,layer)
                 // {
@@ -211,7 +211,7 @@
                 onEachFeature: function (feature, layer)
                 {
 
-                    layer.bindPopup('<div class="container-fluid"><div class="form-group"><p>Tên khách sạn: '+feature.properties.tenkhachsan+'</p></div><div class="row"><div class="form-group"><label class="col-form-label font-weight-bold">Địa chỉ: '+feature.properties.diachi+'</label></div></div><div class="row"><div class="col-6"><span data-toggle="modal" data-target="#'+feature.properties.sua+'"><button type="button" class="btn btn-info">Sửa</button></span></div><div class="col-6">  <span data-toggle="modal" data-target="#'+feature.properties.xoa+'"><button type="button" class="btn btn-danger float-right">Xóa</button></span></div></div></div>');
+                    layer.bindPopup('<div class="container-fluid"><div class="form-group text-center"><h4>Tên khách sạn: '+feature.properties.tenkhachsan+'</h4></div><div class="form-group"><label class="col-form-label font-weight-bold">Địa chỉ: '+feature.properties.diachi+'</label></div></div>');
                 },
 
                 }).addTo(mymap);

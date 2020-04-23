@@ -56,10 +56,7 @@
                     @if ( Session::has('error') )
                     <div class="alert alert-danger alert-dismissible" role="alert">
                         <strong>{{ Session::get('error') }}</strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Close</span>
-                        </button>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
                     </div>
                     @endif
 						
@@ -108,6 +105,9 @@
 		$('.js-tilt').tilt({
 			scale: 1.1
 		})
+	</script>
+	<script>
+		$('div.alert').not('.alert-important').delay(4000).fadeOut(350);
 	</script>
 <!--===============================================================================================-->
 

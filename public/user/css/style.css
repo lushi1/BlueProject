@@ -205,7 +205,7 @@ nav a {
 /* Background color change on Hover */
 nav a:hover {
     color: #000;
-    opacity: .8;
+    opacity: .5;
 }
 
 /* Hide Dropdowns by Default
@@ -228,8 +228,11 @@ nav ul ul {
 box-shadow: 0px -1px 5px 0px rgba(143,143,143,0.72);
 }
 
-nav ul ul li a:hover {
-}
+/* nav ul li a:hover {
+    display: block;
+    background: blue;
+    opacity: 0.7;
+} */
 
 /* Display Dropdowns on Hover */
 nav ul li:hover>ul {
@@ -421,8 +424,14 @@ li>a:only-child:after {
     }
 
 }
-
-
+.row{
+    margin-right: 2%;
+}
+.row ul li{
+    float: left;
+    display: block;
+    
+}
 /* //navigation */
 /* //header */
 

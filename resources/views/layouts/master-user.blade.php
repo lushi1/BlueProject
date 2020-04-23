@@ -26,44 +26,41 @@
 <body>
     <!-- header -->
     <header>
-        <div class="container">
-            <div class="header d-lg-flex justify-content-between align-items-center py-2 px-sm-2 px-1">
+        <div class="container-fluid">
+            <div class="header d-lg-flex align-items-center py-2 px-sm-2 px-1">
                 <!-- logo -->
                 <div id="logo">
-                    <h1><a href="index.html">My School</a></h1>
+                    <h1><a href="trang-chu">Du Lịch Bình Dương</a></h1>
                 </div>
                 <!-- //logo -->
                 <!-- nav -->
-                <div class="nav_w3ls ml-lg-5">
+                <div class="nav_w3ls mx-auto">
                     <nav>
                         <label for="drop" class="toggle">Menu</label>
                         <input type="checkbox" id="drop" />
                         <ul class="menu">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#join">Join Now</a></li>
-                            <li>
-                                <!-- First Tier Drop Down -->
-                                <label for="drop-2" class="toggle toogle-2">Pages <span class="fa fa-angle-down"
-                                        aria-hidden="true"></span>
-                                </label>
-                                <a href="#">Pages <span class="fa fa-angle-down" aria-hidden="true"></span></a>
-                                <input type="checkbox" id="drop-2" />
-                                <ul>
-                                    <li><a href="#events" class="drop-text">Events</a></li>
-                                    <li><a href="#what" class="drop-text">What We Do?</a></li>
-                                    <li><a href="#courses" class="drop-text">Popular Courses</a></li>
-                                    <li><a href="#stats" class="drop-text">Statistics</a></li>
-                                    <li><a href="#gallery" class="drop-text">Gallery</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="register.html">Register</a></li>
+                            <li><a href="trang-chu">Trang chủ</a></li>
+                            <li><a href="#about">Địa điểm nổi bật</a></li>
+                            <li><a href="#join">Về chúng tôi</a></li>
+                            <li><a href="#contact">Liên hệ</a></li>  
+                            @if (!session()->has('tenkh'))
+                            <li><a href="trangdangnhap">Đăng nhập</a></li>
+                            <li><a href="trangdangky">Đăng ký</a></li>
+                            @endif
+                            @if (session()->has('tenkh'))                          
+                                    <li><a href="#">{{ Session::get('tenkh') }}</a></li>
+                                    <li><a href="thoat">Thoát</a></li>
+                            @endif
                         </ul>
                     </nav>
                 </div>
+
                 <!-- //nav -->
+                <!-- dang nhap dang ky/tenkh thoat -->
+                
+                
+                <!-- ket thuc -->
+                
             </div>
         </div>
     </header>
@@ -147,7 +144,7 @@
                     <div class="footer-logo">
                         <h2 class="text-lg-center text-center">
                             <a class="logo text-wh font-weight-bold" href="index.html">
-                                My School</a>
+                            Du Lịch Bình Dương</a>
                         </h2>
                     </div>
                 </div>
@@ -161,7 +158,9 @@
         <span class="fa fa-angle-double-up" aria-hidden="true"></span>
     </a>
     <!-- //move top icon -->
-    
+    <script>
+		$('div.alert').not('.alert-important').delay(4000).fadeOut(350);
+	</script>
 </body>
 
 </html>

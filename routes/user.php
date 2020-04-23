@@ -10,17 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/', function () {
-//     return view('pages.admin.qltaikhoan');
-// });
+
 Route::get('/', 'QLTaiKhoan@DanhSachTK')->name('danhsachTK');
 
-Route::get('/trangdangnhap', function () {
-    return view('pages.dangnhap');
-});
-Route::get('/trangdangky', function () {
-    return view('pages.dangky');
-});
+Route::get('/trangdangnhap','DangNhapDangKy@TrangDangNhap')->name('dangnhap');
+Route::get('/trangdangky','DangNhapDangKy@TrangDangKy')->name('dangnhap');
+
 
 Route::get('/dangnhap','DangNhapDangKy@DangNhap')->name('dangnhap');
 Route::get('auth/google', 'LoginGoogleAccount@redirectToGoogle');

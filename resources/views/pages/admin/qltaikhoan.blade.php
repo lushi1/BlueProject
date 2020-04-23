@@ -117,8 +117,8 @@
                                     <?php $i=1 ?>
                                     @foreach($dstaikhoan as $tk)
                                     <?php
-                                        $sua = $tk->tentaikhoan."sua";
-                                        $xoa = $tk->tentaikhoan."xoa"; ?>
+                                        $sua = "sua".$tk->id;
+                                        $xoa = "xoa".$tk->id; ?>
                                         <tr>
                                             <th>{{$i++}}</th>
                                             <td>{{$tk->tentaikhoan}}</td>

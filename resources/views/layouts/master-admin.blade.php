@@ -1,6 +1,6 @@
-<!-- @if (!session()->has('tenadmin'))
-    echo "<script>window.location='trangdangnhap'</script>";
-@endif -->
+@if (!session()->has('tenadmin'))
+    echo "<script>window.location='trang-chu'</script>";
+@endif
 <!DOCTYPE html>
 <html>
 <head>
@@ -122,7 +122,7 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
         </div>
       </li>
-      <li><a class="nav-link" href="#">
+      <li><a class="nav-link" href="thoat">
           Thoát
         </a></li>
       <!-- Notifications Dropdown Menu -->
@@ -187,7 +187,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item">
             <a href="danhsachTK" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -205,7 +205,7 @@
           </li>
   
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="danhsachDL" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Quản lý địa điểm du lịch
@@ -213,14 +213,14 @@
             </a>           
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="danhsachKS" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 Quản lý địa điểm khách sạn              
               </p>
             </a>          
           </li>
-          <li class="nav-item has-treeview">
+          <!-- <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
@@ -248,8 +248,8 @@
                 </a>
               </li>
             </ul>
-          </li>
-          <li class="nav-header">EXAMPLES</li>
+          </li> -->
+          <!-- <li class="nav-header">EXAMPLES</li> -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -318,6 +318,8 @@
 <script src="{{asset('/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('/dist/js/demo.js')}}"></script>
-
+<script>
+		$('div.alert').not('.alert-important').delay(4000).fadeOut(350);
+	</script>
 </body>
 </html>
