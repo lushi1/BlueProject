@@ -32,14 +32,14 @@
 
 				<form class="login100-form validate-form">
 					<span class="login100-form-title">
-						Sign up Form
+						Đăng ký
 					</span>
 
 					<div class="wrap-input100 validate-input">
 						<input class="input100" type="text" name="hoten" placeholder="Họ và tên">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<i class="fa fa-user" aria-hidden="true"></i>
 						</span>
 					</div>
 
@@ -47,7 +47,7 @@
 						<input class="input100" type="text" name="sdt" placeholder="Số điện thoại">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<i class="fa fa-phone" aria-hidden="true"></i>
 						</span>
 					</div>
 
@@ -59,7 +59,7 @@
 						</span>
 					</div>
 
-					<div class="wrap-input100 validate-input>
+					<div class="wrap-input100 validate-input">
 						<input class="input100" type="password" name="pass" placeholder="Mật khẩu">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
@@ -76,23 +76,21 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Login
-						</button>
+						<input class="login100-form-btn" type="submit" value="Đăng ký">
 					</div>
 
 					<div class="text-center p-t-12">
 						<span class="txt1">
-							Have account?
+							Có tài khoản?
 						</span>
-						<a class="txt2" href="/#">
-							Login?
+						<a class="txt2" href="dangnhap">
+							Đăng nhập?
 						</a>
 					</div>
 
-					<div class="text-center p-t-136">
-						<a class="txt2" href="/#">
-							Return Homepage
+					<div class="text-center p-t-12">
+						<a class="txt2" href="trang-chu">
+							Về trang chủ
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
 					</div>

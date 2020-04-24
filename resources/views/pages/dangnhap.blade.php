@@ -33,7 +33,7 @@
 				<form class="login100-form validate-form" action="dangnhap" method="get">
 				{{@csrf_field()}}
 					<span class="login100-form-title">
-						Login Form
+						Đăng nhập
 					</span>
 
 					<div class="wrap-input100 validate-input">
@@ -61,25 +61,25 @@
                     @endif
 						
 					<div class="container-login100-form-btn">
-						<input class="login100-form-btn" type="submit" value="Login">
+						<input class="login100-form-btn" type="submit" value="Đăng nhập">
 					</div>
 					
-					<a href="{{ url('auth/google') }}" style="margin-top: 20px;" class="btn btn-lg btn-success btn-block">
-                                  <strong>Login With Google</strong>
+					<a href="{{ url('auth/google') }}" style="margin-top: 20px;" class="btn btn-success btn-block">
+                                  Đăng nhập với tài khoản Google</strong>
                                 </a> 
 								
 					<div class="text-center p-t-12">
 						<span class="txt1">
-							Forgot
+							Quên
 						</span>
 						<a class="txt2" href="/#">
-							Username / Password?
+							Tài khoản/Mật khẩu?
 						</a>
 					</div>
 
-					<div class="text-center p-t-136">
-						<a class="txt2" href="/#">
-							Create your Account
+					<div class="text-center p-t-12">
+						<a class="txt2" href="trang-chu">
+							Tạo tài khoản
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
 					</div>

@@ -2,11 +2,11 @@
 <html>
 
 <head>
-    <title>Trang chủ</title>
+    <title>Trang chủ - Du Lịch Bình Dương</title>
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
-    <meta name="keywords" content="My School Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <meta name="keywords" content="Du Lịch Bình Dương, Đại Nam, Suối Rạc, Hồ Bình, ..." />
 
     <!-- //Meta tag Keywords -->
 

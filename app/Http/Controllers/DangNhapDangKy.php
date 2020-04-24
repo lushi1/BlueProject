@@ -17,6 +17,15 @@ class DangNhapDangKy extends Controller
         else
             return view('pages.dangnhap');
     }
+
+    public function TrangDangKy()
+    {
+        if(session()->has('tenadmin') || session()->has('tenadmin'))
+            return redirect('trang-chu');
+        else
+            return view('pages.dangnhap');
+    }
+
     public function DangNhap(Request $req){
         $tentaikhoan = $req->email;
         $matkhau = $req->matkhau;

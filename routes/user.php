@@ -14,7 +14,9 @@
 Route::get('/', 'QLTaiKhoan@DanhSachTK')->name('danhsachTK');
 
 Route::get('/trangdangnhap','DangNhapDangKy@TrangDangNhap')->name('dangnhap');
-Route::get('/trangdangky','DangNhapDangKy@TrangDangKy')->name('dangnhap');
+Route::get('/trangdangky',function(){
+    return view('pages.dangky');
+});
 
 
 Route::get('/dangnhap','DangNhapDangKy@DangNhap')->name('dangnhap');
