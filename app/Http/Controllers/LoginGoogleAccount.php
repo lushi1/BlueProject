@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Socialite;
 use Auth;
+use Hash;
 use Exception;
 use App\taikhoan;
 use Illuminate\Http\Request;
@@ -41,7 +42,7 @@ class LoginGoogleAccount extends Controller
                     'loaitaikhoan' => '1',                
                     'tentaikhoan' => $user->email,
                     'google_id'=> $user->id,
-                    'matkhau' => encrypt('123456dummy'),
+                    'matkhau' => Hash::make('123'),
                     
                 ]);               
                 return redirect('trang-chu');

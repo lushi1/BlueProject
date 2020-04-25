@@ -38,9 +38,17 @@
                                                     <div class="row">
                                                         <div class="form-group col-6">
                                                             <label class="col-form-label font-weight-bold">Tên tài khoản<span class="text-danger"> (*)</span></label>
-                                                            <input type="text" class="form-control" name="email">
+                                                            <input type="text" class="form-control" name="tentaikhoan">
                                                         </div>
-
+                                                        @if ( Session::has('errortk') )
+                                                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                                            <strong>{{ Session::get('errortk') }}</strong>
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                                <span class="sr-only">Close</span>
+                                                            </button>
+                                                        </div>
+                                                        @endif
                                                         <div class="form-group col-6">
                                                             <label class="col-form-label font-weight-bold">Loại tài khoản<span class="text-danger"> (*)</span></label>
                                                             <select name="loaitaikhoan" class="form-control">

@@ -12,20 +12,14 @@ class DangNhapDangKy extends Controller
 
     public function TrangDangNhap()
     {
-        if(session()->has('tenadmin') || session()->has('tenadmin'))
+        if(session()->has('tenkh'))
             return redirect('trang-chu');
+        else if (session()->has('tenadmin'))
+            return redirect('danhsachTK'); 
         else
             return view('pages.dangnhap');
     }
-
-    public function TrangDangKy()
-    {
-        if(session()->has('tenadmin') || session()->has('tenadmin'))
-            return redirect('trang-chu');
-        else
-            return view('pages.dangnhap');
-    }
-
+ 
     public function DangNhap(Request $req){
         $tentaikhoan = $req->email;
         $matkhau = $req->matkhau;
@@ -57,6 +51,24 @@ class DangNhapDangKy extends Controller
         Session::flash('error', 'Tên tài khoản không tồn tại!');
         return redirect('trangdangnhap');
     }
+
+    // public function TrangDangKy()
+    // {
+    //     if(session()->has('tenadmin') || session()->has('tenadmin'))
+    //         return redirect('trang-chu');
+    //     else
+    //         return view('pages.dangnhap');
+    // }
+
+    // public function DangKy(Request $req){
+    //     $dstk = DB::table('taikhoan')->value('tentaikhoan');
+    //     Session::flash('email', 'Tên tài khoản đã tồn tại!');
+    //     foreach($dstk as $tk){
+    //         if($tk == $req->tentaikhoan)
+    //             return redirect('trangdangky');
+    //     }
+    //     return redirect('trangdangnhap');
+    // }
 
     public function Thoat(){
         Session::flush();

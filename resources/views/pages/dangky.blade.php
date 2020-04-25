@@ -29,14 +29,15 @@
 				<div class="login100-pic js-tilt" data-tilt>
 					<img src="login/images/img-01.png" alt="IMG">
 				</div>
-
-				<form class="login100-form validate-form">
+				
+				<form class="login100-form validate-form" action="dangky" method="post" oninput='confirmpass.setCustomValidity(confirmpass.value != pass.value ? "Mật khẩu xác nhận không trùng khớp" : "")'>
+				{{@csrf_field()}}
 					<span class="login100-form-title">
 						Đăng ký
 					</span>
-
+					
 					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="hoten" placeholder="Họ và tên">
+						<input class="input100" type="text" name="hoten" placeholder="Họ và tên" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -44,7 +45,7 @@
 					</div>
 
                     <div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="sdt" placeholder="Số điện thoại">
+						<input class="input100" type="text" name="sdt" placeholder="Số điện thoại" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-phone" aria-hidden="true"></i>
@@ -52,15 +53,21 @@
 					</div>
 
                     <div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="email" placeholder="Email">
+						<input class="input100" type="email" name="email" placeholder="Email" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 					</div>
+					@if ( Session::has('email') )
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <strong>{{ Session::get('error') }}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
 
 					<div class="wrap-input100 validate-input">
-						<input class="input100" type="password" name="pass" placeholder="Mật khẩu">
+						<input class="input100" type="password" name="pass" placeholder="Mật khẩu" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -68,7 +75,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input">
-						<input class="input100" type="password" name="pass" placeholder="Nhập lại mật khẩu">
+						<input class="input100" type="password" name="confirmpass" placeholder="Nhập lại mật khẩu" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>

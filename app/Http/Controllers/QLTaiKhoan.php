@@ -17,13 +17,21 @@ class QLTaiKhoan extends Controller
     }
 
     public function ThemTK(Request $req){
+        // Session::flash('errortk', 'Thêm thất bại! Tên tài khoản đã tồn tại!');
+        $dstk = taikhoan::all();
+        // foreach($dstk as $tk){
+        //     if($tk->tentaikhoan == $req->tentaikhoan)
+        //     {
+        //         return redirect('danhsachTK');
+        //     }
+        // }
         $matkhau = $req->matkhau;
         $xacnhanmatkhau = $req->xacnhanmatkhau;
         if($matkhau == $xacnhanmatkhau)
         {
             $matkhaumoi = Hash::make($matkhau);
             $taikhoan = new taikhoan();
-            $taikhoan->tentaikhoan = $req->email;
+            $taikhoan->tentaikhoan = $req->tentaikhoan;
             $taikhoan->matkhau = $matkhaumoi;
             $taikhoan->loaitaikhoan = $req->loaitaikhoan;
             $taikhoan->save();
