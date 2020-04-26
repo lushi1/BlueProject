@@ -2,7 +2,6 @@
 <html>
 
 <head>
-    <title>Trang chủ - Du Lịch Bình Dương</title>
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
@@ -11,6 +10,7 @@
     <!-- //Meta tag Keywords -->
 
     <!-- Custom-Files -->
+    <link rel="stylesheet" type='text/css' href="{{asset('/user/css/tonghopreview.css')}}">
     <link rel="stylesheet" href="{{asset('/plugins/fontawesome-free/css/all.min.css')}}">
     <link href="{{asset('/user/css/bootstrap.css')}}" rel='stylesheet' type='text/css' />
     <!-- Bootstrap-CSS -->
@@ -41,14 +41,18 @@
                         <ul class="menu">
                             <li><a href="trang-chu">Trang chủ</a></li>
                             <li><a href="#about">Địa điểm nổi bật</a></li>
-                            <li><a href="#join">Về chúng tôi</a></li>
+                            <li><a href="tong-hop-review">Tổng hợp Review</a></li>
                             <li><a href="#contact">Liên hệ</a></li>  
-                            @if (!session()->has('tenkh'))
+                            @if (!session()->has('tenkh') && !session()->has('tenadmin'))
                             <li><a href="trangdangnhap">Đăng nhập</a></li>
                             <li><a href="trangdangky">Đăng ký</a></li>
                             @endif
                             @if (session()->has('tenkh'))                          
                                     <li><a href="#">{{ Session::get('tenkh') }}</a></li>
+                                    <li><a href="thoat">Thoát</a></li>
+                            @endif
+                            @if (session()->has('tenadmin'))                          
+                                    <li><a href="#">{{ Session::get('tenadmin') }}</a></li>
                                     <li><a href="thoat">Thoát</a></li>
                             @endif
                         </ul>
@@ -69,7 +73,7 @@
     <!-- banner -->
     <div class="content text-center" id="home">
         <div class="container-fluid">
-        @yield('content')
+            @yield('content')
         </div>
     </div>
     <!-- //banner -->

@@ -52,5 +52,12 @@ class QLBaiViet extends Controller
             Session::flash('error', 'Sửa thất bại!');
         }
         return redirect()->back();
-    } 
+    }
+    
+    public function DanhSachRV(){
+
+        $dsbaiviet = baiviet::all();
+       
+        return view('pages.tonghopreview',['dsbaiviet'=>$dsbaiviet]);
+    }
 }

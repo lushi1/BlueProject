@@ -1,0 +1,9 @@
+
+.img-banner {
+    margin-bottom: 2%;
+}
+.img-banner img{
+    height: 400px;
+    width: 100%;
+    /* filter: saturate(0.6); */
+}

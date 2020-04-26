@@ -138,7 +138,8 @@
                                 "tendiadiem": "{{$dt->tendiadiem}}",
                                 "xoa": "xoa{{$dt->gid}}",
                                 "sua": "sua{{$dt->gid}}",
-                                
+                                "lng": {{$dt->st_x}},
+                                "lat": {{$dt->st_y}},
                             },
                             "geometry":
                             {
@@ -183,7 +184,8 @@
                                 "tenkhachsan": "{{$dt->tenkhachsan}}",
                                 "xoa": "xoa{{$dt->gid}}",
                                 "sua": "sua{{$dt->gid}}",
-                                
+                                "lng": {{$dt->st_x}},
+                                "lat": {{$dt->st_y}},
                             },
                             "geometry":
                             {
@@ -269,7 +271,7 @@
                                     "{{$ks->tenkhachsan}}",                               
                                     @endforeach
                                 ];
-                    console.log(countries);
+                    // console.log(countries);
                 
                 // js show popup when click search button
 
@@ -281,13 +283,15 @@
                         diadiemdulich.eachLayer(function(feature){
                             if(feature.feature.properties.tendiadiem==str){
                                 feature.openPopup();
+                                mymap.flyTo(L.latLng(feature.feature.properties.lat,feature.feature.properties.lng),11);              
                             }
-                        
+                            
                         });
 
                         khachsan.eachLayer(function(feature){
                             if(feature.feature.properties.tenkhachsan==str){
                                 feature.openPopup();
+                                mymap.flyTo(L.latLng(feature.feature.properties.lat,feature.feature.properties.lng),11);
                             }
                         
                         });
