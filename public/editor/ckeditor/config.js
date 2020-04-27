@@ -44,4 +44,8 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 
 	// Custom config
+	config.enterMode = CKEDITOR.ENTER_BR;
+	config.shiftEnterMode = CKEDITOR.ENTER_P;
+	config.allowedContent = true;
+	config.fullPage = true;
 };

@@ -56,7 +56,7 @@ class QLBaiViet extends Controller
     
     public function DanhSachRV(){
 
-        $dsbaiviet = baiviet::all();
+        $dsbaiviet = baiviet::find(5);
        
         return view('pages.tonghopreview',['dsbaiviet'=>$dsbaiviet]);
     }

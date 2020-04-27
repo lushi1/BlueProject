@@ -41,7 +41,7 @@ class DangNhapDangKy extends Controller
                     {
                         session()->put('tenadmin',$lg->tentaikhoan);
                         session()->put('id',$lg->id);
-                        return redirect('/');
+                        return redirect('danhsachTK');
                     }
                 }
             }

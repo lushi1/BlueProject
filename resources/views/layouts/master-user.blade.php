@@ -83,7 +83,7 @@
     
 
     <!-- footer -->
-    <footer class="py-5">
+    <!-- <footer class="py-5">
         <div class="container py-xl-4 py-lg-3">
             <div class="row footer-grids">
                 <div class="col-lg-2 col-6 footer-grid">
@@ -154,7 +154,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> -->
     <!-- //footer -->
 
     <!-- move top icon -->

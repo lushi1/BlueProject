@@ -5,5 +5,50 @@
 .img-banner img{
     height: 400px;
     width: 100%;
-    /* filter: saturate(0.6); */
+    filter: saturate(0.3);
+    object-fit: cover;
+}
+
+.img-banner .text-banner{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 70%;
+    font-weight: 900;
+}
+
+.img-banner .text-banner .heading1{
+    color: ivory;
+    font-weight: 600;
+}
+
+.item li {
+    align-items: center;
+    display: flex;
+}
+.wrap-content{
+    margin: 0;
+    padding: 0;
+    color: black;
+}
+.wrap-content .content-left{
+    text-align: justify;
+}
+
+.wrap-content .content-right{
+    box-shadow: 0 2px 11px #F0F0F0;
+    text-align: start;
+      
+}
+
+.wrap-content .content-right>ul{
+    
+    list-style-type: upper-roman;
+    padding-left: 5%;
+}
+
+.wrap-content .content-right>ul>li>ul{
+    list-style-type: decimal;
+    padding-left: 10%;
 }

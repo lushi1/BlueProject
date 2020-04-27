@@ -115,7 +115,7 @@
                                         <tr>
                                             <th>{{$i++}}</th>
                                             <td>{{$bv->tieude}}</td>
-                                            <td>{!!$bv->noidung!!}</td>
+                                            <td>{!! $bv->noidung !!}</td>
                                             <td>{{$bv->chubaiviet}}</td>                                       
                                             <td>{{$bv->ngaytao}}</td>                             
                                             <td>
