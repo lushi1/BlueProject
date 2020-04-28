@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\baiviet;
+use App\diadiemdulich;
 use DB;
 use Session;
 use Hash;
@@ -55,9 +56,9 @@ class QLBaiViet extends Controller
     }
     
     public function DanhSachRV(){
+        $ds = DB::table('baiviet')->where('tag','=','tonghopreview')->first();
 
-        $dsbaiviet = baiviet::find(5);
-       
-        return view('pages.tonghopreview',['dsbaiviet'=>$dsbaiviet]);
+        $dsdiadiemdl = DB::table('diadiemdulich_khachsan_point')->orderBy('gid', 'asc')->get();
+        return view('pages.tonghopreview',['dsdiadiemdl'=>$dsdiadiemdl,'ds'=>$ds]);
     }
 }
