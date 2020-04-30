@@ -136,6 +136,7 @@
                                 "id": {{$dt->gid}},
                                 "diachi": "{{$dt->diachi}}",                                             
                                 "tendiadiem": "{{$dt->tendiadiem}}",
+                                "tenrutgon": "{{$dt->tenrutgon}}",
                                 "xoa": "xoa{{$dt->gid}}",
                                 "sua": "sua{{$dt->gid}}",
                                 "lng": {{$dt->st_x}},
@@ -265,7 +266,8 @@
                 // data for autocomplete
                 var countries = [
                                     @foreach($datadl as $dl)
-                                    "{{$dl->tendiadiem}}",                               
+                                    "{{$dl->tendiadiem}}",
+                                    "{{$dl->tenrutgon}}",                               
                                     @endforeach
                                     @foreach($dataks as $ks)
                                     "{{$ks->tenkhachsan}}",                               
@@ -281,9 +283,9 @@
                         var str = $("#myInput").val();
                         
                         diadiemdulich.eachLayer(function(feature){
-                            if(feature.feature.properties.tendiadiem==str){
+                            if(feature.feature.properties.tendiadiem==str || feature.feature.properties.tenrutgon==str){
                                 feature.openPopup();
-                                mymap.flyTo(L.latLng(feature.feature.properties.lat,feature.feature.properties.lng),11);              
+                                mymap.flyTo(L.latLng(feature.feature.properties.lat,feature.feature.properties.lng),12);              
                             }
                             
                         });
