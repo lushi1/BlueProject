@@ -1,6 +1,5 @@
 @extends('layouts.master-user')
 @section('content')
-
 <div class="img-banner">
     <img src="{{asset('/tp-moi.jpg')}}" alt="Banner">
     <div class="text-banner">

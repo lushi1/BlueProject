@@ -1,7 +1,7 @@
 @extends('layouts.master-user')
 @section('content')
+<link rel="stylesheet" href="{{asset('/user/css/trangchu.css')}}">
 <link rel="stylesheet" href="{{asset('/user/css/autocomplete.css')}}">
-<link rel="stylesheet" href="{{asset('/admin/css/qltk.css')}}">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
 <div class="dashboard-ecommerce">
@@ -9,6 +9,7 @@
     <!-- Panel map -->
     <div class="pane-container col-3 border border-primary">
         <!-- Search Form -->
+        
         <form autocomplete="off" class="form-group mt-3" action="#">
             
             <div class="autocomplete input-group mx-auto">
@@ -154,13 +155,36 @@
           
             var diadiemdulich = L.geoJson(json_DuLichpoint1, {
                 pointToLayer: function(feature, latlng) {
-                    
-                    return L.marker(latlng);
+                    // var smallIcon = new L.Icon({
+                    //         iconUrl: 'place.png',
+                    //         iconAnchor: [13, 27],
+                    //         iconSize: [27, 27],
+
+                    // });
+                    var smallIcon = new L.DivIcon({
+                        iconAnchor: [13, 13],
+                        iconSize: [65, 20],
+                        className: 'my-div-icon',
+                        html: '<div class="row"><img class="my-div-image" src="place.png"/>'+
+                            '<span class="my-div-span align-self-center">'+feature.properties.tendiadiem+'</span></div>'
+
+                    });
+                    return L.marker(latlng, {icon: smallIcon}).bindPopup('<div class="container-fluid"><div class="form-group text-center"><h4>Tên địa điểm: '+feature.properties.tendiadiem+'</h4></div><div class="form-group"><label class="col-form-label font-weight-bold">Địa chỉ: '+feature.properties.diachi+'</label></div></div>');
                 },
                 onEachFeature: function (feature, layer)
                 {
 
-                    layer.bindPopup('<div class="container-fluid"><div class="form-group text-center"><h4>Tên địa điểm: '+feature.properties.tendiadiem+'</h4></div><div class="form-group"><label class="col-form-label font-weight-bold">Địa chỉ: '+feature.properties.diachi+'</label></div></div>');
+                    // layer.bindPopup('<div class="container-fluid"><div class="form-group text-center"><h4>Tên địa điểm: '+feature.properties.tendiadiem+'</h4></div><div class="form-group"><label class="col-form-label font-weight-bold">Địa chỉ: '+feature.properties.diachi+'</label></div></div>');
+                    // layer.on('mouseover', function(e) {
+                        
+                    //         layer.openPopup();
+                        
+                    // });
+                    // layer.on('mouseout', function(e) {
+                        
+                    //         layer.closePopup();
+                        
+                    // });
                 },
                 // filter: function(feature,layer)
                 // {
@@ -203,18 +227,37 @@
 
                 var khachsan = L.geoJson(json_KhachSan, {
                 pointToLayer: function(feature, latlng) {
-                    var smallIcon = new L.Icon({
-                            iconUrl: 'hotel.png',
-                            iconAnchor: [13, 27],
-                            iconSize: [27, 27],
+                    // var smallIcon = new L.Icon({
+                    //         iconUrl: 'hotel.png',
+                    //         iconAnchor: [13, 27],
+                    //         iconSize: [27, 27],
+
+                    // });
+                    var smallIcon = new L.DivIcon({
+                        iconAnchor: [13, 27],
+                        iconSize: [65, 30],
+                        className: 'my-div-icon',
+                        html: '<div class="row"><img class="my-div-image" src="hotel.png"/>'+
+                            '<span class="my-div-span align-self-center">'+feature.properties.tenkhachsan+'</span></div>'
 
                     });
                     return L.marker(latlng, {icon: smallIcon});
                 },
                 onEachFeature: function (feature, layer)
                 {
-
                     layer.bindPopup('<div class="container-fluid"><div class="form-group text-center"><h4>Tên khách sạn: '+feature.properties.tenkhachsan+'</h4></div><div class="form-group"><label class="col-form-label font-weight-bold">Địa chỉ: '+feature.properties.diachi+'</label></div></div>');
+                    // layer.on('mouseover', function(e) {
+                   
+                        
+                    //         layer.openPopup();
+                        
+                    // });
+                    // layer.on('mouseout', function(e) {
+                        
+                    //         layer.closePopup();
+                        
+                    // });
+                    
                 },
 
                 }).addTo(mymap);
@@ -293,7 +336,7 @@
                         khachsan.eachLayer(function(feature){
                             if(feature.feature.properties.tenkhachsan==str){
                                 feature.openPopup();
-                                mymap.flyTo(L.latLng(feature.feature.properties.lat,feature.feature.properties.lng),11);
+                                mymap.flyTo(L.latLng(feature.feature.properties.lat,feature.feature.properties.lng),12);
                             }
                         
                         });

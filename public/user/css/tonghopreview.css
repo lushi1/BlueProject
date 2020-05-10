@@ -23,6 +23,10 @@
     font-weight: 600;
 }
 
+.img-banner .text-banner h4{
+    color: ivory;
+}
+
 .item li {
     align-items: center;
     display: flex;

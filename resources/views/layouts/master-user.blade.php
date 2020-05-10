@@ -40,8 +40,8 @@
                         <input type="checkbox" id="drop" />
                         <ul class="menu">
                             <li><a href="trang-chu">Trang chủ</a></li>
-                            <li><a href="#about">Địa điểm nổi bật</a></li>
-                            <li><a href="tong-hop-review">Tổng hợp Review</a></li>
+                            <li><a href="#about">Khách sạn nổi bật</a></li>
+                            <li><a href="tong-hop-review">Địa điểm du lịch</a></li>
                             <li><a href="#contact">Liên hệ</a></li>  
                             @if (!session()->has('tenkh') && !session()->has('tenadmin'))
                             <li><a href="trangdangnhap">Đăng nhập</a></li>

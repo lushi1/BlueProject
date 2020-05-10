@@ -25,6 +25,7 @@ class QLBaiViet extends Controller
         $baiviet->noidung=$req->noidung;
         $baiviet->chubaiviet= Session::get('id');
         $baiviet->ngaytao= Carbon::now();
+        $baiviet->view = 0;
         $baiviet->save();
         return redirect('danhsachBV');
     }
