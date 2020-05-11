@@ -12,12 +12,12 @@ class QLDiaDiemDuLich extends Controller
     //
     public function DanhSachDL(){
 
-        $data = DB::select('select ST_X(geom), ST_Y(geom),tendiadiem,gid,diachi from public.diadiemdulich_khachsan_point;');    
+        $data = DB::select('select ST_X(geom), ST_Y(geom),img,tendiadiem,gid,diachi from public.diadiemdulich_khachsan_point;');    
         return view('pages.admin.qldiadiemdulich',['data'=>$data]);
     }
 
     public function ThemDL(Request $req){
-        $data = DB::table('diadiemdulich_khachsan_point')->insert(['tendiadiem'=>$req->tendiadiem,'diachi'=> $req->diachi,
+        $data = DB::table('diadiemdulich_khachsan_point')->insert(['img'=>$req->url1,'tendiadiem'=>$req->tendiadiem,'diachi'=> $req->diachi,
         'geom'=>DB::raw("ST_GeomFromText('POINT(".$req->toadox." ".$req->toadoy.")', 4326)")]);
         
         return redirect('danhsachDL');

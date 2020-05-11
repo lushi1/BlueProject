@@ -1,5 +1,4 @@
 @extends('layouts.master-admin')
-@section('title', 'Du lịch Bình Dương - Quản lý bài viết')
 @section('content')
 <link rel="stylesheet" href="{{asset('/admin/css/qltk.css')}}">
 <div class="dashboard-ecommerce">

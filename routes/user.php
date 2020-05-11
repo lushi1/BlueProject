@@ -28,3 +28,8 @@ Route::get('auth/google/callback', 'LoginGoogleAccount@handleGoogleCallback');
 Route::get('/trang-chu','QLTrangChu@TrangChu')->name('trang-chu');
 
 Route::get('/tong-hop-review','QLBaiViet@DanhSachRV')->name('tong-hop-review');
+
+//test
+Route::get('/test', function () {
+    return view('test');
+});

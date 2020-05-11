@@ -42,7 +42,7 @@
                             <script src="{{asset('/js/geojsondata.js')}}"></script>
 
                             <script>
-                            var json_DiaDiemDuLich={
+                            var json_KhachSan={
 
                                 "type": "FeatureCollection",
                                 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
@@ -73,7 +73,7 @@
 
                             
 
-                            var khachsan = L.geoJson(json_DiaDiemDuLich, {
+                            var khachsan = L.geoJson(json_KhachSan, {
                                 pointToLayer: function(feature, latlng) {
                                     var smallIcon = new L.Icon({
                                             iconUrl: 'hotel.png',
