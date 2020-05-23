@@ -40,6 +40,15 @@
                                                             <label class="col-form-label font-weight-bold">Tiêu đề<span class="text-danger"> (*)</span></label>
                                                             <input type="text" class="form-control" name="tieude">
                                                         </div>
+                                                        <div class="form-group col-6">
+                                                            <label class="col-form-label font-weight-bold">Địa điểm<span class="text-danger"> (*)</span></label>
+                                                            <select name="dulich_id" class="form-control">
+                                                            <option value="1" selected hidden>Hồ Bình An </option>
+                                                            @foreach($dsdulich as $dt)
+                                                                <option value="{{$dt->gid}}">{{$dt->tendiadiem}}</option>
+                                                            @endforeach
+                                                            </select>
+                                                        </div>
                                                         <div class="form-group col-12">
                                                             <label class="col-form-label font-weight-bold">Nội dung<span class="text-danger"> (*)</span></label>
                                                             <div class="form-group col-12">
@@ -115,7 +124,7 @@
                                             <th>{{$i++}}</th>
                                             <td>{{$bv->tieude}}</td>
                                             <td>{!! $bv->noidung !!}</td>
-                                            <td>{{$bv->chubaiviet}}</td>                                       
+                                            <td>{{$bv->tentaikhoan}}</td>                                       
                                             <td>{{$bv->ngaytao}}</td>                             
                                             <td>
                                                 <span data-toggle="modal" data-target="#{{$sua}}">

@@ -20,6 +20,7 @@ Route::get('danhsachBV', 'QLBaiViet@DanhSachBV')->name('danhsachBV');
 Route::post('themBV','QLBaiViet@ThemBV')->name('themBV');
 Route::post('xoaBV/{id}','QLBaiViet@XoaBV')->name('xoaBV');
 Route::post('suaBV/{id}','QLBaiViet@SuaBV')->name('suaBV');
+Route::get('danh-gia/{url}', 'QLBaiViet@ChiTietBV')->name('{url}');
 
 //Quản lý địa điểm khách sạn
 Route::get('danhsachKS', 'QLDiaDiemKhachSan@DanhSachKS')->name('danhsachKS');
@@ -35,3 +36,4 @@ Route::post('suaDL/{id}','QLDiaDiemDuLich@SuaDL')->name('suaDL');
 
 //Thoát
 Route::get('thoat', 'DangNhapDangKy@Thoat')->name('thoat');
+

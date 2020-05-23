@@ -30,7 +30,7 @@
 					<img src="login/images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" action="dangnhap" method="get">
+				<form class="login100-form validate-form" action="{{route('dang-nhap')}}" method="get">
 				{{@csrf_field()}}
 					<span class="login100-form-title">
 						Đăng nhập

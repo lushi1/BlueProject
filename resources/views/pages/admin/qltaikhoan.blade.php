@@ -1,6 +1,5 @@
 @extends('layouts.master-admin')
 @section('content')
-<link rel="stylesheet" href="{{asset('/admin/css/qltk.css')}}">
 <div class="dashboard-ecommerce">
                 <div class="container-fluid dashboard-content ">
                     <!-- Noi dung -->

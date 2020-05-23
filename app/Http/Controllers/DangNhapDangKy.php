@@ -46,10 +46,10 @@ class DangNhapDangKy extends Controller
                 }
             }
             Session::flash('error', 'Mật khẩu không chính xác!');
-            return redirect('trangdangnhap');
+            return redirect('trang-dang-nhap');
         }
         Session::flash('error', 'Tên tài khoản không tồn tại!');
-        return redirect('trangdangnhap');
+        return redirect('trang-dang-nhap');
     }
 
     // public function TrangDangKy()
@@ -72,6 +72,6 @@ class DangNhapDangKy extends Controller
 
     public function Thoat(){
         Session::flush();
-        return redirect('trangdangnhap');
+        return redirect('trang-dang-nhap');
     }
 }

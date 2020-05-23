@@ -12,7 +12,7 @@ class QLDiaDiemDuLich extends Controller
     //
     public function DanhSachDL(){
 
-        $data = DB::select('select ST_X(geom), ST_Y(geom),img,tendiadiem,gid,diachi from public.diadiemdulich_khachsan_point;');    
+        $data = DB::select('select ST_X(geom), ST_Y(geom),img,tenlink,tendiadiem,gid,diachi from public.diadiemdulich_khachsan_point;');    
         return view('pages.admin.qldiadiemdulich',['data'=>$data]);
     }
 
@@ -27,6 +27,7 @@ class QLDiaDiemDuLich extends Controller
         $data = DB::table('diadiemdulich_khachsan_point')
               ->where('gid', $id)
               ->update(['tendiadiem'=>$req->tendiadiem,
+                        'img'=>$req->img,
                         'geom'=>DB::raw("ST_GeomFromText('POINT(".$req->toadox." ".$req->toadoy.")', 4326)"),
                         'diachi'=>$req->diachi]);      
         
@@ -42,4 +43,5 @@ class QLDiaDiemDuLich extends Controller
         }
         return redirect()->back();
     }
+    
 }

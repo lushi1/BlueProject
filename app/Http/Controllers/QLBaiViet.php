@@ -12,10 +12,13 @@ class QLBaiViet extends Controller
 {
     //
     public function DanhSachBV(){
-
-        $dsbaiviet = baiviet::all();
-       
-        return view('pages.admin.qlbaiviet',['dsbaiviet'=>$dsbaiviet]);
+        $dsbaiviet = DB::table('baiviet')
+        ->join('taikhoan', 'baiviet.chubaiviet', '=', 'taikhoan.id')
+        ->select('baiviet.*', 'taikhoan.tentaikhoan')
+        ->get();
+        // $dsbaiviet = baiviet::all();
+        $dsdulich = DB::table('diadiemdulich_khachsan_point')->orderBy('gid', 'asc')->get();
+        return view('pages.admin.qlbaiviet',['dsbaiviet'=>$dsbaiviet,'dsdulich'=>$dsdulich]);
     }
 
     public function ThemBV(Request $req){
@@ -26,6 +29,7 @@ class QLBaiViet extends Controller
         $baiviet->chubaiviet= Session::get('id');
         $baiviet->ngaytao= Carbon::now();
         $baiviet->view = 0;
+        $baiviet->dulich_id = $req->dulich_id;
         $baiviet->save();
         return redirect('danhsachBV');
     }
@@ -61,5 +65,21 @@ class QLBaiViet extends Controller
 
         $dsdiadiemdl = DB::table('diadiemdulich_khachsan_point')->orderBy('gid', 'asc')->get();
         return view('pages.tonghopreview',['dsdiadiemdl'=>$dsdiadiemdl,'ds'=>$ds]);
+    }
+
+    public function ChiTietBV($url){
+
+        $data = DB::table('baiviet')   
+        ->join('diadiemdulich_khachsan_point', 'baiviet.dulich_id', '=', 'diadiemdulich_khachsan_point.gid')
+        ->join('taikhoan', 'baiviet.chubaiviet', '=', 'taikhoan.id')        
+        ->where('diadiemdulich_khachsan_point.tenlink','=',$url)
+        ->select('baiviet.*','taikhoan.tentaikhoan','diadiemdulich_khachsan_point.*')
+        ->first();
+        // $data1 = DB::table('diadiemdulich_khachsan_point')   
+        // ->where('diadiemdulich_khachsan_point.tenlink','=',$url)
+        // ->join('baiviet', 'diadiemdulich_khachsan_point.gid', '=', 'baiviet.dulich_id')
+        // ->select('baiviet.*')  
+        // ->get();
+        return view('pages.chitietbaiviet',['data'=>$data,'url'=>$url]);
     }
 }
