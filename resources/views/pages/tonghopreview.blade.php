@@ -19,10 +19,11 @@
     </div>
 </div>
 <div class="wrap-content container">
+    <div class="row">
         <div class="content-left col-8 float-left">
             {!! $ds->noidung !!}         
         </div>
-        <div class="content-right col-4 float-right">
+        <div class="content-right col-4 float-right">      
             <h3>Nội dung chính</h3>
             <ul>
                 <li><a href="#gioi_thieu_binh_duong">Giới thiệu Bình Dương</a></li>
@@ -35,5 +36,6 @@
                 </li>               
             </ul>
         </div>
+    </div>
 </div>
 @endsection

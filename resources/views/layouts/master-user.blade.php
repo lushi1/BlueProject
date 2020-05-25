@@ -30,7 +30,7 @@
             <div class="header d-lg-flex align-items-center py-2 px-sm-2 px-1">
                 <!-- logo -->
                 <div id="logo">
-                    <h1><a href="trang-chu">Du Lịch Bình Dương</a></h1>
+                    <h1><a href="{{route('trang-chu')}}">Du Lịch Bình Dương</a></h1>
                 </div>
                 <!-- //logo -->
                 <!-- nav -->
@@ -79,7 +79,7 @@
     <!-- //banner -->
 
     <!-- footer -->
-    <!-- <footer class="py-5">
+    <footer class="py-5">
         <div class="container py-xl-4 py-lg-3">
             <div class="row footer-grids">
                 <div class="col-lg-2 col-6 footer-grid">
@@ -150,7 +150,7 @@
                 </div>
             </div>
         </div>
-    </footer> -->
+    </footer>
     <!-- //footer -->
 
     <!-- move top icon -->

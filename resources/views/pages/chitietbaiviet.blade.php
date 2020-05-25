@@ -30,7 +30,7 @@
                 </li>               
             </ul>          
         </div>
-        <div class="col-4 float-right">
+        <div class="content-left col-4 float-right">
             <h3>Các bài viết tương tự</h3> 
             <ul>
                 <li><a href="#">Khám phá khu du lịch sinh thái Thủy Châu</a></li>
