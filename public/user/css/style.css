@@ -428,7 +428,7 @@ li>a:only-child:after {
     margin-right: 2%;
 }
 .row ul li{
-    float: left;
+    /* float: left; */
     display: block;
     
 }

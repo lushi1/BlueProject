@@ -21,6 +21,10 @@
     <script src="{{asset('/plugins/jquery/jquery.min.js')}}"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="{{asset('/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+    <script src="{{asset('/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
 </head>
 
 <body>
@@ -40,8 +44,8 @@
                         <input type="checkbox" id="drop" />
                         <ul class="menu">
                             <li><a href="{{route('trang-chu')}}">Trang chủ</a></li>
-                            <li><a href="#about">Khách sạn nổi bật</a></li>
-                            <li><a href="tong-hop-review">Địa điểm du lịch</a></li>
+                            <li><a href="#about">Khách sạn</a></li>
+                            <li><a href="{{route('tong-hop-review')}}">Cẩm nang du lịch</a></li>
                             <li><a href="#contact">Liên hệ</a></li>  
                             @if (!session()->has('tenkh') && !session()->has('tenadmin'))
                             <li><a href="{{route('trang-dang-nhap')}}">Đăng nhập</a></li>
@@ -49,21 +53,17 @@
                             @endif
                             @if (session()->has('tenkh'))                          
                                     <li><a href="#">{{ Session::get('tenkh') }}</a></li>
-                                    <li><a href="thoat">Thoát</a></li>
+                                    <li><a href="{{route('thoat')}}">Thoát</a></li>
                             @endif
                             @if (session()->has('tenadmin'))                          
                                     <li><a href="#">{{ Session::get('tenadmin') }}</a></li>
-                                    <li><a href="thoat">Thoát</a></li>
+                                    <li><a href="{{route('thoat')}}">Thoát</a></li>
                             @endif
                         </ul>
                     </nav>
                 </div>
 
                 <!-- //nav -->
-                <!-- dang nhap dang ky/tenkh thoat -->
-                
-                
-                <!-- ket thuc -->
                 
             </div>
         </div>

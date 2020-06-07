@@ -108,7 +108,7 @@
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Tiêu đề</th>                 
-                                            <th scope="col">Nội dung</th>
+                                            <!-- <th scope="col">Nội dung</th> -->
                                             <th scope="col">Tác giả</th>
                                             <th scope="col">Ngày tạo</th>
                                             <th scope="col">Thao tác</th>
@@ -123,7 +123,7 @@
                                         <tr>
                                             <th>{{$i++}}</th>
                                             <td>{{$bv->tieude}}</td>
-                                            <td>{!! $bv->noidung !!}</td>
+                                            <!-- <td>{!! $bv->noidung !!}</td> -->
                                             <td>{{$bv->tentaikhoan}}</td>                                       
                                             <td>{{$bv->ngaytao}}</td>                             
                                             <td>

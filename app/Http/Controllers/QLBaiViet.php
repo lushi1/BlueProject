@@ -75,11 +75,12 @@ class QLBaiViet extends Controller
         ->where('diadiemdulich_khachsan_point.tenlink','=',$url)
         ->select('baiviet.*','taikhoan.tentaikhoan','diadiemdulich_khachsan_point.*')
         ->first();
-        // $data1 = DB::table('diadiemdulich_khachsan_point')   
-        // ->where('diadiemdulich_khachsan_point.tenlink','=',$url)
-        // ->join('baiviet', 'diadiemdulich_khachsan_point.gid', '=', 'baiviet.dulich_id')
-        // ->select('baiviet.*')  
-        // ->get();
-        return view('pages.chitietbaiviet',['data'=>$data,'url'=>$url]);
+
+        
+
+        $dt = DB::select('select ST_X(geom), ST_Y(geom) from public.diadiemdulich_khachsan_point where tenlink = ?',[$url]);        
+        $datadl = DB::select('select ST_X(geom), ST_Y(geom),tenlink, img, tendiadiem, gid, diachi, tenrutgon from public.diadiemdulich_khachsan_point;');
+        $dataks = DB::select('select ST_X(geom), ST_Y(geom), tenkhachsan, gid, diachi from public.khachsan_point;');    
+        return view('pages.chitietbaiviet',['data'=>$data,'url'=>$url,'datadl'=>$datadl,'dataks'=>$dataks,'dt'=>$dt]);
     }
 }
