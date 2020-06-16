@@ -1,8 +1,6 @@
 @extends('layouts.master-user')
 @section('content')
-@foreach($dt as $x)
-{{$x->st_x}}
-@endforeach
+
 <div class="img-banner">
     <img src="{{asset('/tp-moi.jpg')}}" alt="Banner">
     <div class="text-banner">
@@ -57,9 +55,9 @@
                 </div>
             <!-- js map -->
             <script>
-
-                 var mymap = L.map('mapid').setView([10.895891, 106.806243], 16);
-
+                @foreach($dt as $x) 
+                    var mymap = L.map('mapid').setView([{{$x->st_y}},{{$x->st_x}}], 16);
+                @endforeach
 
                 var tileLayyer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibHVzaGkiLCJhIjoiY2s0YXFnNHRyMDY2dzNlbGtvM3pwcThhMyJ9.F9DH_aBnwZYWez_5hy3xNA', {
                     maxZoom: 18,
@@ -106,15 +104,21 @@
                         @endforeach
                     ]
                 }
-
+                                  
                 var diadiemdulich = L.geoJson(json_DuLichpoint1, {
-                    pointToLayer: function(feature, latlng) {                    
-                        return L.marker(latlng);
+                    pointToLayer: function(feature, latlng) {
+                        var smallIcon = new L.Icon({
+                            iconUrl: '{{asset('/place2.png')}}',
+                            iconAnchor: [13, 27],
+                            iconSize: [55, 60],
+
+                        });
+                        return L.marker(latlng, {icon: smallIcon});
                     },
                     onEachFeature: function (feature, layer)
                     {
 
-                        layer.bindTooltip('<div class="container-fluid"><div><img src="'+feature.properties.img+'"style="width:100%;height:200px"></div><div class="text-center"><h4>'+feature.properties.tendiadiem+'</h4></div><div class="row"><label class="col-form-label font-weight-bold"><i class="fa fa-location-arrow" aria-hidden="true"></i>: '+feature.properties.diachi+'</label></div><div class="row"><span class="col-5"><a href="'+feature.properties.url+'" class="float-left"><i class="fa fa-info-circle" aria-hidden="true"></i> Chi tiết</a></span></div></div>');
+                        layer.bindPopup('<div class="container-fluid"><div><img src="'+feature.properties.img+'"style="width:100%;height:200px"></div><div class="text-center"><h4>'+feature.properties.tendiadiem+'</h4></div><div class="row"><label class="col-form-label font-weight-bold"><i class="fa fa-location-arrow" aria-hidden="true"></i>: '+feature.properties.diachi+'</label></div><div class="row"><span class="col-5"><a href="'+feature.properties.url+'" class="float-left"><i class="fa fa-info-circle" aria-hidden="true"></i> Chi tiết</a></span></div></div>');
 
                     },
 
@@ -161,7 +165,6 @@
                     }).addTo(mymap);
 
                     document.getElementById("mapid1").onclick = function () {
-                        // document.getElementById('test').style.display = 'block';
                         $('#test').modal('show');
                         setTimeout(function() {
                             mymap.invalidateSize(false);
@@ -172,7 +175,7 @@
                         $('#test').modal('hide');
                     }
 
-                    console.log($dt);
+                    
             </script>
             <hr/>
             <h3>Các bài viết cùng chủ đề</h3> 
