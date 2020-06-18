@@ -57,125 +57,134 @@
             <script>
                 @foreach($dt as $x) 
                     var mymap = L.map('mapid').setView([{{$x->st_y}},{{$x->st_x}}], 16);
-                @endforeach
+                
 
-                var tileLayyer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibHVzaGkiLCJhIjoiY2s0YXFnNHRyMDY2dzNlbGtvM3pwcThhMyJ9.F9DH_aBnwZYWez_5hy3xNA', {
-                    maxZoom: 18,
-                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-                        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-                        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                    id: 'mapbox/streets-v11',
-                    tileSize: 512,
-                    zoomOffset: -1
-                }).addTo(mymap);
+                    var tileLayyer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibHVzaGkiLCJhIjoiY2s0YXFnNHRyMDY2dzNlbGtvM3pwcThhMyJ9.F9DH_aBnwZYWez_5hy3xNA', {
+                        maxZoom: 18,
+                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+                            '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                            'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                        id: 'mapbox/streets-v11',
+                        tileSize: 512,
+                        zoomOffset: -1
+                    }).addTo(mymap);
 
-                </script>
-                <script src="{{asset('/js/geojsondata.js')}}"></script>
-                <script src="{{asset('/js/geojson.js')}}"></script>
-                <script>
-                var json_DuLichpoint1={
+                    </script>
+                    <script src="{{asset('/js/geojsondata.js')}}"></script>
+                    <script src="{{asset('/js/geojson.js')}}"></script>
+                    <script>
+                    var json_DuLichpoint1={
 
-                    "type": "FeatureCollection",
-                    "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                        "type": "FeatureCollection",
+                        "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 
-                    "features": [
-                        @foreach($datadl as $dt)
-                            {
-                                "type": "Feature",
-                                "properties":
+                        "features": [
+                            @foreach($datadl as $dt)
                                 {
-                                    "id": {{$dt->gid}},
-                                    "diachi": "{{$dt->diachi}}",                                             
-                                    "tendiadiem": "{{$dt->tendiadiem}}",
-                                    "tenrutgon": "{{$dt->tenrutgon}}",
-                                    "xoa": "xoa{{$dt->gid}}",
-                                    "sua": "sua{{$dt->gid}}",
-                                    "img": "{{$dt->img}}",
-                                    "lng": {{$dt->st_x}},
-                                    "lat": {{$dt->st_y}},
-                                    "url": "danh-gia/{{$dt->tenlink}}",
+                                    "type": "Feature",
+                                    "properties":
+                                    {
+                                        "id": {{$dt->gid}},
+                                        "diachi": "{{$dt->diachi}}",                                             
+                                        "tendiadiem": "{{$dt->tendiadiem}}",
+                                        "tenrutgon": "{{$dt->tenrutgon}}",
+                                        "xoa": "xoa{{$dt->gid}}",
+                                        "sua": "sua{{$dt->gid}}",
+                                        "img": "{{$dt->img}}",
+                                        "lng": {{$dt->st_x}},
+                                        "lat": {{$dt->st_y}},
+                                        "url": "danh-gia/{{$dt->tenlink}}",
+                                    },
+                                    "geometry":
+                                    {
+                                        "type": "Point",
+                                        "coordinates": [ {{$dt->st_x}}, {{$dt->st_y}} ],
+                                    },
                                 },
-                                "geometry":
-                                {
-                                    "type": "Point",
-                                    "coordinates": [ {{$dt->st_x}}, {{$dt->st_y}} ],
-                                },
-                            },
-                        @endforeach
-                    ]
-                }
-                                  
-                var diadiemdulich = L.geoJson(json_DuLichpoint1, {
-                    pointToLayer: function(feature, latlng) {
-                        var smallIcon = new L.Icon({
-                            iconUrl: '{{asset('/place2.png')}}',
-                            iconAnchor: [13, 27],
-                            iconSize: [55, 60],
-
-                        });
-                        return L.marker(latlng, {icon: smallIcon});
-                    },
-                    onEachFeature: function (feature, layer)
-                    {
-
-                        layer.bindPopup('<div class="container-fluid"><div><img src="'+feature.properties.img+'"style="width:100%;height:200px"></div><div class="text-center"><h4>'+feature.properties.tendiadiem+'</h4></div><div class="row"><label class="col-form-label font-weight-bold"><i class="fa fa-location-arrow" aria-hidden="true"></i>: '+feature.properties.diachi+'</label></div><div class="row"><span class="col-5"><a href="'+feature.properties.url+'" class="float-left"><i class="fa fa-info-circle" aria-hidden="true"></i> Chi tiết</a></span></div></div>');
-
-                    },
-
-                }).addTo(mymap);
-
-                var json_KhachSan={
-
-                    "type": "FeatureCollection",
-                    "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-
-                    "features": [
-                        @foreach($dataks as $dt)
-                            {
-                                "type": "Feature",
-                                "properties":
-                                {
-                                    "id": {{$dt->gid}},
-                                    "diachi": "{{$dt->diachi}}",
-                                    "tenkhachsan": "{{$dt->tenkhachsan}}",
-                                    "xoa": "xoa{{$dt->gid}}",
-                                    "sua": "sua{{$dt->gid}}",
-                                    "lng": {{$dt->st_x}},
-                                    "lat": {{$dt->st_y}},
-                                },
-                                "geometry":
-                                {
-                                    "type": "Point",
-                                    "coordinates": [ {{$dt->st_x}}, {{$dt->st_y}} ],
-                                },
-                            },
-                        @endforeach
-                    ]
+                            @endforeach
+                        ]
                     }
-                    var khachsan = L.geoJson(json_KhachSan, {
-                    pointToLayer: function(feature, latlng) {
-                        
-                        return L.marker(latlng);
-                    },
-                    onEachFeature: function (feature, layer)
-                    {
-                        layer.bindTooltip('<div class="container-fluid"><div class="form-group text-center"><h4>Tên khách sạn: '+feature.properties.tenkhachsan+'</h4></div><div class="form-group"><label class="col-form-label font-weight-bold">Địa chỉ: '+feature.properties.diachi+'</label></div></div>');
-                    },
+                                    
+                    var diadiemdulich = L.geoJson(json_DuLichpoint1, {
+                        pointToLayer: function(feature, latlng) {
+                            var smallIcon = new L.Icon({
+                                iconUrl: '{{asset('/place2.png')}}',
+                                iconAnchor: [13, 27],
+                                iconSize: [55, 60],
+
+                            });
+                            return L.marker(latlng, {icon: smallIcon});
+                        },
+                        onEachFeature: function (feature, layer)
+                        {
+
+                            layer.bindPopup('<div class="container-fluid"><div><img src="'+feature.properties.img+'"style="width:100%;height:200px"></div><div class="text-center"><h4>'+feature.properties.tendiadiem+'</h4></div><div class="row"><label class="col-form-label font-weight-bold"><i class="fa fa-location-arrow" aria-hidden="true"></i>: '+feature.properties.diachi+'</label></div><div class="row"><span class="col-5"><a href="'+feature.properties.url+'" class="float-left"><i class="fa fa-info-circle" aria-hidden="true"></i> Chi tiết</a></span></div></div>');
+
+                        },
 
                     }).addTo(mymap);
 
-                    document.getElementById("mapid1").onclick = function () {
-                        $('#test').modal('show');
-                        setTimeout(function() {
-                            mymap.invalidateSize(false);
-                        }, 100);
-                    }
+                    var json_KhachSan={
 
-                    document.getElementById("closebutton").onclick = function () {
-                        $('#test').modal('hide');
-                    }
+                        "type": "FeatureCollection",
+                        "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 
-                    
+                        "features": [
+                                        @foreach($dataks as $dt)
+                                            {
+                                                "type": "Feature",
+                                                "properties":
+                                                {
+                                                    "id": {{$dt->gid}},
+                                                    "diachi": "{{$dt->diachi}}",
+                                                    "tenkhachsan": "{{$dt->tenkhachsan}}",
+                                                    "xoa": "xoa{{$dt->gid}}",
+                                                    "sua": "sua{{$dt->gid}}",
+                                                    "lng": {{$dt->st_x}},
+                                                    "lat": {{$dt->st_y}},
+                                                },
+                                                "geometry":
+                                                {
+                                                    "type": "Point",
+                                                    "coordinates": [ {{$dt->st_x}}, {{$dt->st_y}} ],
+                                                },
+                                            },
+                                        @endforeach
+                                    ]
+                        }
+
+                        var khachsan = L.geoJson(json_KhachSan, {
+                        pointToLayer: function(feature, latlng) {
+                            return L.marker(latlng);
+                        },
+                        
+                        onEachFeature: function (feature, layer)
+                        {
+                            var pointx = L.marker([{{$x->st_y}}, {{$x->st_x}}]);
+                            var latlngx = pointx.getLatLng();
+                            var pointy = L.marker([feature.properties.lat, feature.properties.lng]);
+                            var latlngy = pointy.getLatLng();
+                            var z = ("Khoảng cách - " + (latlngx.distanceTo(latlngy)).toFixed(0)/1000) + ' km';
+                            layer.bindTooltip('<div class="container-fluid"><div class="form-group text-center"><h4>Tên khách sạn: '+feature.properties.tenkhachsan+'</h4></div><div class="form-group"><label class="col-form-label font-weight-bold">Địa chỉ: '+feature.properties.diachi+'</label></div><div class="form-group"><label class="col-form-label font-weight-bold">Khoảng cách: '+z+'</label></div></div>');
+                        },
+
+                        }).addTo(mymap);
+                        
+                        
+
+                        document.getElementById("mapid1").onclick = function () {
+                            $('#test').modal('show');
+                            setTimeout(function() {
+                                mymap.invalidateSize(false);
+                            }, 100);
+                        }
+
+                        document.getElementById("closebutton").onclick = function () {
+                            $('#test').modal('hide');
+                        }
+                        
+
+                    @endforeach
             </script>
             <hr/>
             <h3>Các bài viết cùng chủ đề</h3> 

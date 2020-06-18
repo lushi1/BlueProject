@@ -176,16 +176,6 @@
 
                     layer.bindPopup('<div class="container-fluid"><div><img src="'+feature.properties.img+'"style="width:100%;height:200px"></div><div class="text-center"><h4>'+feature.properties.tendiadiem+'</h4></div><div class="row"><label class="col-form-label font-weight-bold"><i class="fa fa-location-arrow" aria-hidden="true"></i>: '+feature.properties.diachi+'</label></div><div class="row"><span class="col-5"><a href="'+feature.properties.url+'" class="float-left"><i class="fa fa-info-circle" aria-hidden="true"></i> Chi tiết</a></span><span class="col-7"><a href="#" class="float-right"><i class="fa fa-h-square" aria-hidden="true"></i> Xem khách sạn gần đó</a></span></div></div>');
 
-                    // layer.on('mouseover', function(e) {
-                        
-                    //         layer.openTooltip();
-                        
-                    // });
-                    // layer.on('mouseout', function(e) {
-                        
-                    //         layer.closeTooltip();
-                        
-                    // });
                 },
                 // filter: function(feature,layer)
                 // {
