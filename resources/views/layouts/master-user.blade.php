@@ -12,7 +12,8 @@
     <!-- Custom-Files -->
     <link rel="stylesheet" type='text/css' href="{{asset('/user/css/tonghopreview.css')}}">
     <link rel="stylesheet" href="{{asset('/plugins/fontawesome-free/css/all.min.css')}}">
-    <link href="{{asset('/user/css/bootstrap.css')}}" rel='stylesheet' type='text/css' />
+    <!-- <link href="{{asset('/user/css/bootstrap.css')}}" rel='stylesheet' type='text/css' /> -->
+    <link href="{{asset('/user/css/bootstrap.min.css')}}" rel='stylesheet' type='text/css' />
     <!-- Bootstrap-CSS -->
     <link href="{{asset('/user/css/style.css')}}" rel='stylesheet' type='text/css' />
     <!-- Style-CSS -->
@@ -71,7 +72,7 @@
     <!-- //header -->
 
     <!-- banner -->
-    <div class="content text-center" id="home">
+    <div class="content" id="home">
         <div class="container-fluid">
             @yield('content')
         </div>
@@ -82,61 +83,43 @@
     <footer class="py-5">
         <div class="container py-xl-4 py-lg-3">
             <div class="row footer-grids">
-                <div class="col-lg-2 col-6 footer-grid">
-                    <h3 class="mb-sm-4 mb-3">Navigation</h3>
+                <div class="col-lg-2 col-12 footer-grid">
+                    <h3 class="mb-sm-4 mb-3">Điều hướng</h3>
                     <ul class="list-unstyled">
                         <li>
-                            <a href="index.html">Index</a>
+                            <a href="index.html">Trang chủ</a>
                         </li>
                         <li>
-                            <a href="#about">About Us</a>
+                            <a href="#about">Khách Sạn</a>
                         </li>
                         <li>
-                            <a href="#what">What We Do?</a>
-                        </li>
-                        <li>
-                            <a href="#gallery">Our Gallery</a>
+                            <a href="#what">Cẩm Nang Du Lịch</a>
                         </li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-6 footer-grid">
-                    <h3 class="mb-sm-4 mb-3">Some More</h3>
+                
+                <div class="col-lg-3 col-6 footer-grid footer-contact mt-lg-0 mt-4">
+                    <h3 class="mb-sm-4 mb-3">Liên lạc với chúng tôi</h3>
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#join">Apply Now</a>
+                            Phone: +(84) 344 023 451
                         </li>
                         <li>
-                            <a href="#events">Our Events</a>
-                        </li>
-                        <li>
-                            <a href="#courses">Popular Courses</a>
+                            <a href="mailto:dulichbd.info@gmail.com">Gmail: dulichbd.info@gmail.com</a>
                         </li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-6 footer-grid footer-contact mt-lg-0 mt-4">
-                    <h3 class="mb-sm-4 mb-3">Get In Touch</h3>
+                <div class="col-lg-3 col-6 footer-grid text-center">
+                <h3 class="mb-sm-4 mb-3">Mạng xã hội</h3>
                     <ul class="list-unstyled">
                         <li>
-                            +01(24) 8543 8088
+                            <a href="login.html">Facebook: <i class="fa fa-facebook-official" aria-hidden="true"></i></a>
                         </li>
                         <li>
-                            <a href="mailto:info@example.com">info@example.com</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-6 footer-grid text-lg-right">
-                    <ul class="list-unstyled">
-                        <li>
-                            <a href="#stats">Our Statistics</a>
+                            <a href="login.html">Instagram: <i class="fa fa-instagram" aria-hidden="true"></i></a>
                         </li>
                         <li>
-                            <a href="login.html">Login</a>
-                        </li>
-                        <li>
-                            <a href="register.html">Register</a>
-                        </li>
-                        <li>
-                            <a href="#contact">Contact Us</a>
+                            <a href="login.html">Twitter: <i class="fa fa fa-twitter" aria-hidden="true"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -162,5 +145,4 @@
 		$('div.alert').not('.alert-important').delay(4000).fadeOut(350);
 	</script>
 </body>
-
 </html>

@@ -1,0 +1,26 @@
+.detail-title .hotel-rating span {
+    padding: 2px 6px;
+}
+
+.hotel-rating {
+    display: inline-block;
+    font-size: 14px;
+    color: #ff8917;
+    top: 2px;
+}
+
+.hotel-rating .bg-star {
+    background: rgba(255,137,23,.1);
+    color: #ff8917;
+    float: left;
+    border-radius: 2px;
+}
+
+.hotel-rating span {
+    font-size: 12px;
+    border-radius: 2px;
+    padding: 0 6px;
+    background: #ff8916;
+    color: #fff;
+    float: left;
+}

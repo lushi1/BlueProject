@@ -1,9 +1,8 @@
 @extends('layouts.master-user')
 @section('content')
-
 <div class="img-banner">
     <img src="{{asset('/tp-moi.jpg')}}" alt="Banner">
-    <div class="text-banner">
+    <div class="text-banner text-center">
         <h1 class="heading1">{{$data->tieude}}</h1>
         <div class="d-flex">
             <div class="item col-4">
@@ -38,17 +37,41 @@
                 <img src="{{asset('/google-maps.jpg')}}" alt="" style="width: 100%;height: 250px;">
             </div>
             <!-- Modal map -->
+            
                 <div class="modal" id="test" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-dialog modal-xl" role="document">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Bản đồ</h5>
-                                <button type="button" id="closebutton" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
+                            <div class="modal-header mt-3">                     
+                                    <div class="col-5">
+                                        <h5 class="modal-title" id="exampleModalLabel">Bản đồ</h5>
+                                    </div>
+                                    <div class="col-3 float-right">
+                                        <form autocomplete="off" class="form-group" action="#">
+                                            <div class="autocomplete input-group mx-auto">
+                                                <div class="row">
+                                                    <input id="myInput" 
+                                                            type="text" 
+                                                            name="myCountry"
+                                                            placeholder="Tên khách sạn ..." 
+                                                            aria-label="Search">
+                                                    <div class="input-group-append">
+                                                        <button type="button" id="myBtn" class="btn btn-navbar">
+                                                            <i class="fas fa-search"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-2 float-right">
+                                        <button type="button" id="closebutton" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                
                             </div>
                             <div class="modal-body">
-                                <div id="mapid" style="height: 450px;"></div>
+                                <div id="mapid" style="height: 500px;"></div>
                             </div>
                         </div>
                     </div>
@@ -69,6 +92,12 @@
                         zoomOffset: -1
                     }).addTo(mymap);
 
+                    var circle = L.circle([{{$x->st_y}},{{$x->st_x}}], {
+                        color: 'red',
+                        fillColor: '#f03',
+                        fillOpacity: 0.1,
+                        radius: 3000
+                    }).addTo(mymap);
                     </script>
                     <script src="{{asset('/js/geojsondata.js')}}"></script>
                     <script src="{{asset('/js/geojson.js')}}"></script>
@@ -79,29 +108,29 @@
                         "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 
                         "features": [
-                            @foreach($datadl as $dt)
+                            
                                 {
                                     "type": "Feature",
                                     "properties":
                                     {
-                                        "id": {{$dt->gid}},
-                                        "diachi": "{{$dt->diachi}}",                                             
-                                        "tendiadiem": "{{$dt->tendiadiem}}",
-                                        "tenrutgon": "{{$dt->tenrutgon}}",
-                                        "xoa": "xoa{{$dt->gid}}",
-                                        "sua": "sua{{$dt->gid}}",
-                                        "img": "{{$dt->img}}",
-                                        "lng": {{$dt->st_x}},
-                                        "lat": {{$dt->st_y}},
-                                        "url": "danh-gia/{{$dt->tenlink}}",
+                                        "id": {{$x->gid}},
+                                        "diachi": "{{$x->diachi}}",                                             
+                                        "tendiadiem": "{{$x->tendiadiem}}",
+                                        "tenrutgon": "{{$x->tenrutgon}}",
+                                        "xoa": "xoa{{$x->gid}}",
+                                        "sua": "sua{{$x->gid}}",
+                                        "img": "{{$x->img}}",
+                                        "lng": {{$x->st_x}},
+                                        "lat": {{$x->st_y}},
+                                        "url": "danh-gia/{{$x->tenlink}}",
                                     },
                                     "geometry":
                                     {
                                         "type": "Point",
-                                        "coordinates": [ {{$dt->st_x}}, {{$dt->st_y}} ],
+                                        "coordinates": [ {{$x->st_x}}, {{$x->st_y}} ],
                                     },
                                 },
-                            @endforeach
+                            
                         ]
                     }
                                     
@@ -109,8 +138,8 @@
                         pointToLayer: function(feature, latlng) {
                             var smallIcon = new L.Icon({
                                 iconUrl: '{{asset('/place2.png')}}',
-                                iconAnchor: [13, 27],
-                                iconSize: [55, 60],
+                                iconAnchor: [25, 41],
+                                iconSize: [55, 70],
 
                             });
                             return L.marker(latlng, {icon: smallIcon});
@@ -155,6 +184,7 @@
 
                         var khachsan = L.geoJson(json_KhachSan, {
                         pointToLayer: function(feature, latlng) {
+                            
                             return L.marker(latlng);
                         },
                         
@@ -164,13 +194,64 @@
                             var latlngx = pointx.getLatLng();
                             var pointy = L.marker([feature.properties.lat, feature.properties.lng]);
                             var latlngy = pointy.getLatLng();
-                            var z = ("Khoảng cách - " + (latlngx.distanceTo(latlngy)).toFixed(0)/1000) + ' km';
-                            layer.bindTooltip('<div class="container-fluid"><div class="form-group text-center"><h4>Tên khách sạn: '+feature.properties.tenkhachsan+'</h4></div><div class="form-group"><label class="col-form-label font-weight-bold">Địa chỉ: '+feature.properties.diachi+'</label></div><div class="form-group"><label class="col-form-label font-weight-bold">Khoảng cách: '+z+'</label></div></div>');
+                            var z = (latlngx.distanceTo(latlngy)).toFixed(0)/1000;
+                            layer.bindTooltip('<div class="container-fluid"><div class="form-group text-center"><h4>Tên khách sạn: '+feature.properties.tenkhachsan+'</h4></div><div class="form-group"><label class="col-form-label font-weight-bold">Địa chỉ: '+feature.properties.diachi+'</label></div><div class="form-group"><label class="col-form-label font-weight-bold">Khoảng cách: '+z+' km</label></div></div>');
+                        },
+
+                        filter: function(feature,layer)
+                        {
+                            var pointx = L.marker([{{$x->st_y}}, {{$x->st_x}}]);
+                            var latlngx = pointx.getLatLng();
+                            var pointy = L.marker([feature.properties.lat, feature.properties.lng]);
+                            var latlngy = pointy.getLatLng();
+                            var z = (latlngx.distanceTo(latlngy)).toFixed(0)/1000;
+                            if(z<3 || z == 3)
+                                return true;
+                            else
+                                return false;
                         },
 
                         }).addTo(mymap);
                         
+                        var khachsan1 = L.geoJson(json_KhachSan, {
+                        pointToLayer: function(feature, latlng) {
+                            var smallIcon = new L.Icon({
+                                // shadowUrl: 'https://unpkg.com/leaflet@1.6.0/dist/images/marker-shadow.png',
+                                iconUrl: 'https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon.png',
+                                iconSize: [20, 30],
+                                // shadowSize: [20, 30],      
+                                // iconAnchor: [2, -20],
+                                
+                                
+                            });
+                            
+                            return L.marker(latlng,{icon: smallIcon});
+                        },
                         
+                        onEachFeature: function (feature, layer)
+                        {
+                            var pointx = L.marker([{{$x->st_y}}, {{$x->st_x}}]);
+                            var latlngx = pointx.getLatLng();
+                            var pointy = L.marker([feature.properties.lat, feature.properties.lng]);
+                            var latlngy = pointy.getLatLng();
+                            var z = (latlngx.distanceTo(latlngy)).toFixed(0)/1000;
+                            layer.bindTooltip('<div class="container-fluid"><div class="form-group text-center"><h4>Tên khách sạn: '+feature.properties.tenkhachsan+'</h4></div><div class="form-group"><label class="col-form-label font-weight-bold">Địa chỉ: '+feature.properties.diachi+'</label></div><div class="form-group"><label class="col-form-label font-weight-bold">Khoảng cách: '+z+' km</label></div></div>');
+                        },
+
+                        filter: function(feature,layer)
+                        {
+                            var pointx = L.marker([{{$x->st_y}}, {{$x->st_x}}]);
+                            var latlngx = pointx.getLatLng();
+                            var pointy = L.marker([feature.properties.lat, feature.properties.lng]);
+                            var latlngy = pointy.getLatLng();
+                            var z = (latlngx.distanceTo(latlngy)).toFixed(0)/1000;
+                            if(z>3)
+                                return true;
+                            else
+                                return false;
+                        },
+
+                        }).addTo(mymap);
 
                         document.getElementById("mapid1").onclick = function () {
                             $('#test').modal('show');
@@ -183,8 +264,58 @@
                             $('#test').modal('hide');
                         }
                         
+                        // data for autocomplete
+                        var countries = [
+                                            
+                                            "{{$x->tendiadiem}}",
+                                            "{{$x->tenrutgon}}",                               
+                                            
+                                            @foreach($dataks as $ks)
+                                            "{{$ks->tenkhachsan}}",                               
+                                            @endforeach
+                                        ];
+                            // console.log(countries);
+                        
+                        // js show popup when click search button
+
+                        $(document).ready(function(){
+                            // Get value on button click and show alert
+                            $("#myBtn").click(function(){
+                                var str = $("#myInput").val();
+                                
+                                diadiemdulich.eachLayer(function(feature){
+                                    if(feature.feature.properties.tendiadiem==str || feature.feature.properties.tenrutgon==str){
+                                        feature.openPopup();
+                                        mymap.flyTo(L.latLng(feature.feature.properties.lat,feature.feature.properties.lng),12);              
+                                    }
+                                    
+                                });
+
+                                khachsan.eachLayer(function(feature){
+                                    if(feature.feature.properties.tenkhachsan==str){
+                                        feature.openTooltip();
+                                        mymap.flyTo(L.latLng(feature.feature.properties.lat,feature.feature.properties.lng),12);
+                                    }
+                                
+                                });
+
+                                khachsan1.eachLayer(function(feature){
+                                    if(feature.feature.properties.tenkhachsan==str){
+                                        feature.openTooltip();
+                                        mymap.flyTo(L.latLng(feature.feature.properties.lat,feature.feature.properties.lng),12);
+                                    }
+                                
+                                });
+                            });
+                        });
 
                     @endforeach
+                    
+            </script>
+            <script src="{{asset('/user/js/trangchu_autocomplete.js')}}"></script>
+            <script>
+                autocomplete(document.getElementById("myInput"), countries);
+                
             </script>
             <hr/>
             <h3>Các bài viết cùng chủ đề</h3> 

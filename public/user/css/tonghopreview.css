@@ -43,19 +43,20 @@
     margin-right: auto;
     width: 50%;
 }
-.wrap-content .content-right{
+.wrap-content .content-right .box-shadow{
     box-shadow: 0 2px 11px #F0F0F0;
     text-align: start;
+    padding: 10px 30px;
       
 }
 
-.wrap-content .content-right>ul{
+.wrap-content .content-right .box-shadow>ul{
     
     list-style-type: upper-roman;
     padding-left: 5%;
 }
 
-.wrap-content .content-right>ul>li>ul{
+.wrap-content .content-right .box-shadow>ul>li>ul{
     list-style-type: decimal;
     padding-left: 10%;
 }

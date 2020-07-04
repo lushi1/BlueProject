@@ -61,7 +61,18 @@ class QLBaiViet extends Controller
     }
     
     public function DanhSachRV(){
-        $ds = DB::table('baiviet')->where('tag','=','tonghopreview')->first();
+        $ds = DB::table('baiviet')
+        ->join('taikhoan', 'baiviet.chubaiviet', '=', 'taikhoan.id')
+        ->where('tag','=','tonghopreview')
+        ->first();
+
+        $data = DB::table('baiviet')
+        ->where('tag','=','tonghopreview')
+        ->first();
+
+        $baivietx = baiviet::find($data->id);
+        $baivietx->view = $baivietx->view + 1;
+        $baivietx->save();
 
         $dsdiadiemdl = DB::table('diadiemdulich_khachsan_point')->orderBy('gid', 'asc')->get();
         return view('pages.tonghopreview',['dsdiadiemdl'=>$dsdiadiemdl,'ds'=>$ds]);
@@ -76,9 +87,11 @@ class QLBaiViet extends Controller
         ->select('baiviet.*','taikhoan.tentaikhoan','diadiemdulich_khachsan_point.*')
         ->first();
 
-        
+        $baiviet = baiviet::find($data->id);
+        $baiviet->view = $baiviet->view + 1;
+        $baiviet->save();
 
-        $dt = DB::select('select ST_X(geom), ST_Y(geom) from public.diadiemdulich_khachsan_point where tenlink = ?',[$url]);        
+        $dt = DB::select('select ST_X(geom), ST_Y(geom),tenlink, img, tendiadiem, gid, diachi, tenrutgon from public.diadiemdulich_khachsan_point where tenlink = ?',[$url]);        
         $datadl = DB::select('select ST_X(geom), ST_Y(geom),tenlink, img, tendiadiem, gid, diachi, tenrutgon from public.diadiemdulich_khachsan_point;');
         $dataks = DB::select('select ST_X(geom), ST_Y(geom), tenkhachsan, gid, diachi from public.khachsan_point;');    
         return view('pages.chitietbaiviet',['data'=>$data,'url'=>$url,'datadl'=>$datadl,'dataks'=>$dataks,'dt'=>$dt]);

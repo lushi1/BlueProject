@@ -34,6 +34,10 @@ Route::post('themDL','QLDiaDiemDuLich@ThemDL')->name('themDL');
 Route::post('xoaDL/{id}','QLDiaDiemDuLich@XoaDL')->name('xoaDL');
 Route::post('suaDL/{id}','QLDiaDiemDuLich@SuaDL')->name('suaDL');
 
+//Quản lý thống kê
+Route::get('thong-ke/diem-du-lich', 'QLThongKe@ThongKeDiemDuLich')->name('diem-du-lich');
+Route::get('thong-ke/khach-san', 'QLThongKe@ThongKeKhachSan')->name('khach-san');
+
 //Thoát
 Route::get('thoat', 'DangNhapDangKy@Thoat')->name('thoat');
 
