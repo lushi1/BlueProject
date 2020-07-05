@@ -29,9 +29,6 @@ Route::get('/trang-chu','QLTrangChu@TrangChu')->name('trang-chu');
 
 Route::get('/tong-hop-review','QLBaiViet@DanhSachRV')->name('tong-hop-review');
 
-Route::get('/khach-san-son-thuy-2', function () {
-    return view('pages/khachsanx');
-});
 
 //test
 Route::get('/test', function () {

@@ -93,7 +93,7 @@ class QLBaiViet extends Controller
 
         $dt = DB::select('select ST_X(geom), ST_Y(geom),tenlink, img, tendiadiem, gid, diachi, tenrutgon from public.diadiemdulich_khachsan_point where tenlink = ?',[$url]);        
         $datadl = DB::select('select ST_X(geom), ST_Y(geom),tenlink, img, tendiadiem, gid, diachi, tenrutgon from public.diadiemdulich_khachsan_point;');
-        $dataks = DB::select('select ST_X(geom), ST_Y(geom), tenkhachsan, gid, diachi from public.khachsan_point;');    
+        $dataks = DB::select('select ST_X(geom), ST_Y(geom), tenkhachsan, img, sao, gid, diachi from public.khachsan_point;');    
         return view('pages.chitietbaiviet',['data'=>$data,'url'=>$url,'datadl'=>$datadl,'dataks'=>$dataks,'dt'=>$dt]);
     }
 }

@@ -148,7 +148,7 @@
                         {
 
                             layer.bindPopup('<div class="container-fluid"><div><img src="'+feature.properties.img+'"style="width:100%;height:200px"></div><div class="text-center"><h4>'+feature.properties.tendiadiem+'</h4></div><div class="row"><label class="col-form-label font-weight-bold"><i class="fa fa-location-arrow" aria-hidden="true"></i>: '+feature.properties.diachi+'</label></div><div class="row"><span class="col-5"><a href="'+feature.properties.url+'" class="float-left"><i class="fa fa-info-circle" aria-hidden="true"></i> Chi tiết</a></span></div></div>');
-
+                            
                         },
 
                     }).addTo(mymap);
@@ -171,6 +171,8 @@
                                                     "sua": "sua{{$dt->gid}}",
                                                     "lng": {{$dt->st_x}},
                                                     "lat": {{$dt->st_y}},
+                                                    "img": "{{$dt->img}}",
+                                                    "sao": "{{$dt->sao}}",
                                                 },
                                                 "geometry":
                                                 {
@@ -195,7 +197,12 @@
                             var pointy = L.marker([feature.properties.lat, feature.properties.lng]);
                             var latlngy = pointy.getLatLng();
                             var z = (latlngx.distanceTo(latlngy)).toFixed(0)/1000;
-                            layer.bindTooltip('<div class="container-fluid"><div class="form-group text-center"><h4>Tên khách sạn: '+feature.properties.tenkhachsan+'</h4></div><div class="form-group"><label class="col-form-label font-weight-bold">Địa chỉ: '+feature.properties.diachi+'</label></div><div class="form-group"><label class="col-form-label font-weight-bold">Khoảng cách: '+z+' km</label></div></div>');
+                            var star = parseInt(feature.properties.sao);
+                            layer.bindTooltip('@foreach($dataks as $ds){{$ds->gid}}@endforeach<div class="container-fluid"><div><img src="'+feature.properties.img+'"style="width:275px;height:200px"></div><div class="text-center"><h4>'+feature.properties.tenkhachsan +'<div class="hotel-rating"><span class="text-star"><i class="number"> '+feature.properties.sao +' sao </i></span><span class="bg-star">@for($i=0;$i<'+{{$x}}+';$i++)<i class="fa fa-star"></i>@endfor</span></div></h4></div><div class="row"><label class="col-form-label font-weight-bold"><i class="fa fa-location-arrow" aria-hidden="true"></i>: '+feature.properties.diachi+'</label></div><div class="form-group"><label class="col-form-label font-weight-bold">Khoảng cách: '+z+' km</label></div></div>');
+                            layer.on('click', function(e) {
+                                window.location ='{{route('khach-san-son-thuy-2')}}';
+                        });
+                            
                         },
 
                         filter: function(feature,layer)
@@ -235,7 +242,7 @@
                             var pointy = L.marker([feature.properties.lat, feature.properties.lng]);
                             var latlngy = pointy.getLatLng();
                             var z = (latlngx.distanceTo(latlngy)).toFixed(0)/1000;
-                            layer.bindTooltip('<div class="container-fluid"><div class="form-group text-center"><h4>Tên khách sạn: '+feature.properties.tenkhachsan+'</h4></div><div class="form-group"><label class="col-form-label font-weight-bold">Địa chỉ: '+feature.properties.diachi+'</label></div><div class="form-group"><label class="col-form-label font-weight-bold">Khoảng cách: '+z+' km</label></div></div>');
+                            layer.bindTooltip('<div class="container-fluid"><div><img src="'+feature.properties.img+'"style="width:275px;height:200px"></div><div class="text-center"><h4>'+feature.properties.tenkhachsan +'<div class="hotel-rating"><span class="text-star"><i class="number"> '+feature.properties.sao +' sao </i></span><span class="bg-star">@for($i=0;$i<'+star+';$i++)<i class="fa fa-star"></i>@endfor</span></div></h4></div><div class="row"><label class="col-form-label font-weight-bold"><i class="fa fa-location-arrow" aria-hidden="true"></i>: '+feature.properties.diachi+'</label></div><div class="form-group"><label class="col-form-label font-weight-bold">Khoảng cách: '+z+' km</label></div></div>');
                         },
 
                         filter: function(feature,layer)
@@ -275,7 +282,7 @@
                                             @endforeach
                                         ];
                             // console.log(countries);
-                        
+                            
                         // js show popup when click search button
 
                         $(document).ready(function(){
@@ -311,6 +318,18 @@
 
                     @endforeach
                     
+                    // mymap.on('click', function(e){
+                    //     khachsan.eachLayer(function(feature){
+                    //         var pointx = L.marker([feature.feature.properties.lat, feature.feature.properties.lng]);
+                    //         var latlngx = pointx.getLatLng();
+                    //         if(latlngx == e.latlng)
+                    //         {
+                    //             console.log(latlngx);
+                    //             console.log(e.latlng);
+                    //         }
+                    //     });
+                    //     // window.location='login';
+                    // });
             </script>
             <script src="{{asset('/user/js/trangchu_autocomplete.js')}}"></script>
             <script>

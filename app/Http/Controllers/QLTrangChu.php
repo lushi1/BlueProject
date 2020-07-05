@@ -12,7 +12,7 @@ class QLTrangChu extends Controller
     //
     function TrangChu (){
         $datadl = DB::select('select ST_X(geom), ST_Y(geom),tenlink, img, tendiadiem, gid, diachi, tenrutgon from public.diadiemdulich_khachsan_point;');
-        $dataks = DB::select('select ST_X(geom), ST_Y(geom), tenkhachsan, gid, diachi from public.khachsan_point;');    
+        $dataks = DB::select('select ST_X(geom), ST_Y(geom), img, sao, tenkhachsan, gid, diachi from public.khachsan_point;');    
         return view('pages.trangchu',['datadl'=>$datadl,'dataks'=>$dataks]);
     }
 }

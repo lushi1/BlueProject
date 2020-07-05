@@ -28,6 +28,9 @@ Route::post('themKS','QLDiaDiemKhachSan@ThemKS')->name('themKS');
 Route::post('xoaKS/{id}','QLDiaDiemKhachSan@XoaKS')->name('xoaKS');
 Route::post('suaKS/{id}','QLDiaDiemKhachSan@SuaKS')->name('suaKS');
 
+//Trang chi tiết khách sạn
+Route::get('/khach-san-son-thuy-2','QLDiaDiemKhachSan@ChiTietKhachSan')->name('khach-san-son-thuy-2');
+
 //Quản lý địa điểm du lịch
 Route::get('danhsachDL', 'QLDiaDiemDuLich@DanhSachDL')->name('danhsachDL');
 Route::post('themDL','QLDiaDiemDuLich@ThemDL')->name('themDL');
