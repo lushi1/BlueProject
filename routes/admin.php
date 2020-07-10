@@ -38,8 +38,10 @@ Route::post('xoaDL/{id}','QLDiaDiemDuLich@XoaDL')->name('xoaDL');
 Route::post('suaDL/{id}','QLDiaDiemDuLich@SuaDL')->name('suaDL');
 
 //Quản lý thống kê
-Route::get('thong-ke/diem-du-lich', 'QLThongKe@ThongKeDiemDuLich')->name('diem-du-lich');
-Route::get('thong-ke/khach-san', 'QLThongKe@ThongKeKhachSan')->name('khach-san');
+// Route::get('thong-ke/diem-du-lich', 'QLThongKe@ThongKeDiemDuLich')->name('diem-du-lich');
+// Route::get('thong-ke/khach-san', 'QLThongKe@ThongKeKhachSan')->name('khach-san');
+Route::get('thong-ke', 'QLThongKe@ThongKe')->name('thong-ke');
+Route::post('thong-ke-chi-tiet', 'QLThongKe@ThongKeChiTiet')->name('thong-ke-chi-tiet');
 
 //Thoát
 Route::get('thoat', 'DangNhapDangKy@Thoat')->name('thoat');
