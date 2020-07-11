@@ -60,10 +60,9 @@ class QLThongKe extends Controller
             group by huyenxa.ten');
             return view('pages.admin.qlthongke',['ds'=>$ds]);
         }
-        // else{
-        //     return view('pages.admin.qlthongke',['loaithongke'=>$loaithongke, 'loaiyeucau'=>$loaiyeucau]);
-        // }
-        return view('pages.admin.qlthongke');
+        else{
+            return view('pages.admin.qlthongke');
+        }      
     }
 
     // public function ajaxRequest(Request $request)

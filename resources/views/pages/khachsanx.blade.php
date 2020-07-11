@@ -7,14 +7,14 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
                 <li class="breadcrumb-item"><a href="#">Khách sạn</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Khách sạn Sơn Thủy 2</li>
+                <li class="breadcrumb-item active" aria-current="page">Khách sạn The Mira Hotel</li>
             </ol>
         </nav>
     </div>
     <div class="row">
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
             <div class="detail-title">
-                <h3>Khách sạn Sơn Thủy 2
+                <h3>Khách sạn The Mira Hotel
                     <div class="hotel-rating">
                         <span class="text-star">
                             <i class="number"> 2 sao </i>
@@ -68,21 +68,21 @@
     </div>
     <section class="detail-hotel-info row">
         <div class="hotel-info-title hidden-xs">
-            <h3>Thông tin về khách sạn Sơn Thủy 2</h3>
+            <h3>Thông tin về khách sạn The Mira Hotel</h3>
         </div>
         <hr/>
         <div class="hotel-info-content">
             <div class="info-content-description">
                 <div class="content-description-title col-3 float-left"><span><h4>Mô tả</h4></span></div>
                 <div class="content-description col-9 float-right">
-                    <p class="short" style="display: block;">Khách sạn Sơn Thủy 2 - ngay trung tâm thành phố
+                    <p class="short" style="display: block;">Khách sạn The Mira Hotel - ngay trung tâm thành phố
                     <p class="full" style="display: none;">
-                        <h2 ,=""><strong>Khách sạn Sơn Thủy 2 - ngay trung tâm thành phố</strong></h2>
+                        <h2 ,=""><strong>Khách sạn The Mira Hotel - ngay trung tâm thành phố</strong></h2>
                         <br>
-                        <h3><strong>Địa chỉ khách sạn Sơn Thủy 2:</strong></h3>
+                        <h3><strong>Địa chỉ khách sạn The Mira Hotel:</strong></h3>
                         <p>23 Phan Như Thạch, Thành Phố Đà Lạt, Lâm Đồng</p>
                         <br><h3><strong>Vị trí địa lý:</strong></h3>
-                        <p><strong>Khách sạn Sơn Thủy 2</strong> tọa lạc tại số 23 Phan Như Thạch một trong 2 con đường nhiều khách sạn nhất Đà Lạt hiện nay. Vị trí khách sạn nằm ngay tại trung tâm thành phố cách chợ Đà Lạt chỉ 5 phút đi bộ, cho phép du khách thoải mái tham quan các địa danh cũng như khu mua sắm của thành phố mà không mất quá nhiều thời gian đi lại. <br><br><h3><strong>Đặc điểm&nbsp;khách sạn:</strong></h3><br><br><p><strong>Khách sạn Sơn Thủy 2</strong> là khách sạn tiêu chuẩn 2 sao với thiết kế theo phong cách hiện đại làm nổi bật sự sang trọng và tinh tế. Mỗi phòng nghỉ đều có hệ thống cửa sổ lấy ánh sáng tự nhiên ở khắp nơi giúp bạn có một không gian nghỉ mát tuyệt vời với không khí trong lành và ánh sáng mặt trời tự nhiên. <strong>Sơn Thủy 2</strong> hứa hẹn mang tới cho du khách một không gian nghỉ ngơi trong lành và thư thái.</p><br><br><h3><strong>Dịch vụ&nbsp;khách sạn:</strong></h3><br><br><p>Để đảm bảo sự thoải mái và vui vẻ của quý khách khi lưu trú tại khách sạn, <strong>Sơn Thủy 2</strong> được trang bị 24 phòng nghỉ với các hạng phòng khác nhau, đảm bảo đáp ứng nhu cầu nghỉ ngơi của tất cả các đối tượng khách hàng. Đặc biệt, mỗi phòng khách sạn đều được trang bị đầy đủ các trang thiết bị hiện đại như Tivi 42 inch, tủ lạnh, phòng tắm riêng với bồn tắm/vòi sen, dép đi trong nhà, đồ vệ sinh cá nhân miễn phí và máy sấy tóc nhằm mang lại sự thoải mái cho khách.</p><br><br><p><strong>Khách sạn Sơn Thủy 2</strong> cung cấp các dịch vụ chất lượng cao như dịch vụ đưa đón sân bay, dịch vụ lễ tân 24 giờ, bàn bán tour, dịch vụ cho thuê xe đạp,... Ngoài ra, <strong>khách sạn Sơn Thủy 2</strong> còn có bãi đổ xe cho tất cả các loại xe từ 4 - 45 chỗ ngồi ngay bên cạnh khách sạn, đây là một lợi thế mà không nhiều khách sạn tại Đà Lạt có được. </p><br><br><h3><strong>Địa điểm du lịch hút khách tại Quy Nhơn:</strong></h3><br><br><p><strong>Sơn Thủy 2</strong> cách Hồ Xuân Hương 1,3 km và Vườn hoa Đà Lạt 2 km. Sân bay gần nhất là sân bay Liên Khương, cách đó 22 km.</p></p></p>
+                        <p><strong>Khách sạn The Mira Hotel</strong> tọa lạc tại số 23 Phan Như Thạch một trong 2 con đường nhiều khách sạn nhất Đà Lạt hiện nay. Vị trí khách sạn nằm ngay tại trung tâm thành phố cách chợ Đà Lạt chỉ 5 phút đi bộ, cho phép du khách thoải mái tham quan các địa danh cũng như khu mua sắm của thành phố mà không mất quá nhiều thời gian đi lại. <br><br><h3><strong>Đặc điểm&nbsp;khách sạn:</strong></h3><br><br><p><strong>Khách sạn The Mira Hotel</strong> là khách sạn tiêu chuẩn 2 sao với thiết kế theo phong cách hiện đại làm nổi bật sự sang trọng và tinh tế. Mỗi phòng nghỉ đều có hệ thống cửa sổ lấy ánh sáng tự nhiên ở khắp nơi giúp bạn có một không gian nghỉ mát tuyệt vời với không khí trong lành và ánh sáng mặt trời tự nhiên. <strong>The Mira Hotel</strong> hứa hẹn mang tới cho du khách một không gian nghỉ ngơi trong lành và thư thái.</p><br><br><h3><strong>Dịch vụ&nbsp;khách sạn:</strong></h3><br><br><p>Để đảm bảo sự thoải mái và vui vẻ của quý khách khi lưu trú tại khách sạn, <strong>The Mira Hotel</strong> được trang bị 24 phòng nghỉ với các hạng phòng khác nhau, đảm bảo đáp ứng nhu cầu nghỉ ngơi của tất cả các đối tượng khách hàng. Đặc biệt, mỗi phòng khách sạn đều được trang bị đầy đủ các trang thiết bị hiện đại như Tivi 42 inch, tủ lạnh, phòng tắm riêng với bồn tắm/vòi sen, dép đi trong nhà, đồ vệ sinh cá nhân miễn phí và máy sấy tóc nhằm mang lại sự thoải mái cho khách.</p><br><br><p><strong>Khách sạn The Mira Hotel</strong> cung cấp các dịch vụ chất lượng cao như dịch vụ đưa đón sân bay, dịch vụ lễ tân 24 giờ, bàn bán tour, dịch vụ cho thuê xe đạp,... Ngoài ra, <strong>khách sạn The Mira Hotel</strong> còn có bãi đổ xe cho tất cả các loại xe từ 4 - 45 chỗ ngồi ngay bên cạnh khách sạn, đây là một lợi thế mà không nhiều khách sạn tại Đà Lạt có được. </p><br><br><h3><strong>Địa điểm du lịch hút khách tại Quy Nhơn:</strong></h3><br><br><p><strong>The Mira Hotel</strong> cách Hồ Xuân Hương 1,3 km và Vườn hoa Đà Lạt 2 km. Sân bay gần nhất là sân bay Liên Khương, cách đó 22 km.</p></p></p>
                 </div>
             </div>
             <div class="info-content-description">
@@ -110,7 +110,6 @@
                 </div>
             </div>
         </div>
-        <!-- .block-body-->
     </section>
 </div>
 
