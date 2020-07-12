@@ -11,7 +11,6 @@
                             <div class="row float-left" style="font-size: 20px;">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a class="text-primary" href="trang-quan-tri">Dashboard</a></li>
                                         <li class="breadcrumb-item active" aria-current="page">Quản lý bài viết</li>
                                     </ol>
                                 </nav>

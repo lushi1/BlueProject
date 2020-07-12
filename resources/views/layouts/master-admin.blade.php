@@ -152,6 +152,14 @@
             </a>          
           </li>
           <li class="nav-item has-treeview">
+            <a href="{{route('danhsachCTKS')}}" class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p>
+                Quản lý chi tiết khách sạn            
+              </p>
+            </a>          
+          </li>
+          <li class="nav-item has-treeview">
             <a href="{{route('thong-ke')}}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>Thống Kê</p>

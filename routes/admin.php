@@ -33,6 +33,7 @@ Route::get('danhsachCTKS', 'QLDiaDiemKhachSan@DanhSachCTKS')->name('danhsachCTKS
 Route::post('themCTKS','QLDiaDiemKhachSan@ThemCTKS')->name('themCTKS');
 Route::post('xoaCTKS/{id}','QLDiaDiemKhachSan@XoaCTKS')->name('xoaCTKS');
 Route::post('suaCTKS/{id}','QLDiaDiemKhachSan@SuaCTKS')->name('suaCTKS');
+Route::get('khach-san/{link}', 'QLDiaDiemKhachSan@ChiTietKhachSan')->name('{link}');
 //Trang chi tiết khách sạn
 Route::get('/khach-san-son-thuy-2','QLDiaDiemKhachSan@ChiTietKhachSan')->name('khach-san-son-thuy-2');
 

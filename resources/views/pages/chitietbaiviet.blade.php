@@ -173,6 +173,7 @@
                                                     "lat": {{$dt->st_y}},
                                                     "img": "{{$dt->img}}",
                                                     "sao": "{{$dt->sao}}",
+                                                    "link": "khach-san/{{$dt->tenlink}}",
                                                 },
                                                 "geometry":
                                                 {
@@ -200,7 +201,7 @@
                             var star = parseInt(feature.properties.sao);
                             layer.bindTooltip('<div class="container-fluid"><div><img src="'+feature.properties.img+'"style="width:275px;height:200px"></div><div class="text-center"><h4>'+feature.properties.tenkhachsan +'<div class="hotel-rating"><span class="text-star"><i class="number"> '+feature.properties.sao +' sao </i></span><span class="bg-star">@for($i='+feature.properties.sao+';$i>1;$i--)<i class="fa fa-star"></i>@endfor</span></div></h4></div><div class="row"><label class="col-form-label font-weight-bold"><i class="fa fa-location-arrow" aria-hidden="true"></i>: '+feature.properties.diachi+'</label></div><div class="form-group"><label class="col-form-label font-weight-bold">Khoảng cách: '+z+' km</label></div></div>');
                             layer.on('click', function(e) {
-                                window.location ='{{route('khach-san-son-thuy-2')}}';
+                                window.location = "http://localhost:8080/DoAnTotNghiep/public/"+feature.properties.link;
                         });
                             
                         },
@@ -244,7 +245,7 @@
                             var z = (latlngx.distanceTo(latlngy)).toFixed(0)/1000;
                             layer.bindTooltip('<div class="container-fluid"><div><img src="'+feature.properties.img+'"style="width:275px;height:200px"></div><div class="text-center"><h4>'+feature.properties.tenkhachsan +'<div class="hotel-rating"><span class="text-star"><i class="number"> '+feature.properties.sao +' sao </i></span><span class="bg-star">@for($i=0;$i<'+star+';$i++)<i class="fa fa-star"></i>@endfor</span></div></h4></div><div class="row"><label class="col-form-label font-weight-bold"><i class="fa fa-location-arrow" aria-hidden="true"></i>: '+feature.properties.diachi+'</label></div><div class="form-group"><label class="col-form-label font-weight-bold">Khoảng cách: '+z+' km</label></div></div>');
                             layer.on('click', function(e) {
-                                window.location ='{{route('khach-san-son-thuy-2')}}';
+                                window.location = "http://localhost:8080/DoAnTotNghiep/public/"+feature.properties.link;
                             });
                         },
 

@@ -101,7 +101,7 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col">#</th>                
-                                            <th scope="col">Nội dung</th>
+                                            <!-- <th scope="col">Nội dung</th> -->
                                             <th scope="col">Khách sạn</th>
                                             <th scope="col">Thao tác</th>
                                         </tr>
@@ -113,7 +113,7 @@
                                         $sua = "sua".$ds->id;
                                         $xoa = "xoa".$ds->id; ?>
                                         <tr>
-                                            <th>{{$i++}}</th>                                      
+                                        <th scope="row">{{$i++ + ($dsctkhachsan->currentPage() -1)* $pageSize }}</th>                                      
                                             <!-- <td>{!! $ds->noidung !!}</td> -->
                                             <td>{{$ds->tenkhachsan}}</td>                                               
                                             <td>
@@ -216,7 +216,10 @@
                                     </tbody>
                                 </table>
                             </div>
-                            
+                            <div class="d-flex justify-content mt-4">
+                                {{ $dsctkhachsan->links() }}
+
+                            </div>
                         </div>
                         <!-- </div> -->
                     </div>

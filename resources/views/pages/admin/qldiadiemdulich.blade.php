@@ -13,7 +13,7 @@
                             <div class="row float-left" style="font-size: 20px;">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a class="text-primary" href="#">Quản lý địa điểm du lịch</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Quản lý điểm du lịch</li>
                                     </ol>
                                 </nav>
                                
