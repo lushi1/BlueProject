@@ -1,0 +1,176 @@
+.title_search h3{
+    padding: 10px 15px;
+    line-height: 22px;
+}
+
+.filterList select{
+    width: 100%;
+}
+
+.filterContent{
+    border: solid 1px black;
+}
+
+.filterBlock.no-padding {
+    padding-bottom: 5px;
+    margin: 0!important;
+    background: #f1f1f1;
+}
+
+.filterBlock {
+    border-bottom: 0;
+}
+
+.filterBlock {
+    background: #fff;
+    margin-bottom: 30px;
+    box-shadow: 0 1px 3px 0 rgba(27,27,27,.1);
+}
+
+.filterBlock .block-title {
+    font-size: 16px;
+    font-weight: 300;
+    margin: 0;
+    padding: 10px 15px;
+    line-height: 22px;
+}
+
+.filterList {
+    list-style: none;
+    padding: 0 15px 15px;
+    margin: 0;
+}
+
+.filterList i.fa-star {
+    color: #ff8917;
+}
+.prdList {
+    width: 100%;
+    float: left;
+}
+
+@media (min-width: 768px){
+
+    .itemPrice__content .iPrice {
+        display: inline-block;
+        position: relative;
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    .prdItem {
+        box-shadow: 0 0 0 1px transparent;
+    }
+
+    .prdItem .prd-top .itemInfo .prAddress {
+        font-size: 14px;
+        color: #484848;
+    }
+
+    .prdItem .prd-top {
+        min-height: 200px;
+        background-color: #fff;
+        box-shadow: 0 1px 3px 0 rgba(27,27,27,.1);
+    }
+
+    .prdItem .prd-top .itemInfo .info-name h2 {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 26px;
+    }
+}
+
+@media (min-width: 992px){
+    .prdItem .prd-top .itemImage {
+        width: 190px;
+    }
+
+    .prdItem .prd-top .itemContent {
+        width: calc(100% - 165px);
+        padding: 15px 15px 10px 10px;
+        flex-direction: row;
+    }
+
+    .prdItem .prd-top .itemInfo {
+        flex: 1 1 70%;
+        padding: 0 10px 30px 0;
+    }
+}
+.prdItem {
+    width: 100%;
+    margin-bottom: 10px;
+    transition: .1s;
+    padding-bottom: 10px;
+}
+
+.prdItem .prd-top .itemInfo .prAddress {
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: baseline;
+}
+
+.prdItem .prd-top {
+    background: #f1f1f1;
+    width: 100%;
+    display: flex;
+    cursor: pointer;
+    position: relative;
+    min-height: 165px;
+}
+
+/* .prdItem .prd-top .itemImage {
+    width: 100px;
+} */
+
+.prdItem .prd-top .itemInfo .info-name h2 {
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #373737;
+    margin: 0;
+    line-height: 21px;
+    display: inline-block;
+}
+
+.prdItem .prd-top .itemInfo .info-name a {
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #373737;
+}
+
+.prdItem .prd-top .itemInfo .prAddress .fa-map-marker {
+    color: #ff8916;
+    width: 15px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.prdItem .prd-top .itemPrice_end {
+    float: right;
+}
+
+.prdItem .prd-top:hover{
+    border: solid 1px black;
+}
+
+.itemPrice__content .iPrice .price-number {
+    font-weight: 700;
+    font-size: 24px;
+    color: #ff8917;
+    margin: 0;
+}
+
+
+#pagingPage {
+    margin: 50px 0 30px;
+    width: 100%;
+    display: flex;
+    float: left;
+}
+
+.filer_button button:hover{
+    background: red;
+}

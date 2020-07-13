@@ -101,4 +101,101 @@ class QLDiaDiemKhachSan extends Controller
         }
         return redirect()->back();
     }
+
+    
+    public function DSKhachSan(Request $req){
+        if ($req->session()->exists('timkiem') || $req->session()->exists('timkiemnangcao')) {
+            $req->session()->forget('timkiem');
+            $req->session()->forget('timkiemnangcao');
+        }
+        $dshuyenxa = DB::table('huyenphuongxa_region')
+                    ->select('*')
+                    ->orderBy('huyenphuongxa_region.gid', 'asc')
+                    ->get();
+        $pageSize = 6;
+        $data = DB::table('khachsan_point')
+                ->select('*')
+                ->orderBy('khachsan_point.gid', 'asc')
+                ->paginate($pageSize);
+        // $data1 = DB::select('select ST_X(geom), ST_Y(geom),* from public.khachsan_point order by public.khachsan_point.gid asc');
+        $dataks = DB::select('select ST_X(geom), ST_Y(geom), tenlink, tenkhachsan, img, sao, gid, diachi from public.khachsan_point;');     
+        return view('pages.khachsan',['data'=>$data, 'dshuyenxa'=>$dshuyenxa, 'dataks'=>$dataks, 'pageSize'=>$pageSize]);
+    }
+
+    public function TimKiemKhachSan(Request $req){
+        if ($req->session()->exists('timkiemnangcao')) {
+            $req->session()->forget('timkiemnangcao');
+        }
+        session()->put('timkiem','timkiem');
+        $pageSize = 6;
+        $data = DB::table('khachsan_point')
+                ->select('*')
+                ->orderBy('khachsan_point.gid', 'asc')
+                ->paginate($pageSize);
+        $dataks = DB::select('select ST_X(geom), ST_Y(geom), tenlink, tenkhachsan, img, sao, gid, diachi from public.khachsan_point;');
+        $dshuyenxa = DB::table('huyenphuongxa_region')
+                    ->select('*')
+                    ->orderBy('huyenphuongxa_region.gid', 'asc')
+                    ->get();
+
+        $input = $req->myInput;
+        $datatimkiem = khachsan::where('tenkhachsan','LIKE','%'.$input.'%')->paginate($pageSize);
+        return view('pages.khachsan',['data'=>$data, 'dataks'=>$dataks, 'dshuyenxa'=>$dshuyenxa, 'pageSize'=>$pageSize, 'datatimkiem'=>$datatimkiem]);
+    }
+
+    public function TimKiemKhachSanNangCao(Request $req){
+        if ($req->session()->exists('timkiem')) {
+            $req->session()->forget('timkiem');
+        }
+        
+        $pageSize = 6;
+        $data = DB::table('khachsan_point')
+                ->select('*')
+                ->orderBy('khachsan_point.gid', 'asc')
+                ->paginate($pageSize);
+        $dataks = DB::select('select ST_X(geom), ST_Y(geom), tenlink, tenkhachsan, img, sao, gid, diachi from public.khachsan_point;');
+        $dshuyenxa = DB::table('huyenphuongxa_region')
+                    ->select('*')
+                    ->orderBy('huyenphuongxa_region.gid', 'asc')
+                    ->get();
+        $datatimkiemnangcao = $req->all();
+        if( $datatimkiemnangcao == null)
+            return redirect()->back();
+        session()->put('timkiemnangcao','timkiemnangcao');
+        // $mucgia = $req->mucgia;
+        $xephang = $req->xephang;
+        $khuvuc = $req->khuvuc;
+        if($xephang != null && $khuvuc != null)
+        {
+            $datanangcao = DB::table('khachsan_point')
+                    ->join('huyenphuongxa_region', 'khachsan_point.idvung', '=', 'huyenphuongxa_region.gid')
+                    ->where('khachsan_point.sao',$xephang)
+                    ->where('huyenphuongxa_region.gid',$khuvuc)
+                    ->select('*')
+                    ->orderBy('khachsan_point.gid', 'asc')
+                    ->paginate($pageSize);
+            return view('pages.khachsan',['data'=>$data, 'datanangcao'=>$datanangcao, 'dataks'=>$dataks, 'dshuyenxa'=>$dshuyenxa, 'pageSize'=>$pageSize]);
+
+        }
+        elseif($khuvuc != null){
+            $datanangcao = DB::table('khachsan_point')
+                    ->join('huyenphuongxa_region', 'khachsan_point.idvung', '=', 'huyenphuongxa_region.gid')
+                    ->where('huyenphuongxa_region.gid',$khuvuc)
+                    ->select('*')
+                    ->orderBy('khachsan_point.gid', 'asc')
+                    ->paginate($pageSize);
+            return view('pages.khachsan',['data'=>$data, 'datanangcao'=>$datanangcao, 'dataks'=>$dataks, 'dshuyenxa'=>$dshuyenxa, 'pageSize'=>$pageSize]);
+
+        }
+        else{
+            $datanangcao = DB::table('khachsan_point')
+                    ->join('huyenphuongxa_region', 'khachsan_point.idvung', '=', 'huyenphuongxa_region.gid')
+                    ->where('khachsan_point.sao',$xephang)
+                    ->select('*')
+                    ->orderBy('khachsan_point.gid', 'asc')
+                    ->paginate($pageSize);
+            return view('pages.khachsan',['data'=>$data, 'datanangcao'=>$datanangcao, 'dataks'=>$dataks, 'dshuyenxa'=>$dshuyenxa, 'pageSize'=>$pageSize]);
+
+        }
+    }
 }

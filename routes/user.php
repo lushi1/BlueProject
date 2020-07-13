@@ -34,4 +34,6 @@ Route::get('/tong-hop-review','QLBaiViet@DanhSachRV')->name('tong-hop-review');
 Route::get('/test', function () {
     return view('test');
 });
+// trang khách sạn
+
 

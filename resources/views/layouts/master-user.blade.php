@@ -45,7 +45,7 @@
                         <input type="checkbox" id="drop" />
                         <ul class="menu">
                             <li><a href="{{route('trang-chu')}}">Trang chủ</a></li>
-                            <li><a href="#about">Khách sạn</a></li>
+                            <li><a href="{{route('khach-san')}}">Khách sạn</a></li>
                             <li><a href="{{route('tong-hop-review')}}">Cẩm nang du lịch</a></li>
                             <li><a href="#contact">Liên hệ</a></li>  
                             @if (!session()->has('tenkh') && !session()->has('tenadmin'))
