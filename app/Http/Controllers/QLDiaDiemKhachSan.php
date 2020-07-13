@@ -118,7 +118,7 @@ class QLDiaDiemKhachSan extends Controller
                 ->orderBy('khachsan_point.gid', 'asc')
                 ->paginate($pageSize);
         // $data1 = DB::select('select ST_X(geom), ST_Y(geom),* from public.khachsan_point order by public.khachsan_point.gid asc');
-        $dataks = DB::select('select ST_X(geom), ST_Y(geom), tenlink, tenkhachsan, img, sao, gid, diachi from public.khachsan_point;');     
+        $dataks = DB::select('select ST_X(geom), ST_Y(geom), giaphong, tenlink, tenkhachsan, img, sao, gid, diachi from public.khachsan_point;');     
         return view('pages.khachsan',['data'=>$data, 'dshuyenxa'=>$dshuyenxa, 'dataks'=>$dataks, 'pageSize'=>$pageSize]);
     }
 
@@ -132,7 +132,7 @@ class QLDiaDiemKhachSan extends Controller
                 ->select('*')
                 ->orderBy('khachsan_point.gid', 'asc')
                 ->paginate($pageSize);
-        $dataks = DB::select('select ST_X(geom), ST_Y(geom), tenlink, tenkhachsan, img, sao, gid, diachi from public.khachsan_point;');
+        $dataks = DB::select('select ST_X(geom), ST_Y(geom), giaphong, tenlink, tenkhachsan, img, sao, gid, diachi from public.khachsan_point;');
         $dshuyenxa = DB::table('huyenphuongxa_region')
                     ->select('*')
                     ->orderBy('huyenphuongxa_region.gid', 'asc')
@@ -153,7 +153,7 @@ class QLDiaDiemKhachSan extends Controller
                 ->select('*')
                 ->orderBy('khachsan_point.gid', 'asc')
                 ->paginate($pageSize);
-        $dataks = DB::select('select ST_X(geom), ST_Y(geom), tenlink, tenkhachsan, img, sao, gid, diachi from public.khachsan_point;');
+        $dataks = DB::select('select ST_X(geom), ST_Y(geom), giaphong, tenlink, tenkhachsan, img, sao, gid, diachi from public.khachsan_point;');
         $dshuyenxa = DB::table('huyenphuongxa_region')
                     ->select('*')
                     ->orderBy('huyenphuongxa_region.gid', 'asc')

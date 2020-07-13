@@ -152,7 +152,7 @@
                                 <div class="itemPrice__content needsclick">
                                     <div class="iPrice">
                                         <p class="price-number">         
-                                            Giá: 629.000₫   
+                                            Giá: {{$dttk->giaphong}}₫   
                                         </p>
                                     </div>
                                 </div>
@@ -231,7 +231,7 @@
                                 <div class="itemPrice__content needsclick">
                                     <div class="iPrice">
                                         <p class="price-number">         
-                                            Giá: 629.000₫   
+                                            Giá: {{$dttknc->giaphong}}₫   
                                         </p>
                                     </div>
                                 </div>
@@ -307,8 +307,9 @@
                                 <div class="itemPrice__content needsclick">
                                     <div class="iPrice">
                                         <p class="price-number">         
-                                            Giá: 629.000₫   
+                                            Giá: <?php echo number_format($dt->giaphong, 0, '', ',');?>₫   
                                         </p>
+                                        
                                     </div>
                                 </div>
                             </div>
