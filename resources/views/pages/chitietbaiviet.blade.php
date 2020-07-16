@@ -25,9 +25,9 @@
             <hr/>
             <h3>Bạn có thể quan tâm</h3>
             <ul>
-                <li><a href="#">Khám phá khu du lịch sinh thái Thủy Châu</a></li>
-                <li><a href="#">Chùa Tây Tạng - ngôi chùa nổi tiếng nhất Bình Dương</a>
-                </li>               
+                @foreach($datatuongtu2 as $dttt2)
+                <li><a href="{{$dttt2->tenlink}}">{{$dttt2->tieude}}</a></li>    
+                @endforeach           
             </ul>
             <br/>          
         </div>
@@ -42,27 +42,36 @@
                     <div class="modal-dialog modal-xl" role="document">
                         <div class="modal-content">
                             <div class="modal-header mt-3">                     
-                                    <div class="col-5">
+                                    <div class="col-2 float-left">
                                         <h5 class="modal-title" id="exampleModalLabel">Bản đồ</h5>
                                     </div>
-                                    <div class="col-3 float-right">
+                                    <div class="col-6 float-left">
                                         <form autocomplete="off" class="form-group" action="#">
-                                            <div class="autocomplete input-group mx-auto">
-                                                <div class="row">
-                                                    <input id="myInput" 
-                                                            type="text" 
-                                                            name="myCountry"
-                                                            placeholder="Tên khách sạn ..." 
-                                                            aria-label="Search">
-                                                    <div class="input-group-append">
-                                                        <button type="button" id="myBtn" class="btn btn-navbar">
+                                            <div class="autocomplete input-group mx-auto form-group">
+                                            <div class="row">
+                                            <div class="pl-3 float-left">
+                                                <p class="text-danger" id="checkNull"></p>
+                                            </div>
+                                            </div>
+                                                <div class="row" style="width:100%;">
+                                                    <div class="col-10 float-left">
+                                                            <input id="myInput" 
+                                                                    type="text" 
+                                                                    name="myCountry"
+                                                                    placeholder="Tên khách sạn ..." 
+                                                                    aria-label="Search" style="width:100%;height:100%;">
+                                                    </div>
+                                                    <div class="input-group-append col-2 float-right">
+                                                        <button type="button" id="myBtn" class="btn btn-info">
                                                             <i class="fas fa-search"></i>
                                                         </button>
                                                     </div>
+                                                    
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
+                                    
                                     <div class="col-2 float-right">
                                         <button type="button" id="closebutton" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -293,30 +302,47 @@
                             // Get value on button click and show alert
                             $("#myBtn").click(function(){
                                 var str = $("#myInput").val();
-                                
-                                diadiemdulich.eachLayer(function(feature){
-                                    if(feature.feature.properties.tendiadiem==str || feature.feature.properties.tenrutgon==str){
-                                        feature.openPopup();
-                                        mymap.flyTo(L.latLng(feature.feature.properties.lat,feature.feature.properties.lng),12);              
-                                    }
+                                checkDL = false;
+                                checkKS = false;
+                                if(str!="")
+                                {
+                                    diadiemdulich.eachLayer(function(feature){
+                                        if(feature.feature.properties.tendiadiem==str || feature.feature.properties.tenrutgon==str){
+                                            feature.openPopup();
+                                            checkDL = true;
+                                            mymap.flyTo(L.latLng(feature.feature.properties.lat,feature.feature.properties.lng),15);              
+                                        }
+                                        
+                                    });
+
+                                    khachsan.eachLayer(function(feature){
+                                        if(feature.feature.properties.tenkhachsan==str){
+                                            feature.openTooltip();
+                                            checkKS = true;
+                                            mymap.flyTo(L.latLng(feature.feature.properties.lat,feature.feature.properties.lng),15);
+                                        }
                                     
-                                });
+                                    });
 
-                                khachsan.eachLayer(function(feature){
-                                    if(feature.feature.properties.tenkhachsan==str){
-                                        feature.openTooltip();
-                                        mymap.flyTo(L.latLng(feature.feature.properties.lat,feature.feature.properties.lng),12);
+                                    khachsan1.eachLayer(function(feature){
+                                        if(feature.feature.properties.tenkhachsan==str){
+                                            feature.openTooltip();
+                                            checkKS = true;
+                                            mymap.flyTo(L.latLng(feature.feature.properties.lat,feature.feature.properties.lng),12);
+                                        }
+                                    
+                                    });
+                                    
+                                    if(checkDL==true || checkKS==true){
+                                            document.getElementById("checkNull").innerHTML ="";                    
+                                        }
+                                    else{
+                                        document.getElementById("checkNull").innerHTML =str+" không có trong dữ liệu";
                                     }
-                                
-                                });
-
-                                khachsan1.eachLayer(function(feature){
-                                    if(feature.feature.properties.tenkhachsan==str){
-                                        feature.openTooltip();
-                                        mymap.flyTo(L.latLng(feature.feature.properties.lat,feature.feature.properties.lng),12);
-                                    }
-                                
-                                });
+                                }
+                                else{
+                                    document.getElementById("checkNull").innerHTML ="Bạn chưa nhập dữ liệu";
+                                }
                             });
                         });
 
@@ -343,8 +369,9 @@
             <hr/>
             <h3>Các bài viết cùng chủ đề</h3> 
             <ul>
-                <li><a href="#">Khám phá khu du lịch sinh thái Thủy Châu</a></li>
-                <li><a href="#">Chùa Tây Tạng - ngôi chùa nổi tiếng nhất Bình Dương</a></li>               
+                @foreach($datatuongtu1 as $dttt1)
+                <li><a href="{{$dttt1->tenlink}}">{{$dttt1->tieude}}</a></li>    
+                @endforeach               
             </ul>
             
         </div>

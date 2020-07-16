@@ -91,7 +91,7 @@
                                 },
 
                             }).addTo(mymap);
-                            var popup = L.popup({minWidth : 200},);
+                            var popup = L.popup({minWidth : 300},);
 
                                 function onMapClick(e) {
                                     popup
@@ -102,8 +102,6 @@
 
                                 mymap.on('click', onMapClick);
 
-                                
-                            
                             </script>
                             <script src="{{asset('/js/geojson.js')}}"></script>
 

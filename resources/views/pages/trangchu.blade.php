@@ -8,21 +8,24 @@
         <div class="pane-container col-3 border border-primary">
             <!-- Search Form -->
             
-            <form autocomplete="off" class="form-group mt-3" action="#">
+            <form autocomplete="off" class="form-group mt-3">
                 
                 <div class="autocomplete input-group mx-auto">
                     <div class="row">
-
-                        <input id="myInput" 
-                                type="text" 
-                                name="myCountry"
-                                placeholder="Search" 
-                                aria-label="Search">
-
-                        <div class="input-group-append" style="background: #f1f1f1;">
-                            <button type="button" id="myBtn" class="btn btn-navbar">
-                                <i class="fas fa-search"></i>
+                        <div class="col-9 float-left">
+                            <input id="myInput"
+                                    type="text" 
+                                    name="myCountry"
+                                    placeholder="Tìm kiếm" 
+                                    aria-label="Tìm kiếm" class="form-group" style="width:100%;">     
+                        </div>
+                        <div class="input-group-append form-group col-2 float-right">
+                            <button type="button" id="myBtn" class="btn btn-navbar" style="background: #f1f1f1;">
+                            <i class="fas fa-search"></i> 
                             </button>
+                        </div>
+                        <div class="feedback pl-4">
+                            <p class="text-danger" id="checkNull"></p>
                         </div>
                     </div>
                 </div>
@@ -304,14 +307,30 @@
                         // Get value on button click and show alert
                         $("#myBtn").click(function(){
                             var str = $("#myInput").val();
-                            
-                            diadiemdulich.eachLayer(function(feature){
-                                if(feature.feature.properties.tendiadiem==str || feature.feature.properties.tenrutgon==str){
-                                    feature.openPopup();
-                                    mymap.flyTo(L.latLng(feature.feature.properties.lat,feature.feature.properties.lng),12);              
+                            var check = false;
+                            if(str != "")
+                            {
+                                diadiemdulich.eachLayer(function(feature){
+                                    if(feature.feature.properties.tendiadiem==str || feature.feature.properties.tenrutgon==str){
+                                        feature.openPopup();
+                                        check = true;
+                                        
+                                        mymap.flyTo(L.latLng(feature.feature.properties.lat,feature.feature.properties.lng),12);              
+                                    }
+                                    
+                                });
+                                if(check==true){
+                                        document.getElementById("checkNull").innerHTML ="";                    
+                                    }
+                                else{
+                                    document.getElementById("checkNull").innerHTML =str+" không có trong dữ liệu";
                                 }
                                 
-                            });
+                            }                      
+                            else{
+                                document.getElementById("checkNull").innerHTML ="Bạn chưa nhập dữ liệu";
+                                   
+                            }
 
                             // khachsan.eachLayer(function(feature){
                             //     if(feature.feature.properties.tenkhachsan==str){
@@ -326,6 +345,7 @@
                 <script src="{{asset('/user/js/trangchu_autocomplete.js')}}"></script>
                 <script>
                     autocomplete(document.getElementById("myInput"), countries);
+                    
                 </script>
             
         </div>
@@ -342,10 +362,12 @@
             <div class="row m-3">
                 @foreach($datadlnb as $dtdlnb)
                 <div class="img-div float-left col-4" style="padding-bottom: 20px;">
-                    <img src="{{$dtdlnb->img}}" alt="img">
-                    <div class="place-content">
-                        <h3>{{$dtdlnb->tendiadiem}}</h3>
-                    </div>
+                    <a href="danh-gia/{{$dtdlnb->tenlink}}">
+                        <img src="{{$dtdlnb->img}}" alt="img">
+                        <div class="place-content">
+                            <h3>{{$dtdlnb->tendiadiem}}</h3>
+                        </div>
+                    </a>
                 </div>
                 @endforeach
             </div>
@@ -364,10 +386,12 @@
             <div class="row m-3">
                 @foreach($dataksnb as $dtksnb)
                 <div class="img-div float-left col-4" style="padding-bottom: 20px;">
-                    <img src="{{$dtksnb->img}}" alt="img">
-                    <div class="place-content">
-                        <h3>{{$dtksnb->tenkhachsan}}</h3>
-                    </div>
+                    <a href="khach-san/{{$dtksnb->tenlink}}">
+                        <img src="{{$dtksnb->img}}" alt="img">
+                        <div class="place-content">
+                            <h3>{{$dtksnb->tenkhachsan}}</h3>
+                        </div>
+                    </a>
                 </div>
                 @endforeach
             </div>

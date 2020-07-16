@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V1</title>
+	<title>Đăng nhập</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -31,13 +31,13 @@
 				</div>
 
 				<form class="login100-form validate-form" action="{{route('dang-nhap')}}" method="get">
-				{{@csrf_field()}}
+				@csrf
 					<span class="login100-form-title">
 						Đăng nhập
 					</span>
 
 					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="email" placeholder="Email">
+						<input class="input100" type="text" name="email" placeholder="Email" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -45,7 +45,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input">
-						<input class="input100" type="password" name="matkhau" placeholder="Mật khẩu">
+						<input class="input100" type="password" name="matkhau" placeholder="Mật khẩu" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -79,7 +79,7 @@
 
 					<div class="text-center p-t-12">
 						<a class="txt2" href="trang-chu">
-							Tạo tài khoản
+							Về trang chủ
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
 					</div>

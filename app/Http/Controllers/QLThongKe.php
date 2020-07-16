@@ -61,6 +61,7 @@ class QLThongKe extends Controller
             return view('pages.admin.qlthongke',['ds'=>$ds]);
         }
         else{
+            
             return view('pages.admin.qlthongke');
         }      
     }

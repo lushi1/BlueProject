@@ -47,19 +47,31 @@ class QLDiaDiemKhachSan extends Controller
     }
 
     public function ChiTietKhachSan($link){
-        // $data = DB::table('khachsan_point')
-        // ->where('khachsan_point.tenlink','=',$link)
-        // ->join('chitietkhachsan', 'khachsan_point.idctks', '=', 'chitietkhachsan.id')
-        // ->select('chitietkhachsan.noidung, khachsan_point.*')
-        // ->first();
         $data1=DB::select('select hinhanh.* from public.hinhanh join public.chitietkhachsan 
                         on  chitietkhachsan.id = hinhanh.idchitietkhachsan join khachsan_point 
                         on chitietkhachsan.idkhachsan = khachsan_point.gid 
                         where khachsan_point.tenlink = ?',[$link]);
+        
         $data = DB::select('select ST_X(geom), ST_Y(geom), * from public.khachsan_point join chitietkhachsan on  chitietkhachsan.idkhachsan = khachsan_point.gid where khachsan_point.tenlink = ?',[$link]);
         $datadl = DB::select('select ST_X(geom), ST_Y(geom), tenlink, img, tendiadiem, gid, diachi, tenrutgon from public.diadiemdulich_khachsan_point;');
         $dataks = DB::select('select ST_X(geom), ST_Y(geom), tenlink, tenkhachsan, img, sao, gid, diachi from public.khachsan_point;'); 
-        return view('pages.khachsanx',['data'=>$data, 'data1'=>$data1, 'datadl'=>$datadl, 'dataks'=>$dataks]);
+        
+        $datatk = DB::table('khachsan_point')
+                ->where('khachsan_point.tenlink','=',$link)
+                ->select('*')
+                ->orderBy('khachsan_point.gid', 'asc')
+                ->first();
+          
+
+        $datatimkiem = DB::table('khachsan_point')
+                    ->where('khachsan_point.tenlink','!=',$link)
+                    ->where('khachsan_point.idvung','=',$datatk->idvung)
+                    ->select('*')
+                    ->orderBy('khachsan_point.gid', 'asc')
+                    ->limit(3)
+                    ->get();
+        // dd($datatimkiem);
+        return view('pages.khachsanx',['datatimkiem'=>$datatimkiem, 'data'=>$data, 'data1'=>$data1, 'datadl'=>$datadl, 'dataks'=>$dataks]);
     }
 
     //Chi tiết khách sạn
@@ -165,6 +177,8 @@ class QLDiaDiemKhachSan extends Controller
         // $mucgia = $req->mucgia;
         $xephang = $req->xephang;
         $khuvuc = $req->khuvuc;
+        $datakhuvuc = huyenxa::find($khuvuc);
+
         if($xephang != null && $khuvuc != null)
         {
             $datanangcao = DB::table('khachsan_point')
@@ -174,7 +188,7 @@ class QLDiaDiemKhachSan extends Controller
                     ->select('*')
                     ->orderBy('khachsan_point.gid', 'asc')
                     ->paginate($pageSize);
-            return view('pages.khachsan',['data'=>$data, 'datanangcao'=>$datanangcao, 'dataks'=>$dataks, 'dshuyenxa'=>$dshuyenxa, 'pageSize'=>$pageSize]);
+            return view('pages.khachsan',['data'=>$data, 'xephang'=>$xephang, 'datakhuvuc'=>$datakhuvuc, 'datanangcao'=>$datanangcao, 'dataks'=>$dataks, 'dshuyenxa'=>$dshuyenxa, 'pageSize'=>$pageSize]);
 
         }
         elseif($khuvuc != null){
@@ -184,7 +198,7 @@ class QLDiaDiemKhachSan extends Controller
                     ->select('*')
                     ->orderBy('khachsan_point.gid', 'asc')
                     ->paginate($pageSize);
-            return view('pages.khachsan',['data'=>$data, 'datanangcao'=>$datanangcao, 'dataks'=>$dataks, 'dshuyenxa'=>$dshuyenxa, 'pageSize'=>$pageSize]);
+            return view('pages.khachsan',['data'=>$data, 'xephang'=>$xephang, 'datakhuvuc'=>$datakhuvuc, 'datanangcao'=>$datanangcao, 'dataks'=>$dataks, 'dshuyenxa'=>$dshuyenxa, 'pageSize'=>$pageSize]);
 
         }
         else{
@@ -194,7 +208,7 @@ class QLDiaDiemKhachSan extends Controller
                     ->select('*')
                     ->orderBy('khachsan_point.gid', 'asc')
                     ->paginate($pageSize);
-            return view('pages.khachsan',['data'=>$data, 'datanangcao'=>$datanangcao, 'dataks'=>$dataks, 'dshuyenxa'=>$dshuyenxa, 'pageSize'=>$pageSize]);
+            return view('pages.khachsan',['data'=>$data, 'xephang'=>$xephang, 'datakhuvuc'=>$datakhuvuc, 'datanangcao'=>$datanangcao, 'dataks'=>$dataks, 'dshuyenxa'=>$dshuyenxa, 'pageSize'=>$pageSize]);
 
         }
     }

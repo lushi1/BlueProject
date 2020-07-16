@@ -8,7 +8,7 @@
     <meta name="keywords" content="Du Lịch Bình Dương, Đại Nam, Suối Rạc, Hồ Bình, ..." />
 
     <!-- //Meta tag Keywords -->
-
+    <title>Web GIS hỗ trợ tìm kiếm thông tin</title>
     <!-- Custom-Files -->
     <link rel="stylesheet" type='text/css' href="{{asset('/user/css/tonghopreview.css')}}">
     <link rel="stylesheet" href="{{asset('/plugins/fontawesome-free/css/all.min.css')}}">
@@ -48,9 +48,9 @@
                             <li><a href="{{route('khach-san')}}">Khách sạn</a></li>
                             <li><a href="{{route('tong-hop-review')}}">Cẩm nang du lịch</a></li>
                             <li><a href="#contact">Liên hệ</a></li>  
-                            @if (!session()->has('tenkh') && !session()->has('tenadmin'))
+                            <!-- @if (!session()->has('tenkh') && !session()->has('tenadmin'))
                             <li><a href="{{route('trang-dang-nhap')}}">Đăng nhập</a></li>
-                            <li><a href="trangdangky">Đăng ký</a></li>
+                            <li><a href="{{route('dang-ky')}}">Đăng ký</a></li>
                             @endif
                             @if (session()->has('tenkh'))                          
                                     <li><a href="#">{{ Session::get('tenkh') }}</a></li>
@@ -59,7 +59,7 @@
                             @if (session()->has('tenadmin'))                          
                                     <li><a href="#">{{ Session::get('tenadmin') }}</a></li>
                                     <li><a href="{{route('thoat')}}">Thoát</a></li>
-                            @endif
+                            @endif -->
                         </ul>
                     </nav>
                 </div>

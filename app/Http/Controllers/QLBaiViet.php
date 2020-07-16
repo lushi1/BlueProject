@@ -91,9 +91,26 @@ class QLBaiViet extends Controller
         $baiviet->view = $baiviet->view + 1;
         $baiviet->save();
 
+        $datatuongtu1 = DB::table('baiviet')
+        ->join('diadiemdulich_khachsan_point', 'baiviet.dulich_id', '=', 'diadiemdulich_khachsan_point.gid')    
+        ->where('baiviet.id','!=',$data->id)
+        ->select('*')
+        ->orderByDesc('baiviet.id')
+        ->limit(3)
+        ->get();
+
+        $datatuongtu2 = DB::table('baiviet')
+        ->join('diadiemdulich_khachsan_point', 'baiviet.dulich_id', '=', 'diadiemdulich_khachsan_point.gid')           
+        ->where('baiviet.id','!=',$data->id)
+        ->whereNull('tag')
+        ->select('*')
+        ->orderBy('baiviet.id','asc')
+        ->limit(3)
+        ->get();
+        // dd($datatuongtu2);
         $dt = DB::select('select ST_X(geom), ST_Y(geom),tenlink, img, tendiadiem, gid, diachi, tenrutgon from public.diadiemdulich_khachsan_point where tenlink = ?',[$url]);        
         $datadl = DB::select('select ST_X(geom), ST_Y(geom), tenlink, img, tendiadiem, gid, diachi, tenrutgon from public.diadiemdulich_khachsan_point;');
         $dataks = DB::select('select ST_X(geom), ST_Y(geom), tenlink, tenkhachsan, img, sao, gid, diachi from public.khachsan_point;');    
-        return view('pages.chitietbaiviet',['data'=>$data,'url'=>$url,'datadl'=>$datadl,'dataks'=>$dataks,'dt'=>$dt]);
+        return view('pages.chitietbaiviet',['datatuongtu1'=>$datatuongtu1, 'datatuongtu2'=>$datatuongtu2, 'data'=>$data,'url'=>$url,'datadl'=>$datadl,'dataks'=>$dataks,'dt'=>$dt]);
     }
 }

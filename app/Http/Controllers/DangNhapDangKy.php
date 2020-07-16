@@ -44,31 +44,45 @@ class DangNhapDangKy extends Controller
                         return redirect('danhsachTK');
                     }
                 }
+                else{
+                    Session::flash('error', 'Mật khẩu không chính xác!');
+                    return redirect('trang-dang-nhap');
+                }
             }
-            Session::flash('error', 'Mật khẩu không chính xác!');
-            return redirect('trang-dang-nhap');
         }
         Session::flash('error', 'Tên tài khoản không tồn tại!');
         return redirect('trang-dang-nhap');
     }
 
-    // public function TrangDangKy()
-    // {
-    //     if(session()->has('tenadmin') || session()->has('tenadmin'))
-    //         return redirect('trang-chu');
-    //     else
-    //         return view('pages.dangnhap');
-    // }
+    public function TrangDangKy()
+    {
+        if(session()->has('tenadmin') || session()->has('tenadmin'))
+            return redirect('trang-chu');
+        else
+            return view('pages.dangky');
+    }
 
-    // public function DangKy(Request $req){
-    //     $dstk = DB::table('taikhoan')->value('tentaikhoan');
-    //     Session::flash('email', 'Tên tài khoản đã tồn tại!');
-    //     foreach($dstk as $tk){
-    //         if($tk == $req->tentaikhoan)
-    //             return redirect('trangdangky');
-    //     }
-    //     return redirect('trangdangnhap');
-    // }
+    public function DangKy(Request $req){
+        $dstk = taikhoan::all();
+        foreach($dstk as $tk){
+            if($tk->tentaikhoan == $req->tentaikhoan || $tk->email == $req->email)
+            {
+                if($tk->tentaikhoan == $req->tentaikhoan)
+                    Session::flash('tentaikhoan', 'Tên tài khoản đã tồn tại!');
+                if($tk->email == $req->email)
+                    Session::flash('email', 'Tên email đã tồn tại!');
+                return redirect('dang-ky');
+            }
+        }
+        $taikhoan = new taikhoan();
+        $taikhoan->tentaikhoan = $req->tentaikhoan;
+        $taikhoan->email = $req->email;
+        $taikhoan->hoten = $req->hoten;
+        $taikhoan->loaitaikhoan = 1;
+        $taikhoan->matkhau = $req->pass;
+        $taikhoan->save();
+        return redirect('trang-dang-nhap');
+    }
 
     public function Thoat(){
         Session::flush();

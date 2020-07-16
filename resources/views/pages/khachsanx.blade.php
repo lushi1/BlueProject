@@ -6,7 +6,7 @@
     <div class="breadcrumb-div mt-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="{{route('trang-chu')}}">Trang chủ</a></li>
                 <li class="breadcrumb-item"><a href="#">Khách sạn</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{$dt->tenkhachsan}}</li>
             </ol>
@@ -134,7 +134,6 @@
             </div>
         </div>
     </section> -->
-    
 </div>
 <script>
     var mymap = L.map('mapid').setView([{{$dt->st_y}},{{$dt->st_x}}], 16);

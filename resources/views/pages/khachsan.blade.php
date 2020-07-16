@@ -60,7 +60,11 @@
                     <div class="form-group col-12">
                         <label class="col-form-label font-weight-bold">Xếp hạng khách sạn</label>
                         <select name="xephang" class="form-control">
-                            <option value="" selected disabled hidden>-- Chọn --</option>
+                            @if (session()->has('timkiemnangcao') && $xephang != "")
+                            <option value="{{$xephang}}" selected hidden>{{$xephang}} sao</option>
+                            @else
+                            <option value="" selected hidden>-- Chọn --</option>
+                            @endif
                             <option value="5">5 sao</option>
                             <option value="4">4 sao</option>
                             <option value="3">3 sao</option>
@@ -71,7 +75,11 @@
                     <div class="form-group col-12">
                         <label class="col-form-label font-weight-bold">Khu vực</label>
                         <select name="khuvuc" class="form-control">
-                            <option value="" selected disabled hidden>-- Chọn --</option>
+                            @if (session()->has('timkiemnangcao') && $datakhuvuc != "")
+                                <option value="{{$datakhuvuc->gid}}" selected hidden>{{$datakhuvuc->ten}}</option>
+                            @else
+                                <option value="" selected hidden>-- Chọn --</option>
+                            @endif
                             @foreach($dshuyenxa as $dtt)
                              <option value="{{$dtt->gid}}">{{$dtt->ten}}</option>
                             @endforeach
@@ -152,7 +160,7 @@
                                 <div class="itemPrice__content needsclick">
                                     <div class="iPrice">
                                         <p class="price-number">         
-                                            Giá: {{$dttk->giaphong}}₫   
+                                        Giá: <?php echo number_format($dttk->giaphong, 0, '', ',');?>₫   
                                         </p>
                                     </div>
                                 </div>
@@ -231,7 +239,7 @@
                                 <div class="itemPrice__content needsclick">
                                     <div class="iPrice">
                                         <p class="price-number">         
-                                            Giá: {{$dttknc->giaphong}}₫   
+                                        Giá: <?php echo number_format($dttknc->giaphong, 0, '', ',');?>₫   
                                         </p>
                                     </div>
                                 </div>

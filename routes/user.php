@@ -17,8 +17,8 @@ Route::get('/trang-dang-nhap','DangNhapDangKy@TrangDangNhap')->name('trang-dang-
 // Route::get('/trangdangky',function(){
 //     return view('pages.dangky');
 // });
-
-// Route::post('/dangky','DangNhapDangKy@DangKy')->name('dangky');
+Route::get('/dang-ky','DangNhapDangKy@TrangDangKy')->name('dang-ky');
+Route::post('/dang-ky','DangNhapDangKy@DangKy')->name('dang-ky');
 
 Route::get('/dang-nhap','DangNhapDangKy@DangNhap')->name('dang-nhap');
 // Đăng nhập bằng tài khoản google

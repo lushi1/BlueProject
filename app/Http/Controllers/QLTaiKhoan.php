@@ -44,6 +44,21 @@ class QLTaiKhoan extends Controller
         }
     }
 
+    public function SuaTK($id,Request $req){
+        $taikhoan = taikhoan::find($id);
+        $taikhoan->matkhau = Hash::make($req->matkhau);
+        $taikhoan->loaitaikhoan = $req->quyen;
+        $taikhoan->save();
+        
+        if ($taikhoan) {
+		    Session::flash('success', 'Cập nhật tài khoản thành công!');
+        }else {
+            Session::flash('error', 'Cập nhật tài khoản thất bại!');
+        }
+
+        return redirect()->back();
+    }
+
     public function XoaTK($id){
         $xoataikhoan = taikhoan::destroy($id);
         if ($xoataikhoan) {

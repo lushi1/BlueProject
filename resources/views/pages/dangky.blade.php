@@ -30,8 +30,8 @@
 					<img src="login/images/img-01.png" alt="IMG">
 				</div>
 				
-				<form class="login100-form validate-form" action="dangky" method="post" oninput='confirmpass.setCustomValidity(confirmpass.value != pass.value ? "Mật khẩu xác nhận không trùng khớp" : "")'>
-				{{@csrf_field()}}
+				<form class="login100-form validate-form" action="dang-ky" method="post" oninput='confirmpass.setCustomValidity(confirmpass.value != pass.value ? "Mật khẩu xác nhận không trùng khớp" : "")'>
+				@csrf
 					<span class="login100-form-title">
 						Đăng ký
 					</span>
@@ -45,13 +45,18 @@
 					</div>
 
                     <div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="sdt" placeholder="Số điện thoại" required>
+						<input class="input100" type="text" name="tentaikhoan" placeholder="Tên tài khoản" required>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-phone" aria-hidden="true"></i>
+							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 					</div>
-
+					@if ( Session::has('tentaikhoan') )
+						<div class="alert alert-danger alert-dismissible" role="alert">
+							<strong>{{ Session::get('tentaikhoan') }}</strong>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+						</div>
+                    @endif
                     <div class="wrap-input100 validate-input">
 						<input class="input100" type="email" name="email" placeholder="Email" required>
 						<span class="focus-input100"></span>
@@ -60,10 +65,10 @@
 						</span>
 					</div>
 					@if ( Session::has('email') )
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        <strong>{{ Session::get('error') }}</strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
-                    </div>
+						<div class="alert alert-danger alert-dismissible" role="alert">
+							<strong>{{ Session::get('email') }}</strong>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+						</div>
                     @endif
 
 					<div class="wrap-input100 validate-input">
