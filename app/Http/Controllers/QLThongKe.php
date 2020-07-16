@@ -43,7 +43,7 @@ class QLThongKe extends Controller
         if($req->loaithongke == 0 && $req->loaiyeucau == 0)
         {
             session()->put('check1','check1');
-            $ds = DB::select('select huyenxa.ten, count(khachsan.gid)
+            $ds = DB::select('select huyenxa.ten, count(*)
             from huyenphuongxa_region huyenxa join khachsan_point khachsan
             on huyenxa.gid = khachsan.idvung
             group by huyenxa.ten');

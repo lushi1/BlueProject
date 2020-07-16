@@ -33,7 +33,57 @@
 
 
                         <div class="card-body">
-
+                        <div class="row">
+                                <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><h3 >Form Thêm</h3></a>
+                            </div>
+                            <div class="collapse p-2 m-2" id="collapseExample" style="border: 1px solid;">                            
+                                <form action="themDL" method="POST">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="form-group col-4">
+                                            <label class="col-form-label font-weight-bold">Tên điểm du lịch<span class="text-danger"> (*)</span></label>
+                                            <input type="text" class="form-control" name="tendiadiem">
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label class="col-form-label font-weight-bold">Tên link du lịch<span class="text-danger"> (*)</span></label>
+                                            <input type="text" class="form-control" name="tenlink">
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label class="col-form-label font-weight-bold">Tên rút gọn<span class="text-danger"> (*)</span></label>
+                                            <input type="text" class="form-control" name="tenrutgon">
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label class="col-form-label font-weight-bold">Huyện,xã<span class="text-danger"> (*)</span></label>
+                                            <input type="text" class="form-control" id="idvung" name="idvung" readonly>
+                                        </div>
+                                        <div class="form-group col-2">
+                                            <label class="col-form-label font-weight-bold">Tọa độ lng<span class="text-danger"> (*)</span></label>
+                                            <input type="text" class="form-control" id="toadox1" name="toadox" value="">
+                                        </div>
+                                        <div class="form-group col-2">
+                                            <label class="col-form-label font-weight-bold">Tọa độ lat<span class="text-danger"> (*)</span></label>
+                                            <input type="text" class="form-control" id="toadoy1" name="toadoy" value="">
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label class="col-form-label font-weight-bold">Địa chỉ<span class="text-danger"> (*)</span></label>
+                                            <textarea class="form-control col-12" name="diachi" cols="60" rows="1"></textarea>
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label class="col-form-label font-weight-bold">Ảnh<span class="text-danger"> (*)</span></label>
+                                            <img class="form-control" name="url" id="url" style="height:150px">
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label class="col-form-label font-weight-bold">Url ảnh<span class="text-danger"> (*)</span></label>
+                                            <input type="text" class="form-control" id="url1" name="url1">
+                                            <button type="button" class="form-group btn btn-success" onclick="openPopup()">Select file</button>
+                                        </div>
+                                    </div>
+                                    <div class="row p-3">
+                                        <button type="submit" class="btn btn-primary">Thêm</button>
+                                    </div>
+                                </form>
+                                
+                            </div>
                             <div id="mapid" style="width: 800; height: 500px;"></div>
                             <script>
 
@@ -92,19 +142,19 @@
                                 },
                                 onEachFeature: function (feature, layer)
                                 {
-                                    layer.bindPopup('<div class="container-fluid"><div><img src="'+feature.properties.src+'"style="width:100%;height:200px"></div><div class="text-center"><h4>'+feature.properties.tendiadiem+'</h4></div><div class="row"><label class="col-form-label font-weight-bold"><i class="fa fa-location-arrow" aria-hidden="true"></i>: '+feature.properties.diachi+'</label></div><div class="row"><span class="col-5"><a href="'+feature.properties.url+'" class="float-left"><i class="fa fa-info-circle" aria-hidden="true"></i> Chi tiết</a></span><span class="col-7"><a href="#" class="float-right"><i class="fa fa-h-square" aria-hidden="true"></i> Xem khách sạn gần đó</a></span></div><div class="row"><div class="col-6"><span data-toggle="modal" data-target="#'+feature.properties.sua+'"><button type="button" class="btn btn-info">Sửa</button></span></div><div class="col-6">  <span data-toggle="modal" data-target="#'+feature.properties.xoa+'"><button type="button" class="btn btn-danger float-right">Xóa</button></span></div></div></div>');
+                                    layer.bindPopup('<div class="container-fluid"><div><img src="'+feature.properties.src+'"style="width:100%;height:200px"></div><div class="text-center"><h4>'+feature.properties.tendiadiem+'</h4></div><div class="row"><label class="col-form-label font-weight-bold"><i class="fa fa-location-arrow" aria-hidden="true"></i>: '+feature.properties.diachi+'</label></div><div class="row"><span class="col-5"><a href="'+feature.properties.url+'" class="float-left"><i class="fa fa-info-circle" aria-hidden="true"></i> Chi tiết</a></span></div><div class="row"><div class="col-6"><span data-toggle="modal" data-target="#'+feature.properties.sua+'"><button type="button" class="btn btn-info">Sửa</button></span></div><div class="col-6">  <span data-toggle="modal" data-target="#'+feature.properties.xoa+'"><button type="button" class="btn btn-danger float-right">Xóa</button></span></div></div></div>');
                                 },
                             }).addTo(mymap);
-                            var popup = L.popup({minWidth : 300},);
+                            // var popup = L.popup({minWidth : 300},);
 
-                                function onMapClick(e) {
-                                    popup
-                                        .setLatLng(e.latlng)
-                                        .setContent('<form action="themDL" method="POST">@csrf<div class="form-group"><label>Tên địa điểm: </label><input type="text" class="form-control" aria-describedby="emailHelp" name="tendiadiem" placeholder="Vd: Phương Nam" required></div><div class="row"><div class="form-group col-6"><label class="col-form-label font-weight-bold">Địa chỉ: <span class="text-danger"> (*)</span></label></div><textarea class="form-control col-12" name="diachi" cols="60" rows="2"></textarea></div><div class="form-group"><div class="row"><div class="col-6"><label>Tọa độ X: </label><input type="text" class="form-control" value="'+e.latlng.lng+'" name="toadox" required></div><div class="col-6"><label>Tọa độ Y: </label><input type="text" class="form-control" name="toadoy" value="'+e.latlng.lat+'" required></div></div></div><div class="form-group text-center"><div class="col-12"><label>Ảnh:</label><img name="url" id="url" style="width:80%;height:100px"></div><label>Url:</label><input type="text" size="40" name="url1" id="url1" /> <button type="button" onclick="openPopup()">Select file</button></div><button type="submit" class="btn btn-primary">Thêm</button></form>')
-                                        .openOn(mymap);
-                                }
+                            //     function onMapClick(e) {
+                            //         popup
+                            //             .setLatLng(e.latlng)
+                            //             .setContent('<form action="themDL" method="POST">@csrf<div class="form-group"><label>Tên địa điểm: </label><input type="text" class="form-control" aria-describedby="emailHelp" name="tendiadiem" placeholder="Vd: Phương Nam" required></div><div class="row"><div class="form-group col-6"><label class="col-form-label font-weight-bold">Địa chỉ: <span class="text-danger"> (*)</span></label></div><textarea class="form-control col-12" name="diachi" cols="60" rows="2"></textarea></div><div class="form-group"><div class="row"><div class="col-6"><label>Tọa độ X: </label><input type="text" class="form-control" value="'+e.latlng.lng+'" name="toadox" required></div><div class="col-6"><label>Tọa độ Y: </label><input type="text" class="form-control" name="toadoy" value="'+e.latlng.lat+'" required></div></div></div><div class="form-group text-center"><div class="col-12"><label>Ảnh:</label><img name="url" id="url" style="width:80%;height:100px"></div><label>Url:</label><input type="text" size="40" name="url1" id="url1" /> <button type="button" onclick="openPopup()">Select file</button></div><button type="submit" class="btn btn-primary">Thêm</button></form>')
+                            //             .openOn(mymap);
+                            //     }
 
-                                mymap.on('click', onMapClick);
+                            //     mymap.on('click', onMapClick);
                             </script>
                             <script src="{{asset('/js/geojson.js')}}"></script>
 
@@ -153,7 +203,16 @@
                                             <textarea class="form-control col-12" name="diachi" cols="60" rows="2">{{$dt->diachi}}</textarea>
                                         </div>
                                     </div>
-                                    
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label class="col-form-label font-weight-bold">Tên link địa điểm: <span class="text-danger"> (*)</span></label>
+                                            <input type="text" class="form-control" name="tenlink" value="{{$dt->tenlink}}">
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label class="col-form-label font-weight-bold">Tên rút gọn: <span class="text-danger"> (*)</span></label>
+                                            <input type="text" class="form-control" name="tenrutgon" value="{{$dt->tenrutgon}}">
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <label class="col-form-label font-weight-bold">Tọa độ x: <span class="text-danger"> (*)</span></label>
@@ -246,5 +305,14 @@
                 }
             } );
         }
+
+         //tim idvung
+         vung.on('click', function(e) {
+            console.log(e.layer.feature.properties.ID);
+            console.log(e.latlng.lng);
+            var toandox1 = document.getElementById("toadox1").value= e.latlng.lng;
+            var toandoy1 = document.getElementById("toadoy1").value= e.latlng.lat;
+            var idvung = document.getElementById("idvung").value= e.layer.feature.properties.TEN;
+        });
     </script>
 @endsection

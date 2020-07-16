@@ -17,4 +17,8 @@ class QLTrangChu extends Controller
         $dataksnb = DB::select('select * from khachsan_point order by khachsan_point.gid asc limit 6;');
         return view('pages.trangchu',['datadl'=>$datadl,'dataks'=>$dataks, 'datadlnb'=>$datadlnb,'dataksnb'=>$dataksnb]);
     }
+
+    function LienHe (){
+        return view('pages.lienhe');
+    }
 }

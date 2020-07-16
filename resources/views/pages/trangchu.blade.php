@@ -55,7 +55,7 @@
                 </div>
             </form>
 
-            <!-- <form class="form-group">            
+            <form class="form-group">            
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="exampleRadios" id="showks" checked>
                     <label class="form-check-label" for="exampleRadios1">
@@ -75,9 +75,9 @@
                         Địa điểm khách sạn
                     </label>
                 </div>
-            </form> -->
+            </form>
 
-            <form class="form-group">       
+            <!-- <form class="form-group">       
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="exampleRadios" id="showvung" checked>
                     <label class="form-check-label" for="exampleRadios1">
@@ -97,7 +97,7 @@
                         Vùng (tỉnh Bình Dương)
                     </label>
                 </div>
-            </form>
+            </form> -->
             <!-- <a href="#" onclick="focusOn('paris')">Paris</a> -->
             <!-- End show and hide form -->
         </div>
@@ -187,62 +187,62 @@
 
                 }).addTo(mymap);
 
-                // var json_KhachSan={
+                var json_KhachSan={
 
-                //     "type": "FeatureCollection",
-                //     "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                    "type": "FeatureCollection",
+                    "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 
-                //     "features": [
-                //         @foreach($dataks as $dt)
-                //             {
-                //                 "type": "Feature",
-                //                 "properties":
-                //                 {
-                //                     "id": {{$dt->gid}},
-                //                     "diachi": "{{$dt->diachi}}",
-                //                     "tenkhachsan": "{{$dt->tenkhachsan}}",
-                //                     "xoa": "xoa{{$dt->gid}}",
-                //                     "sua": "sua{{$dt->gid}}",
-                //                     "lng": {{$dt->st_x}},
-                //                     "lat": {{$dt->st_y}},
-                //                     "img": "{{$dt->img}}",
-                //                     "sao": {{$dt->sao}},
-                //                 },
-                //                 "geometry":
-                //                 {
-                //                     "type": "Point",
-                //                     "coordinates": [ {{$dt->st_x}}, {{$dt->st_y}} ],
-                //                 },
-                //             },
-                //         @endforeach
-                //     ]
-                //     }
-
-
+                    "features": [
+                        @foreach($dataks as $dt)
+                            {
+                                "type": "Feature",
+                                "properties":
+                                {
+                                    "id": {{$dt->gid}},
+                                    "diachi": "{{$dt->diachi}}",
+                                    "tenkhachsan": "{{$dt->tenkhachsan}}",
+                                    "xoa": "xoa{{$dt->gid}}",
+                                    "sua": "sua{{$dt->gid}}",
+                                    "lng": {{$dt->st_x}},
+                                    "lat": {{$dt->st_y}},
+                                    "img": "{{$dt->img}}",
+                                    "sao": {{$dt->sao}},
+                                },
+                                "geometry":
+                                {
+                                    "type": "Point",
+                                    "coordinates": [ {{$dt->st_x}}, {{$dt->st_y}} ],
+                                },
+                            },
+                        @endforeach
+                    ]
+                    }
 
 
-                //     var khachsan = L.geoJson(json_KhachSan, {
-                //     pointToLayer: function(feature, latlng) {
+
+
+                    var khachsan = L.geoJson(json_KhachSan, {
+                    pointToLayer: function(feature, latlng) {
                         
-                //         var smallIcon = new L.DivIcon({
-                //             iconAnchor: [13, 27],
-                //             iconSize: [65, 30],
-                //             className: 'my-div-icon',
-                //             html: '<div class="row"><img class="my-div-image" src="hotel.png"/>'+
-                //                 '<span class="my-div-span align-self-center">'+feature.properties.tenkhachsan+'</span></div>'
+                        var smallIcon = new L.DivIcon({
+                            iconAnchor: [13, 27],
+                            iconSize: [65, 30],
+                            className: 'my-div-icon',
+                            html: '<div class="row"><img class="my-div-image" src="hotel.png"/>'+
+                                '<span class="my-div-span align-self-center">'+feature.properties.tenkhachsan+'</span></div>'
 
-                //         });
-                //         return L.marker(latlng, {icon: smallIcon});
-                //     },
-                //     onEachFeature: function (feature, layer)
-                //     {
+                        });
+                        return L.marker(latlng, {icon: smallIcon});
+                    },
+                    onEachFeature: function (feature, layer)
+                    {
                         
-                //         layer.bindPopup('<div class="container-fluid"><div><img src="'+feature.properties.img+'"style="width:275px;height:200px"></div><div class="text-center"><h4>'+feature.properties.tenkhachsan +'<div class="hotel-rating"><span class="text-star"><i class="number"> '+feature.properties.sao +' sao </i></span><span class="bg-star">@for($i=0;$i<4;$i++)<i class="fa fa-star"></i>@endfor</span></div></h4></div><div class="row"><label class="col-form-label font-weight-bold"><i class="fa fa-location-arrow" aria-hidden="true"></i>: '+feature.properties.diachi+'</label></div><div class="row"><span class="col-5"><a href="#" class="float-left"><i class="fa fa-info-circle" aria-hidden="true"></i> Chi tiết</a></span><span class="col-7"><a href="#" class="float-right"><i class="fa fa-h-square" aria-hidden="true"></i> Xem khách sạn gần đó</a></span></div></div>');
+                        layer.bindPopup('<div class="container-fluid"><div><img src="'+feature.properties.img+'"style="width:275px;height:200px"></div><div class="text-center"><h4>'+feature.properties.tenkhachsan +'<div class="hotel-rating"><span class="text-star"><i class="number"> '+feature.properties.sao +' sao </i></span></div></h4></div><div class="row"><label class="col-form-label font-weight-bold"><i class="fa fa-location-arrow" aria-hidden="true"></i>: '+feature.properties.diachi+'</label></div><div class="row"><span class="col-5"><a href="#" class="float-left"><i class="fa fa-info-circle" aria-hidden="true"></i> Chi tiết</a></span></div></div>');
                         
                         
-                //     },
+                    },
 
-                //     }).addTo(mymap);
+                    }).addTo(mymap);
 
                 // Js show and hide places to visit
                 $("#hidedl").click(function() {

@@ -12,12 +12,17 @@ class QLDiaDiemDuLich extends Controller
     //
     public function DanhSachDL(){
 
-        $data = DB::select('select ST_X(geom), ST_Y(geom),img,tenlink,tendiadiem,gid,diachi from public.diadiemdulich_khachsan_point;');    
+        $data = DB::select('select ST_X(geom), ST_Y(geom),* from public.diadiemdulich_khachsan_point;');    
         return view('pages.admin.qldiadiemdulich',['data'=>$data]);
     }
 
     public function ThemDL(Request $req){
-        $data = DB::table('diadiemdulich_khachsan_point')->insert(['img'=>$req->url1,'tendiadiem'=>$req->tendiadiem,'diachi'=> $req->diachi,
+        
+        $checkvung = DB::table('huyenphuongxa_region')
+        ->select('*')
+        ->where('huyenphuongxa_region.ten',$req->idvung)->first();
+        $data = DB::table('diadiemdulich_khachsan_point')->insert(['tenrutgon'=>$req->tenrutgon,'tenlink'=>$req->tenlink,
+        'idvung'=>$checkvung->gid,'img'=>$req->url1,'tendiadiem'=>$req->tendiadiem,'diachi'=> $req->diachi,
         'geom'=>DB::raw("ST_GeomFromText('POINT(".$req->toadox." ".$req->toadoy.")', 4326)")]);
         
         return redirect('danhsachDL');
@@ -27,6 +32,8 @@ class QLDiaDiemDuLich extends Controller
         $data = DB::table('diadiemdulich_khachsan_point')
               ->where('gid', $id)
               ->update(['tendiadiem'=>$req->tendiadiem,
+                        'tenrutgon'=>$req->tenrutgon,
+                        'tenlink'=>$req->tenlink,
                         'img'=>$req->img,
                         'geom'=>DB::raw("ST_GeomFromText('POINT(".$req->toadox." ".$req->toadoy.")', 4326)"),
                         'diachi'=>$req->diachi]);      

@@ -32,7 +32,6 @@
                             <select name="loaiyeucau" class="form-control">
                             <option value="0" selected hidden>Theo vùng</option>
                                 <option value="0">Theo vùng</option>
-                                <option value="1">Theo chất lượng</option>
                             </select>
                         </div>          
                         <div class="form-group col-md-2">

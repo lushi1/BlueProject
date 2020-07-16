@@ -26,6 +26,7 @@ Route::get('auth/google', 'LoginGoogleAccount@redirectToGoogle');
 Route::get('auth/google/callback', 'LoginGoogleAccount@handleGoogleCallback');
 
 Route::get('/trang-chu','QLTrangChu@TrangChu')->name('trang-chu');
+Route::get('/lien-he','QLTrangChu@LienHe')->name('lien-he');
 
 Route::get('/tong-hop-review','QLBaiViet@DanhSachRV')->name('tong-hop-review');
 

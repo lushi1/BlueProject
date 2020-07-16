@@ -47,8 +47,8 @@
                             <li><a href="{{route('trang-chu')}}">Trang chủ</a></li>
                             <li><a href="{{route('khach-san')}}">Khách sạn</a></li>
                             <li><a href="{{route('tong-hop-review')}}">Cẩm nang du lịch</a></li>
-                            <li><a href="#contact">Liên hệ</a></li>  
-                            <!-- @if (!session()->has('tenkh') && !session()->has('tenadmin'))
+                            <li><a href="{{route('lien-he')}}">Liên hệ</a></li>  
+                            @if (!session()->has('tenkh') && !session()->has('tenadmin'))
                             <li><a href="{{route('trang-dang-nhap')}}">Đăng nhập</a></li>
                             <li><a href="{{route('dang-ky')}}">Đăng ký</a></li>
                             @endif
@@ -59,7 +59,7 @@
                             @if (session()->has('tenadmin'))                          
                                     <li><a href="#">{{ Session::get('tenadmin') }}</a></li>
                                     <li><a href="{{route('thoat')}}">Thoát</a></li>
-                            @endif -->
+                            @endif
                         </ul>
                     </nav>
                 </div>

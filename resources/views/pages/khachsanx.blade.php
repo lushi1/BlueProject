@@ -7,7 +7,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('trang-chu')}}">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a href="#">Khách sạn</a></li>
+                <li class="breadcrumb-item"><a href="{{route('khach-san')}}">Khách sạn</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{$dt->tenkhachsan}}</li>
             </ol>
         </nav>

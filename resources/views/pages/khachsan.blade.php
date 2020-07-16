@@ -16,12 +16,62 @@
 
     <div class="row">
         <div class="map_search">
-            <div class="col-3 float-left p-2">
+            <div class="col-3 float-left p-2" id="mapid1">
                 <img src="{{asset('/google-maps.jpg')}}" alt="img" style="width: 100%; height: 100px">
                 <div class="place-content">
                     <p>Xem bản đồ</p>
                 </div>
             </div>
+            <!-- Modal map -->
+            
+            <div class="modal" id="test" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header mt-3">                     
+                                <div class="col-2 float-left">
+                                    <h5 class="modal-title" id="exampleModalLabel">Bản đồ</h5>
+                                </div>
+                                <div class="col-6 float-left">
+                                    <form autocomplete="off" class="form-group" action="#">
+                                        <div class="autocomplete input-group mx-auto form-group">
+                                        <div class="row">
+                                        <div class="pl-3 float-left">
+                                            <p class="text-danger" id="checkNull"></p>
+                                        </div>
+                                        </div>
+                                            <div class="row" style="width:100%;">
+                                                <div class="col-10 float-left">
+                                                        <input id="myInput" 
+                                                                type="text" 
+                                                                name="myCountry"
+                                                                placeholder="Tên khách sạn ..." 
+                                                                aria-label="Search" style="width:100%;height:100%;">
+                                                </div>
+                                                <div class="input-group-append col-2 float-right">
+                                                    <button type="button" id="myBtn" class="btn btn-info">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                
+                                <div class="col-2 float-right">
+                                    <button type="button" id="closebutton" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            
+                        </div>
+                        <div class="modal-body">
+                            <div id="mapid" style="height: 500px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- js map -->
             <div class="col-9 float-right pl-4" style="width: 100%; height: 100%">
                 <form autocomplete="off" class="form-group mt-4" action="{{route('tim-kiem')}}" method="GET">
                     @csrf
@@ -41,6 +91,132 @@
             </div>
         </div>
     </div>
+    <!-- js map -->
+    <script>
+        var mymap = L.map('mapid')
+                    .setView([11.20465, 106.69412], 10);
+
+        var tileLayyer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibHVzaGkiLCJhIjoiY2s0YXFnNHRyMDY2dzNlbGtvM3pwcThhMyJ9.F9DH_aBnwZYWez_5hy3xNA', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+                '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1
+        }).addTo(mymap);
+        document.getElementById("mapid1").onclick = function () {
+            $('#test').modal('show');
+            setTimeout(function() {
+                mymap.invalidateSize(false);
+            }, 100);
+        }
+
+        document.getElementById("closebutton").onclick = function () {
+            $('#test').modal('hide');
+        }
+        var json_DuLichpoint1={
+            "type": "FeatureCollection",
+            "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+
+            "features": [
+                @foreach($datadl as $x)
+                    {
+                        "type": "Feature",
+                        "properties":
+                        {
+                            "id": {{$x->gid}},
+                            "diachi": "{{$x->diachi}}",                                             
+                            "tendiadiem": "{{$x->tendiadiem}}",
+                            "tenrutgon": "{{$x->tenrutgon}}",
+                            "xoa": "xoa{{$x->gid}}",
+                            "sua": "sua{{$x->gid}}",
+                            "img": "{{$x->img}}",
+                            "lng": {{$x->st_x}},
+                            "lat": {{$x->st_y}},
+                            "url": "danh-gia/{{$x->tenlink}}",
+                        },
+                        "geometry":
+                        {
+                            "type": "Point",
+                            "coordinates": [ {{$x->st_x}}, {{$x->st_y}} ],
+                        },
+                    },
+                @endforeach
+            ]
+            }
+                        
+            var diadiemdulich = L.geoJson(json_DuLichpoint1, {
+            pointToLayer: function(feature, latlng) {
+                var smallIcon = new L.Icon({
+                    iconUrl: '{{asset('/place2.png')}}',
+                    iconAnchor: [25, 41],
+                    iconSize: [55, 70],
+
+                });
+                return L.marker(latlng, {icon: smallIcon});
+            },
+            onEachFeature: function (feature, layer)
+            {
+
+                layer.bindTooltip('<div class="container-fluid"><div><img src="'+feature.properties.img+'"style="width:100%;height:200px"></div><div class="text-center"><h4>'+feature.properties.tendiadiem+'</h4></div><div class="row"><label class="col-form-label font-weight-bold"><i class="fa fa-location-arrow" aria-hidden="true"></i>: '+feature.properties.diachi+'</label></div></div>');
+                layer.on('click', function(e) {
+                    window.location = "http://localhost:8080/DoAnTotNghiep/public/"+feature.properties.url;
+                });
+            },
+
+            }).addTo(mymap);
+
+            var json_KhachSan={
+
+            "type": "FeatureCollection",
+            "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+
+            "features": [
+                            @foreach($dataks as $dt)
+                                {
+                                    "type": "Feature",
+                                    "properties":
+                                    {
+                                        "id": {{$dt->gid}},
+                                        "diachi": "{{$dt->diachi}}",
+                                        "tenkhachsan": "{{$dt->tenkhachsan}}",
+                                        "xoa": "xoa{{$dt->gid}}",
+                                        "sua": "sua{{$dt->gid}}",
+                                        "lng": {{$dt->st_x}},
+                                        "lat": {{$dt->st_y}},
+                                        "img": "{{$dt->img}}",
+                                        "sao": "{{$dt->sao}}",
+                                        "link": "khach-san/{{$dt->tenlink}}",
+                                    },
+                                    "geometry":
+                                    {
+                                        "type": "Point",
+                                        "coordinates": [ {{$dt->st_x}}, {{$dt->st_y}} ],
+                                    },
+                                },
+                            @endforeach
+                        ]
+            }
+
+            var khachsan = L.geoJson(json_KhachSan, {
+            pointToLayer: function(feature, latlng) {
+                
+                return L.marker(latlng);
+            },
+
+            onEachFeature: function (feature, layer)
+            {
+                layer.bindTooltip('<div class="container-fluid"><div><img src="'+feature.properties.img+'"style="width:275px;height:200px"></div><div class="text-center"><h4>'+feature.properties.tenkhachsan +'<div class="hotel-rating"><span class="text-star"><i class="number"> '+feature.properties.sao +' sao </i></span><span class="bg-star">@for($i='+feature.properties.sao+';$i>1;$i--)<i class="fa fa-star"></i>@endfor</span></div></h4></div><div class="row"><label class="col-form-label font-weight-bold"><i class="fa fa-location-arrow" aria-hidden="true"></i>: '+feature.properties.diachi+'</label></div></div>');
+                layer.on('click', function(e) {
+                    window.location = "http://localhost:8080/DoAnTotNghiep/public/"+feature.properties.link;
+                });
+                
+            },
+            }).addTo(mymap);
+    </script>
+    <script src="{{asset('/js/geojsondata.js')}}"></script>
+    <script src="{{asset('/js/geojson.js')}}"></script>
     <div class="row">
         <div class="col-3 float-left p-2">
             <form action="{{route('tim-kiem-nang-cao')}}">
@@ -338,9 +514,10 @@
     // data for autocomplete
     var countries = [
                         @foreach($dataks as $ks)
-                        "{{$ks->tenkhachsan}}",                               
+                        "{{$ks->tenkhachsan}}",
                         @endforeach          
                     ];
+        console.log(countries);
 </script>
 <script src="{{asset('/user/js/trangchu_autocomplete.js')}}"></script>
 <script>
