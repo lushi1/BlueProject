@@ -24,7 +24,11 @@ class QLDiaDiemDuLich extends Controller
         $data = DB::table('diadiemdulich_khachsan_point')->insert(['tenrutgon'=>$req->tenrutgon,'tenlink'=>$req->tenlink,
         'idvung'=>$checkvung->gid,'img'=>$req->url1,'tendiadiem'=>$req->tendiadiem,'diachi'=> $req->diachi,
         'geom'=>DB::raw("ST_GeomFromText('POINT(".$req->toadox." ".$req->toadoy.")', 4326)")]);
-        
+        if ($data) {
+		    Session::flash('success', 'Thêm thành công!');
+        }else {
+            Session::flash('error', 'Thêm thất bại!');
+        }
         return redirect('danhsachDL');
     }
 
@@ -37,14 +41,18 @@ class QLDiaDiemDuLich extends Controller
                         'img'=>$req->img,
                         'geom'=>DB::raw("ST_GeomFromText('POINT(".$req->toadox." ".$req->toadoy.")', 4326)"),
                         'diachi'=>$req->diachi]);      
-        
+        if ($data) {
+            Session::flash('success', 'Sửa thành công!');
+        }else {
+            Session::flash('error', 'Sửa thất bại!');
+        }
         return redirect()->back();
     }
 
     public function XoaDL($id){
         $data = diadiemdulich::destroy($id);
         if ($data) {
-		    Session::flash('success', 'Xóa tài khoản thành công!');
+		    Session::flash('success', 'Xóa thành công!');
         }else {
             Session::flash('error', 'Xóa thất bại!');
         }

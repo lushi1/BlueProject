@@ -31,6 +31,11 @@ class QLBaiViet extends Controller
         $baiviet->view = 0;
         $baiviet->dulich_id = $req->dulich_id;
         $baiviet->save();
+        if ($baiviet) {
+		    Session::flash('success', 'Thêm bài viết thành công!');
+        }else {
+            Session::flash('error', 'Thêm thất bại!');
+        }
         return redirect('danhsachBV');
     }
 
@@ -38,7 +43,7 @@ class QLBaiViet extends Controller
     public function XoaBV($id){
         $xoabaiviet = baiviet::destroy($id);
         if ($xoabaiviet) {
-		    Session::flash('success', 'Xóa tài khoản thành công!');
+		    Session::flash('success', 'Xóa bài viết thành công!');
         }else {
             Session::flash('error', 'Xóa thất bại!');
         }
@@ -53,7 +58,7 @@ class QLBaiViet extends Controller
         $baiviet->noidung= $req->$noidung;
         $baiviet->save();
         if ($baiviet) {
-		    Session::flash('success', 'Sửa thành công!');
+		    Session::flash('success', 'Sửa bài viết thành công!');
         }else {
             Session::flash('error', 'Sửa thất bại!');
         }

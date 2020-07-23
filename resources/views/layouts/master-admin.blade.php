@@ -137,7 +137,7 @@
   
           <li class="nav-item has-treeview">
             <a href="{{route('danhsachDL')}}" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon fa fa-map-marker"></i>
               <p>
                 Quản lý địa điểm du lịch
               </p>
@@ -145,7 +145,7 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="{{route('danhsachKS')}}" class="nav-link">
-              <i class="nav-icon fas fa-tree"></i>
+              <i class="nav-icon fa fa-h-square"></i>
               <p>
                 Quản lý địa điểm khách sạn              
               </p>
@@ -153,7 +153,7 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="{{route('danhsachCTKS')}}" class="nav-link">
-              <i class="nav-icon fas fa-tree"></i>
+              <i class="nav-icon fa fa-info-circle"></i>
               <p>
                 Quản lý chi tiết khách sạn            
               </p>

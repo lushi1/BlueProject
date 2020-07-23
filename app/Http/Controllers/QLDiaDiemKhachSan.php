@@ -27,7 +27,11 @@ class QLDiaDiemKhachSan extends Controller
 
         $data = DB::table('khachsan_point')->insert(['idvung'=>$req->idvung, 'tenlink'=>$req->tenlink,'giaphong'=>$req->giaphong,'sao'=>$req->sao,'img'=>$req->url1,'tenkhachsan'=>$req->tenkhachsan,'diachi'=>$req->diachi,
         'geom'=>DB::raw("ST_GeomFromText('POINT(".$req->toadox." ".$req->toadoy.")', 4326)")]);
-        
+        if ($data) {
+		    Session::flash('success', 'Thêm thành công!');
+        }else {
+            Session::flash('error', 'Thêm thất bại!');
+        }
         return redirect('danhsachKS');
     }
 
@@ -43,14 +47,18 @@ class QLDiaDiemKhachSan extends Controller
                         'img'=>$req->img,
                         'geom'=>DB::raw("ST_GeomFromText('POINT(".$req->toadox." ".$req->toadoy.")', 4326)"),
                         'diachi'=>$req->diachi]);      
-        
+        if ($data) {
+            Session::flash('success', 'Sửa thành công!');
+        }else {
+            Session::flash('error', 'Sửa thất bại!');
+        }
         return redirect()->back();
     }
 
     public function XoaKS($id){
         $data = khachsan::destroy($id);
         if ($data) {
-		    Session::flash('success', 'Xóa tài khoản thành công!');
+		    Session::flash('success', 'Xóa thành công!');
         }else {
             Session::flash('error', 'Xóa thất bại!');
         }
